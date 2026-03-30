@@ -67,12 +67,6 @@ void	cleanup_mlx(t_app *app)
 
 void	mlx_setup(t_app *app)
 {
-	app->img = ft_malloc(sizeof(t_images));
-	if (!app->img)
-	{
-		exit_with_error("Memory allocation failed for images.", app);
-	}
-	ft_bzero(app->img, sizeof(t_images));
 	app->mlx = mlx_init(app->window_width, app->window_height, "Cub3D", true);
 	if (!app->mlx)
 	{

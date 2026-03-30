@@ -65,6 +65,7 @@ typedef struct s_images
 	mlx_image_t			*screen;
 }						t_images;
 
+// Image and img. It's bad naming
 typedef struct s_app
 {
 	mlx_t				*mlx;

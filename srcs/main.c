@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2025/08/24 18:55:03 by sruff            ###   ########.fr       */
+/*   Updated: 2026/03/30 10:59:44 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	allocate_app(t_app **app)
+{
+	*app = ft_calloc(1, sizeof(t_app));
+	if (!*app)
+		exit_with_error("Memory allocation for app failed.", NULL);
+	(*app)->map = ft_calloc(1, sizeof(t_map));
+	if (!(*app)->map)
+		exit_with_error("Memory allocation for map failed.", *app);
+	(*app)->img = ft_calloc(1, sizeof(t_images));
+	if (!(*app)->img)
+		exit_with_error("Memory allocation for images failed.", *app);
+}
 
 static void	main_loop_hook(void *param)
 {
@@ -25,15 +38,12 @@ int32_t	main(int32_t argc, char **argv)
 {
 	t_app	*app;
 
-	app = ft_malloc(sizeof(t_app));
-	if (!app)
-		return (1);
-	ft_memset(app, 0, sizeof(t_app));
 	if (argc != 2)
 	{
 		ft_printf("Usage: %s <path to map_file>\n", argv[0]);
 		return (1);
 	}
+	allocate_app(&app);
 	ft_printf("Welcome to Cub3D!\n");
 	if (parse_map(app, argv[1]) != 0)
 	{
