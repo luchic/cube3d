@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 21:22:46 by sruff             #+#    #+#             */
-/*   Updated: 2025/08/24 21:23:56 by sruff            ###   ########.fr       */
+/*   Updated: 2026/03/30 11:11:16 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*ft_strpbrk(const char *s, const char *charset)
 	return (NULL);
 }
 
-int32_t	exit_with_error(const char *message, t_app *app)
+void	exit_with_error(const char *message, t_app *app)
 {
 	ft_printf("Error: %s\n", message);
 	if (app)
@@ -87,5 +87,4 @@ int32_t	exit_with_error(const char *message, t_app *app)
 	}
 	ft_clean();
 	exit(1);
-	return (1);
 }

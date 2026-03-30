@@ -3,7 +3,7 @@
 
 # include "defs.h"
 
-int32_t		exit_with_error(const char *message, t_app *app);
+void		exit_with_error(const char *message, t_app *app);
 int32_t		get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
 int32_t		get_texture_num(double ray_dir_x, double ray_dir_y, int32_t side);
 int32_t		is_wall(t_app *app, double x, double y);
