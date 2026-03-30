@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_load_texture.c                                 :+:      :+:    :+:   */
+/*   texture_loader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -52,7 +52,7 @@ static void	load_west_texture(t_app *app)
 	}
 }
 
-void	load_all_textures(t_app *app)
+void	load_textures(t_app *app)
 {
 	load_north_texture(app);
 	load_south_texture(app);

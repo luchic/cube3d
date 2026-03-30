@@ -52,10 +52,10 @@ int32_t	main(int32_t argc, char **argv)
 	}
 	app->window_width = WINDOW_WIDTH;
 	app->window_height = WINDOW_HEIGHT;
-	mlx_setup(app);
+	setup_graphics(app);
 	mlx_loop_hook(app->mlx, main_loop_hook, app);
 	mlx_loop(app->mlx);
-	cleanup_mlx(app);
+	cleanup_graphics(app);
 	ft_clean();
 	return (0);
 }
