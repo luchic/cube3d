@@ -83,6 +83,7 @@ typedef struct s_images
 	mlx_texture_t		*txt_so;
 	mlx_texture_t		*txt_ea;
 	mlx_texture_t		*txt_we;
+	mlx_texture_t		*txt_floor;
 	mlx_image_t			*screen;
 }						t_images;
 

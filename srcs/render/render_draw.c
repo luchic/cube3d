@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:15:15 by sruff             #+#    #+#             */
-/*   Updated: 2026/03/30 13:39:30 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/03/30 13:43:52 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,9 @@ static void	draw_ceiling(t_app *app, int32_t ceiling_color)
 	}
 }
 
+//INFO: shading implemented in simple way, i'm assume that horizont always
+//in the middle of screan. It mean we need to rebuild calculation 
+//if we want to move our camera up
 static void	draw_floor(t_app *app, int32_t floor_color)
 {
 	mlx_texture_t	*texture;
