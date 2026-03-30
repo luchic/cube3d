@@ -1,7 +1,7 @@
-NO textures/CRATE_1A.PNG
-SO textures/BRICK_1B.PNG
-WE textures/BRICK_2A.PNG
-EA textures/DOOR_1A.PNG
+NO assets/textures/CRATE_1A.PNG
+SO assets/textures/BRICK_1B.PNG
+WE assets/textures/BRICK_2A.PNG
+EA assets/textures/DOOR_1A.PNG
 
 F 220,1a0,0
 C 225,30,0
