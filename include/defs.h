@@ -16,6 +16,7 @@
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 768
 # define MOVE_SPEED 0.05
+# define PLAYER_RADIUS 0.18
 # define APP_TITLE "Cub3D"
 
 typedef enum e_element
