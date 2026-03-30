@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void	validate_character(t_app *app, int32_t x, int32_t y,
+static t_parse_error	validate_character(t_app *app, int32_t x, int32_t y,
 		int32_t *player_count)
 {
 	char	c;
@@ -23,22 +23,24 @@ static void	validate_character(t_app *app, int32_t x, int32_t y,
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (*player_count > 0)
-			exit_with_error("Multiple player starts defined.", app);
+			return (PARSE_ERR_INVALID_PLAYER_COUNT);
 		map->player_start_x = x;
 		map->player_start_y = y;
 		map->player_start_dir = c;
 		(*player_count)++;
 	}
 	else if (c != '0' && c != '1' && c != ' ')
-		exit_with_error("Invalid character in map grid.", app);
+		return (PARSE_ERR_INVALID_MAP_CHAR);
+	return (PARSE_SUCCESS);
 }
 
-static void	check_map_characters(t_app *app)
+static t_parse_error	check_map_characters(t_app *app)
 {
 	int32_t	player_count;
 	int32_t	y;
 	int32_t	x;
 	t_map	*map;
+	t_parse_error	error;
 
 	map = app->map;
 	player_count = 0;
@@ -48,15 +50,17 @@ static void	check_map_characters(t_app *app)
 		x = -1;
 		while (++x < map->grid_width)
 		{
-			validate_character(app, x, y, &player_count);
+			error = validate_character(app, x, y, &player_count);
+			if (error != PARSE_SUCCESS)
+				return (error);
 		}
 	}
 	if (player_count != 1)
-		exit_with_error("Map must have exactly one player start position.",
-			app);
+		return (PARSE_ERR_INVALID_PLAYER_COUNT);
+	return (PARSE_SUCCESS);
 }
 
-static void	check_elements_present(t_app *app)
+static t_parse_error	check_elements_present(t_app *app)
 {
 	int32_t	i;
 
@@ -64,13 +68,20 @@ static void	check_elements_present(t_app *app)
 	while (++i < ELEMENT_COUNT)
 	{
 		if (!app->map->elements_found[i])
-			exit_with_error("Missing one or more map elements.", app);
+			return (PARSE_ERR_MISSING_ELEMENTS);
 	}
+	return (PARSE_SUCCESS);
 }
 
-void	validate_map(t_app *app)
+t_parse_error	validate_map(t_app *app)
 {
-	check_elements_present(app);
-	check_map_characters(app);
-	check_walls_enclosed(app);
+	t_parse_error	error;
+
+	error = check_elements_present(app);
+	if (error != PARSE_SUCCESS)
+		return (error);
+	error = check_map_characters(app);
+	if (error != PARSE_SUCCESS)
+		return (error);
+	return (check_walls_enclosed(app));
 }

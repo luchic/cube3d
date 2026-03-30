@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-bool	check_all_elements_found(t_parse_file_data *file_data, t_app *app)
+t_parse_error	check_all_elements_found(t_parse_file_data *file_data, t_app *app)
 {
 	file_data->all_found = true;
 	file_data->i = 0;
@@ -27,19 +27,17 @@ bool	check_all_elements_found(t_parse_file_data *file_data, t_app *app)
 	}
 	if (file_data->all_found)
 		file_data->elements_fully_parsed = true;
-	return (true);
+	return (PARSE_SUCCESS);
 }
 
-bool	process_element_line(t_parse_file_data *file_data, t_app *app)
+t_parse_error	process_element_line(t_parse_file_data *file_data, t_app *app)
 {
-	if (parse_element(file_data->trimmed_line, app))
+	t_parse_error	error;
+
+	error = parse_element(file_data->trimmed_line, app);
+	if (error == PARSE_SUCCESS)
 		return (check_all_elements_found(file_data, app));
-	else
-	{
-		free(file_data->line);
-		close(file_data->fd);
-		exit_with_error("Invalid line or missing elements before map grid.",
-			app);
-		return (false);
-	}
+	free(file_data->line);
+	close(file_data->fd);
+	return (error);
 }

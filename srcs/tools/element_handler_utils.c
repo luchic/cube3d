@@ -12,11 +12,12 @@
 
 #include "cub3d.h"
 
-bool	handle_texture_elements(char *line, char *value, t_app *app)
+t_parse_error	handle_texture_elements(char *line, char *value, t_app *app)
 {
 	t_texture_element_args	ta;
 	t_map					*map;
 	int						i;
+	t_parse_error			error;
 
 	map = app->map;
 	i = 0;
@@ -34,9 +35,10 @@ bool	handle_texture_elements(char *line, char *value, t_app *app)
 		else
 			ta = (t_texture_element_args){line, value, app, EAST_TEXTURE,
 				&map->east_texture_path};
-		if (handle_texture_element(&ta))
-			return (true);
+		error = handle_texture_element(&ta);
+		if (error != PARSE_NO_MATCH)
+			return (error);
 		i++;
 	}
-	return (false);
+	return (PARSE_NO_MATCH);
 }

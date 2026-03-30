@@ -12,23 +12,34 @@
 
 #include "cub3d.h"
 
-static bool	check_valid_color_format(char *str, t_app *app)
+static void	free_split_values(char **values)
+{
+	int32_t	i;
+
+	i = 0;
+	if (!values)
+		return ;
+	while (values[i])
+	{
+		free(values[i]);
+		i++;
+	}
+	free(values);
+}
+
+static t_parse_error	check_valid_color_format(char *str)
 {
 	while (*str)
 	{
 		if (!ft_isdigit(*str) && *str != ',' && !ft_isspace(*str))
-		{
-			exit_with_error("Invalid RGB values: non-numeric characters found.",
-				app);
-			return (false);
-		}
+			return (PARSE_ERR_INVALID_RGB);
 		str++;
 	}
-	return (true);
+	return (PARSE_SUCCESS);
 }
 
-static bool	is_valid_color_component(char *str, int32_t *color_component,
-		t_app *app)
+static t_parse_error	is_valid_color_component(char *str,
+		int32_t *color_component)
 {
 	char	*end;
 
@@ -39,22 +50,16 @@ static bool	is_valid_color_component(char *str, int32_t *color_component,
 	while (*end)
 	{
 		if (!ft_isspace(*end))
-		{
-			exit_with_error("Invalid character after RGB value.", app);
-			return (false);
-		}
+			return (PARSE_ERR_INVALID_RGB);
 		end++;
 	}
 	if (*color_component < 0 || *color_component > 255)
-	{
-		exit_with_error("RGB color values must be between 0 and 255.", app);
-		return (false);
-	}
-	return (true);
+		return (PARSE_ERR_INVALID_RGB);
+	return (PARSE_SUCCESS);
 }
 
-static bool	validate_and_assign_color_component(char *str_val,
-		int32_t *color_component, t_app *app)
+static t_parse_error	validate_and_assign_color_component(char *str_val,
+		int32_t *color_component)
 {
 	char	*str;
 
@@ -62,44 +67,48 @@ static bool	validate_and_assign_color_component(char *str_val,
 	while (*str && (*str == ' ' || *str == '\t'))
 		str++;
 	if (*str == '\0')
-	{
-		exit_with_error("Empty value in RGB color specification.", app);
-		return (false);
-	}
-	return (is_valid_color_component(str, color_component, app));
+		return (PARSE_ERR_INVALID_RGB);
+	return (is_valid_color_component(str, color_component));
 }
 
-static void	assign_color_values(char **rgb_values, int32_t color[3], t_app *app)
+static t_parse_error	assign_color_values(char **rgb_values, int32_t color[3])
 {
 	int32_t	i;
+	t_parse_error	error;
 
 	i = 0;
 	while (i < 3)
 	{
-		if (!validate_and_assign_color_component(rgb_values[i], &color[i], app))
-			return ;
+		error = validate_and_assign_color_component(rgb_values[i], &color[i]);
+		if (error != PARSE_SUCCESS)
+			return (error);
 		i++;
 	}
+	return (PARSE_SUCCESS);
 }
 
-void	parse_color(char *line, int32_t color[3], t_app *app)
+t_parse_error	parse_color(char *line, int32_t color[3], t_app *app)
 {
 	char	**rgb_values;
 	int32_t	count;
+	t_parse_error	error;
 
 	count = 0;
-	if (!check_valid_color_format(line, app))
-		return ;
+	error = check_valid_color_format(line);
+	if (error != PARSE_SUCCESS)
+		return (error);
 	rgb_values = ft_split(line, ',');
 	if (!rgb_values)
-		exit_with_error("Memory allocation failed for color parsing.", app);
+		return (PARSE_ERR_ALLOC);
 	while (rgb_values[count])
 		count++;
 	if (count != 3)
 	{
-		exit_with_error("Invalid RGB color format: must have exactly 3 values.",
-			app);
-		return ;
+		free_split_values(rgb_values);
+		return (PARSE_ERR_INVALID_RGB);
 	}
-	assign_color_values(rgb_values, color, app);
+	error = assign_color_values(rgb_values, color);
+	free_split_values(rgb_values);
+	(void)app;
+	return (error);
 }
