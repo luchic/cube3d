@@ -15,7 +15,7 @@
 
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 768
-# define MOVE_SPEED 0.1
+# define MOVE_SPEED 0.05
 
 typedef enum e_element
 {
