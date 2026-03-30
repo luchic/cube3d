@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/03/30 10:59:44 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/03/30 11:42:48 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,9 @@ static void	setup_hooks(t_app *app)
 	mlx_loop_hook(app->mlx, main_loop_hook, app);
 }
 
-static void	exit_without_message(t_app *app)
-{
-	cleanup_graphics(app);
-	ft_clean();
-	exit(1);
-}
-
-static void	print_parse_error(t_parse_error error)
-{
-	ft_printf("Error: %s\n", get_parse_error_message(error));
-}
-
 static t_app	*setup_app(const char *map_path)
 {
-	t_app	*app;
+	t_app			*app;
 	t_parse_error	error;
 
 	app = allocate_app();
@@ -64,7 +52,7 @@ static t_app	*setup_app(const char *map_path)
 	if (error != PARSE_SUCCESS)
 	{
 		print_parse_error(error);
-		exit_without_message(app);
+		clean_exit(app);
 	}
 	app->window_width = WINDOW_WIDTH;
 	app->window_height = WINDOW_HEIGHT;
