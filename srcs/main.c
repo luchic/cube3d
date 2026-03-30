@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/03/30 11:42:48 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/03/30 12:53:29 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,6 @@ static t_app	*allocate_app(void)
 	return (app);
 }
 
-static void	main_loop_hook(void *param)
-{
-	t_app	*app;
-
-	app = param;
-	movehook(app);
-	render(app);
-}
-
-static void	setup_hooks(t_app *app)
-{
-	mlx_loop_hook(app->mlx, main_loop_hook, app);
-}
-
 static t_app	*setup_app(const char *map_path)
 {
 	t_app			*app;
@@ -54,8 +40,6 @@ static t_app	*setup_app(const char *map_path)
 		print_parse_error(error);
 		clean_exit(app);
 	}
-	app->window_width = WINDOW_WIDTH;
-	app->window_height = WINDOW_HEIGHT;
 	setup_graphics(app);
 	setup_hooks(app);
 	return (app);

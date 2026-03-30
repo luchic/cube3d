@@ -16,6 +16,7 @@ EXT_LIBS = -ldl -lglfw -pthread -lm
 SRC_FILES = \
 	srcs/main.c \
 	srcs/mlx/graphics.c \
+	srcs/mlx/setup_hooks.c \
 	srcs/mlx/texture_loader.c \
 	srcs/parse/pad_map_grid.c \
 	srcs/parse/parse_colors.c \

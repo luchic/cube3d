@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   graphics.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/05 16:05:25 by sruff             #+#    #+#             */
-/*   Updated: 2025/08/24 18:57:58 by sruff            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 void	create_screen_image(t_app *app)
@@ -18,24 +6,6 @@ void	create_screen_image(t_app *app)
 			app->window_height);
 	if (!app->img->screen || !app->img->screen->pixels)
 		exit_with_error("Failed to alloc screen image", app);
-	mlx_image_to_window(app->mlx, app->img->screen, 0, 0);
-}
-// window size changes apply to app
-
-static void	resize_callback(int32_t width, int32_t height, void *param)
-{
-	t_app	*app;
-
-	app = (t_app *)param;
-	if (!app || !app->img)
-		return ;
-	app->window_width = width;
-	app->window_height = height;
-	if (app->img->screen)
-		mlx_delete_image(app->mlx, app->img->screen);
-	app->img->screen = mlx_new_image(app->mlx, width, height);
-	if (!app->img->screen || !app->img->screen->pixels)
-		exit_with_error("Failed to recreate screen image after resize", app);
 	mlx_image_to_window(app->mlx, app->img->screen, 0, 0);
 }
 
@@ -65,14 +35,20 @@ void	cleanup_graphics(t_app *app)
 		mlx_terminate(app->mlx);
 }
 
+// TODO; May be this error printing not good, becasue i used another way 
+// with printing error in map_parsing
 void	setup_graphics(t_app *app)
 {
-	app->mlx = mlx_init(app->window_width, app->window_height, "Cub3D", true);
+	app->window_width = WINDOW_WIDTH;
+	app->window_height = WINDOW_HEIGHT;
+	app->mlx = mlx_init(app->window_width, app->window_height, APP_TITLE, true);
 	if (!app->mlx)
 	{
 		exit_with_error("MLX initialization failed.", app);
 	}
-	load_textures(app);
+	if (!load_wall_textures(app))
+	{
+		exit_with_error("Failed to load west texture.", app);
+	}
 	create_screen_image(app);
-	mlx_resize_hook(app->mlx, resize_callback, app);
 }
