@@ -21,6 +21,8 @@ void	cleanup_textures(t_images *img)
 		mlx_delete_texture(img->txt_ea);
 	if (img->txt_we)
 		mlx_delete_texture(img->txt_we);
+	if (img->txt_floor)
+		mlx_delete_texture(img->txt_floor);
 }
 
 void	cleanup_graphics(t_app *app)
@@ -46,7 +48,7 @@ void	setup_graphics(t_app *app)
 	{
 		exit_with_error("MLX initialization failed.", app);
 	}
-	if (!load_wall_textures(app))
+	if (!load_textures(app))
 	{
 		exit_with_error("Failed to load west texture.", app);
 	}

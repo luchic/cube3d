@@ -12,24 +12,28 @@
 
 #include "cub3d.h"
 
-static int	load_wall_texture(mlx_texture_t	**wall_texture, const char *path)
+#define FLOOR_TEXTURE_PATH "assets/textures/FLOOR_1A.PNG"
+
+static int	load_texture(mlx_texture_t **texture, const char *path)
 {
-	(*wall_texture) = mlx_load_png(path);
-	if (!(*wall_texture))
+	(*texture) = mlx_load_png(path);
+	if (!(*texture))
 		return (0);
 	return (1);
 }
 
-int	load_wall_textures(t_app *app)
+int	load_textures(t_app *app)
 {
-	load_wall_texture(&(app->img->txt_no), app->map->north_texture_path);
-	load_wall_texture(&(app->img->txt_so), app->map->south_texture_path);
-	load_wall_texture(&(app->img->txt_ea), app->map->east_texture_path);
-	load_wall_texture(&(app->img->txt_we), app->map->west_texture_path);
+	load_texture(&(app->img->txt_no), app->map->north_texture_path);
+	load_texture(&(app->img->txt_so), app->map->south_texture_path);
+	load_texture(&(app->img->txt_ea), app->map->east_texture_path);
+	load_texture(&(app->img->txt_we), app->map->west_texture_path);
+	load_texture(&(app->img->txt_floor), FLOOR_TEXTURE_PATH);
 	if (!app->img->txt_no
 		|| !app->img->txt_so
 		|| !app->img->txt_ea
-		|| !app->img->txt_we)
+		|| !app->img->txt_we
+		|| !app->img->txt_floor)
 	{
 		cleanup_textures(app->img);
 		return (0);
