@@ -85,32 +85,15 @@ t_parse_error	process_valid_line(t_parse_file_data *file_data, t_app *app,
 t_parse_error	process_file_lines(t_parse_file_data *file_data, t_app *app,
 		t_map_lines_data *map_data)
 {
-	int32_t	consecutive_empty_lines;
+	int32_t			consecutive_empty_lines;
 	t_parse_error	error;
 
 	consecutive_empty_lines = 0;
 	file_data->line = get_next_line(file_data->fd);
 	while (file_data->line)
 	{
-		file_data->trimmed_line = file_data->line;
-		while (*file_data->trimmed_line && (*file_data->trimmed_line == ' '
-				|| *file_data->trimmed_line == '\t'))
-			file_data->trimmed_line++;
-		file_data->newline = ft_strchr(file_data->trimmed_line, '\n');
-		if (file_data->newline)
-			*file_data->newline = '\0';
-		if (*file_data->trimmed_line == '\0'
-			|| file_data->trimmed_line[0] == '\n')
-		{
-			error = handle_empty_line(file_data, app, &consecutive_empty_lines,
-					map_data);
-			if (error != PARSE_SUCCESS)
-				return (error);
-			file_data->line = get_next_line(file_data->fd);
-			continue ;
-		}
-		consecutive_empty_lines = 0;
-		error = process_valid_line(file_data, app, map_data);
+		error = handle_file_line(file_data, app, &consecutive_empty_lines,
+				map_data);
 		if (error != PARSE_SUCCESS)
 			return (error);
 		file_data->line = get_next_line(file_data->fd);

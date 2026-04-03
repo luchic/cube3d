@@ -74,4 +74,3 @@ char	*ft_strpbrk(const char *s, const char *charset)
 	}
 	return (NULL);
 }
-

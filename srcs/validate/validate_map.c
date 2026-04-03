@@ -36,10 +36,10 @@ static t_parse_error	validate_character(t_app *app, int32_t x, int32_t y,
 
 static t_parse_error	check_map_characters(t_app *app)
 {
-	int32_t	player_count;
-	int32_t	y;
-	int32_t	x;
-	t_map	*map;
+	int32_t			player_count;
+	int32_t			y;
+	int32_t			x;
+	t_map			*map;
 	t_parse_error	error;
 
 	map = app->map;

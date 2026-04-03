@@ -12,7 +12,8 @@
 
 #include "cub3d.h"
 
-t_parse_error	check_all_elements_found(t_parse_file_data *file_data, t_app *app)
+t_parse_error	check_all_elements_found(t_parse_file_data *file_data,
+		t_app *app)
 {
 	file_data->all_found = true;
 	file_data->i = 0;
