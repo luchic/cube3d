@@ -30,6 +30,11 @@
 # define MOVE_SPEED 0.05
 # define ROTATE_SPPED 0.06
 # define PLAYER_RADIUS 0.18
+# define MINIMAP_MARGIN 16
+# define MINIMAP_TILE_SIZE 18
+# define MINIMAP_VISIBLE_TILES 9
+# define MINIMAP_PLAYER_SIZE 6
+# define MINIMAP_DIRECTION_SIZE 14
 # define APP_TITLE "Cub3D"
 
 typedef struct s_floor_view
@@ -49,6 +54,27 @@ typedef struct s_floor_row
 	double			floor_y;
 	double			factor;
 }					t_floor_row;
+
+typedef struct s_point
+{
+	int32_t			x;
+	int32_t			y;
+}					t_point;
+
+typedef struct s_minimap_style
+{
+	int32_t			panel_size;
+	uint32_t		color;
+}					t_minimap_style;
+
+typedef struct s_line_draw
+{
+	double			step_x;
+	double			step_y;
+	double			x;
+	double			y;
+	int32_t			steps;
+}					t_line_draw;
 
 typedef enum e_element
 {
