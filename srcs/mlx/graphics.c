@@ -6,19 +6,20 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/03 13:20:00 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/05 11:53:33 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	create_screen_image(t_app *app)
+static int	create_screen_image(t_app *app)
 {
 	app->img->screen = mlx_new_image(app->mlx, app->window_width,
 			app->window_height);
 	if (!app->img->screen || !app->img->screen->pixels)
-		exit_with_error("Failed to alloc screen image", app);
+		return (0);	
 	mlx_image_to_window(app->mlx, app->img->screen, 0, 0);
+	return (1);
 }
 
 void	cleanup_textures(t_images *img)
@@ -62,5 +63,8 @@ void	setup_graphics(t_app *app)
 	{
 		exit_with_error("Failed to load west texture.", app);
 	}
-	create_screen_image(app);
+	if (!create_screen_image(app))
+	{
+		exit_with_error("Failed to create screen image", app);
+	}
 }
