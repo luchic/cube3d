@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:15:15 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/03 12:49:59 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/05 18:19:07 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,13 @@ void	cast_rays(t_app *app)
 void	draw_frame(t_app *app)
 {
 	int32_t	ceiling_color;
-	int32_t	floor_color;
 
 	if (!app || !app->img || !app->img->screen)
 		return ;
 	ceiling_color = get_rgba(app->map->ceiling_color[0],
 			app->map->ceiling_color[1], app->map->ceiling_color[2], 255);
-	floor_color = get_rgba(app->map->floor_color[0], app->map->floor_color[1],
-			app->map->floor_color[2], 255);
 	draw_ceiling(app, ceiling_color);
-	draw_floor(app, floor_color);
+	draw_floor(app);
 	cast_rays(app);
 	render_minimap(app);
 }

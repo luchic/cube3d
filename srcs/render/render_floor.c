@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:25:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 12:20:48 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/05 18:24:24 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static int32_t	apply_distance_shading(int32_t color, double factor)
 	r = (color >> 24) & 0xFF;
 	g = (color >> 16) & 0xFF;
 	b = (color >> 8) & 0xFF;
-	r = (int32_t)(r / 4 + (r - r / 4) * factor);
-	g = (int32_t)(g / 4 + (g - g / 4) * factor);
-	b = (int32_t)(b / 4 + (b - b / 4) * factor);
+	r = (int32_t)((r >> 2) + (r - (r >> 4)) * factor);
+	g = (int32_t)((g >> 2) + (g - (g >> 4)) * factor);
+	b = (int32_t)((b >> 2) + (b - (b >> 4)) * factor);
 	return (get_rgba(r, g, b, 255));
 }
 
@@ -53,7 +53,7 @@ static void	draw_floor_row(t_app *app, mlx_texture_t *texture,
 	}
 }
 
-void	draw_floor(t_app *app, int32_t floor_color)
+void	draw_floor(t_app *app)
 {
 	mlx_texture_t	*texture;
 	int32_t			y;
@@ -74,5 +74,4 @@ void	draw_floor(t_app *app, int32_t floor_color)
 		draw_floor_row(app, texture, &floor_row, y);
 		y++;
 	}
-	(void)floor_color;
 }
