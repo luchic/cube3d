@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 11:53:33 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/05 18:25:52 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	create_screen_image(t_app *app)
 	app->img->screen = mlx_new_image(app->mlx, app->window_width,
 			app->window_height);
 	if (!app->img->screen || !app->img->screen->pixels)
-		return (0);	
+		return (0);
 	mlx_image_to_window(app->mlx, app->img->screen, 0, 0);
 	return (1);
 }
