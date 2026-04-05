@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/03 13:30:00 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/05 12:07:09 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define WINDOW_WIDTH 1024
 # define WINDOW_HEIGHT 768
 # define MOVE_SPEED 0.05
+# define ROTATE_SPPED 0.07
 # define PLAYER_RADIUS 0.18
 # define APP_TITLE "Cub3D"
 

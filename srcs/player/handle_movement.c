@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   handle_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:17:10 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/05 12:03:32 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/05 12:06:01 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	handle_rotation(t_app *app)
 {
 	double	rot_speed;
 
-	rot_speed = MOVE_SPEED * 0.7;
+	rot_speed = ROTATE_SPPED;
 	if (app->keys[4])
 	{
 		rotate_player(&app->player, -rot_speed);

@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 21:40:58 by sruff             #+#    #+#             */
-/*   Updated: 2025/08/24 21:46:20 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/05 12:03:56 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	is_wall(t_app *app, double x, double y)
+{
+	int32_t	map_x;
+	int32_t	map_y;
+
+	map_x = (int32_t)x;
+	map_y = (int32_t)y;
+	if (map_x < 0 || map_x >= app->map->grid_width || map_y < 0
+		|| map_y >= app->map->grid_height)
+		return (1);
+	return (app->map->grid[map_y][map_x] == '1');
+}
 
 static int32_t	has_wall_padding(t_app *app, double x, double y)
 {
