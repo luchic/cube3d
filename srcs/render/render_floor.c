@@ -6,29 +6,11 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:25:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/03 13:25:00 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/05 12:20:48 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-typedef struct s_floor_view
-{
-	double	ray_dir_x0;
-	double	ray_dir_y0;
-	double	ray_dir_x1;
-	double	ray_dir_y1;
-}	t_floor_view;
-
-typedef struct s_floor_row
-{
-	double	row_distance;
-	double	floor_step_x;
-	double	floor_step_y;
-	double	floor_x;
-	double	floor_y;
-	double	factor;
-}	t_floor_row;
 
 static int32_t	apply_distance_shading(int32_t color, double factor)
 {
@@ -43,23 +25,6 @@ static int32_t	apply_distance_shading(int32_t color, double factor)
 	g = (int32_t)(g / 4 + (g - g / 4) * factor);
 	b = (int32_t)(b / 4 + (b - b / 4) * factor);
 	return (get_rgba(r, g, b, 255));
-}
-
-static void	init_floor_row(t_app *app, t_floor_view *view,
-		t_floor_row *floor_row, int32_t y)
-{
-	floor_row->row_distance = (0.5 * app->window_height)
-		/ (y - app->window_height / 2);
-	floor_row->floor_step_x = floor_row->row_distance
-		* (view->ray_dir_x1 - view->ray_dir_x0) / app->window_width;
-	floor_row->floor_step_y = floor_row->row_distance
-		* (view->ray_dir_y1 - view->ray_dir_y0) / app->window_width;
-	floor_row->floor_x = app->player.pos_x + floor_row->row_distance
-		* view->ray_dir_x0;
-	floor_row->floor_y = app->player.pos_y + floor_row->row_distance
-		* view->ray_dir_y0;
-	floor_row->factor = (double)(y - app->window_height / 2)
-		/ (app->window_height / 2);
 }
 
 static void	draw_floor_row(t_app *app, mlx_texture_t *texture,
