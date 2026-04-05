@@ -47,4 +47,5 @@ void	draw_frame(t_app *app)
 	draw_ceiling(app, ceiling_color);
 	draw_floor(app, floor_color);
 	cast_rays(app);
+	render_minimap(app);
 }

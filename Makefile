@@ -31,14 +31,17 @@ SRC_FILES = \
 	srcs/parse/parsing.c \
 	srcs/player/init_player.c \
 	srcs/player/keypress.c \
-	srcs/player/player.c \
+	srcs/player/handle_movement.c \
 	srcs/player/player_move.c \
 	srcs/render/dda_init.c \
 	srcs/render/render.c \
+	srcs/render/handle_rays.c \
 	srcs/render/render_dda.c \
 	srcs/render/render_ceiling.c \
 	srcs/render/render_draw.c \
+	srcs/render/draw_shapes.c \
 	srcs/render/render_floor.c \
+	srcs/render/render_minimap.c \
 	srcs/render/render_texture.c \
 	srcs/render/render_walls.c \
 	srcs/tools/element_handler_utils.c \
