@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 18:19:13 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:44:39 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ uint32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
 uint32_t		get_texture_color(t_app *app, int32_t tex_num, int32_t tex_x,
 					int32_t tex_y);
 int32_t			get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
-void			draw_ceiling(t_app *app, int32_t ceiling_color);
+void			draw_sky(t_app *app, int32_t ceiling_color);
 void			draw_floor(t_app *app);
 void			init_floor_row(t_app *app, t_floor_view *view,
 					t_floor_row *floor_row, int32_t y);
