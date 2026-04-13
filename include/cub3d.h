@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/13 15:44:39 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:46:00 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			cleanup_graphics(t_app *app);
 
 void			render(t_app *app);
 void			draw_frame(t_app *app);
-void			cast_rays(t_app *app);
+void			draw_walls(t_app *app);
 void			process_ray(t_app *app, int32_t x, t_ray_data *ray_data);
 void			init_dda(t_app *app, t_ray_data *ray);
 void			execute_dda(t_app *app, t_ray_data *ray);

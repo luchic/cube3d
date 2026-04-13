@@ -64,6 +64,9 @@ $(LIBFT):
 	$(MAKE) -C $(DLIBFT) all
 
 $(MLX42LIB):
+	if [ ! -d $(MLX42) ]; then \
+		git clone https://github.com/codam-coding-college/MLX42.git $(MLX42); \
+	fi
 	if [ ! -f $(BUILD_DIR)/libmlx42.a ]; then \
 		cmake $(MLX42) -B $(BUILD_DIR) && \
 		cmake --build $(BUILD_DIR) -j4; \
