@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 18:07:58 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 18:07:59 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:56:38 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void	process_ray(t_app *app, int32_t x, t_ray_data *ray_data)
 	ray_data->hit = 0;
 	init_dda(app, ray_data);
 	execute_dda(app, ray_data);
-	if (ray_data->hit == 0)
-		return ;
-	calculate_and_draw_wall(app, x, ray_data);
 }
 
 void	init_floor_row(t_app *app, t_floor_view *view, t_floor_row *floor_row,
