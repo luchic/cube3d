@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 18:07:58 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/13 15:56:38 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:08:43 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 void	process_ray(t_app *app, int32_t x, t_ray_data *ray_data)
 {
-	ray_data->camera_x = 2 * x / (double)app->window_width - 1;
-	ray_data->ray_dir_x = app->player.dir_x + app->player.plane_x
-		* ray_data->camera_x;
-	ray_data->ray_dir_y = app->player.dir_y + app->player.plane_y
-		* ray_data->camera_x;
+	double	camera_x;
+
+	camera_x = 2 * x / (double)app->window_width - 1;
+	ray_data->ray_dir_x = app->player.dir_x + app->player.plane_x * camera_x;
+	ray_data->ray_dir_y = app->player.dir_y + app->player.plane_y * camera_x;
 	ray_data->delta_dist_x = fabs(1 / ray_data->ray_dir_x);
 	ray_data->delta_dist_y = fabs(1 / ray_data->ray_dir_y);
 	ray_data->hit = 0;
