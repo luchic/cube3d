@@ -1,29 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   handle_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:17:10 by sruff             #+#    #+#             */
-/*   Updated: 2025/08/24 21:43:25 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/05 12:06:01 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int32_t	is_wall(t_app *app, double x, double y)
-{
-	int32_t	map_x;
-	int32_t	map_y;
-
-	map_x = (int32_t)x;
-	map_y = (int32_t)y;
-	if (map_x < 0 || map_x >= app->map->grid_width || map_y < 0
-		|| map_y >= app->map->grid_height)
-		return (1);
-	return (app->map->grid[map_y][map_x] == '1');
-}
 
 static void	rotate_player(t_player *player, double angle)
 {
@@ -43,7 +30,7 @@ static void	handle_rotation(t_app *app)
 {
 	double	rot_speed;
 
-	rot_speed = MOVE_SPEED * 0.7;
+	rot_speed = ROTATE_SPPED;
 	if (app->keys[4])
 	{
 		rotate_player(&app->player, -rot_speed);

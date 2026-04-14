@@ -36,30 +36,16 @@ static int32_t	find_max_grid_width(t_map *map)
 
 t_parse_error	pad_map_grid(t_app *app)
 {
-	int32_t		i;
-	int32_t		len;
-	char		*new_line;
-	t_map		*map;
-	int32_t		j;
+	int32_t	i;
+	t_map	*map;
 
 	map = app->map;
 	map->grid_width = find_max_grid_width(map);
 	i = -1;
 	while (++i < map->grid_height)
 	{
-		len = ft_strlen(map->grid[i]);
-		if (len < map->grid_width)
-		{
-			new_line = ft_malloc(map->grid_width + 1);
-			if (!new_line)
-				return (PARSE_ERR_ALLOC);
-			ft_memcpy(new_line, map->grid[i], len);
-			j = len;
-			while (j < map->grid_width)
-				new_line[j++] = ' ';
-			new_line[map->grid_width] = '\0';
-			map->grid[i] = new_line;
-		}
+		if (pad_map_line(map, i) != PARSE_SUCCESS)
+			return (PARSE_ERR_ALLOC);
 	}
 	(void)app;
 	return (PARSE_SUCCESS);

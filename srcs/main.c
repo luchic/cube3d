@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/03/30 12:53:29 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:36:10 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ int32_t	main(int32_t argc, char **argv)
 		ft_printf("Usage: %s <path to map_file>\n", argv[0]);
 		return (1);
 	}
-	ft_printf("Welcome to Cub3D!\n");
 	app = setup_app(argv[1]);
+	app->last_time = mlx_get_time();
+	ft_printf("Welcome to Cub3D!\n");
 	mlx_loop(app->mlx);
 	cleanup_graphics(app);
 	ft_clean();

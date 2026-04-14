@@ -54,10 +54,3 @@ void	draw_vertical_strip(t_app *app, int32_t x, t_ray_data *ray)
 		y++;
 	}
 }
-
-void	calculate_and_draw_wall(t_app *app, int32_t x, t_ray_data *ray_data)
-{
-	calculate_wall_params(app, ray_data);
-	calculate_texture_params(app, ray_data);
-	draw_vertical_strip(app, x, ray_data);
-}

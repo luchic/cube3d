@@ -45,7 +45,7 @@ t_parse_error	handle_texture_element(const t_texture_element_args *a)
 
 t_parse_error	handle_color_element(const t_color_element_args *a)
 {
-	t_map	*map;
+	t_map			*map;
 	t_parse_error	error;
 
 	map = a->app->map;
