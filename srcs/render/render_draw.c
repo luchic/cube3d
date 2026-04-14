@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:15:15 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/13 15:56:56 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/14 12:29:04 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	draw_walls(t_app *app)
 	{
 		process_ray(app, x, &ray_data);
 		if (ray_data.hit == 0)
-			continue;
+			continue ;
 		calculate_wall_params(app, &ray_data);
 		calculate_texture_params(app, &ray_data);
 		draw_vertical_strip(app, x, &ray_data);
