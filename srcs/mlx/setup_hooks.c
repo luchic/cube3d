@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 12:11:01 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:39:21 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 static void	main_loop_hook(void *param)
 {
 	t_app	*app;
+	double	now;
 
 	app = param;
 	movehook(app);
 	handle_movement(app);
+	now = mlx_get_time();
+	if (now - app->last_time < 0.03)
+		return ;
 	render(app);
+	app->last_time = now;
 }
 
 static void	resize_callback(int32_t width, int32_t height, void *param)

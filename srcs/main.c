@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/05 11:50:36 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:36:10 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int32_t	main(int32_t argc, char **argv)
 		return (1);
 	}
 	app = setup_app(argv[1]);
+	app->last_time = mlx_get_time();
 	ft_printf("Welcome to Cub3D!\n");
 	mlx_loop(app->mlx);
 	cleanup_graphics(app);
