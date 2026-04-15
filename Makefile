@@ -1,6 +1,7 @@
 NAME = cub3D
 
 CC = cc
+UNAME_S := $(shell uname -s)
 CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX42)/include/MLX42 -Ilibft/includes
 
 DLIBFT = libft
@@ -11,7 +12,16 @@ MLX42 = mlx42
 BUILD_DIR = $(MLX42)/build
 MLX42LIB = $(BUILD_DIR)/libmlx42.a
 
-EXT_LIBS = -ldl -lglfw -pthread -lm
+MACOS_GLFW_LIB_DIR =
+ifeq ($(UNAME_S),Darwin)
+ifneq ($(wildcard /opt/homebrew/lib/libglfw.dylib),)
+MACOS_GLFW_LIB_DIR = -L/opt/homebrew/lib
+else ifneq ($(wildcard /usr/local/lib/libglfw.dylib),)
+MACOS_GLFW_LIB_DIR = -L/usr/local/lib
+endif
+endif
+
+EXT_LIBS = $(MACOS_GLFW_LIB_DIR) -ldl -lglfw -pthread -lm
 
 SRC_FILES = \
 	srcs/main.c \
