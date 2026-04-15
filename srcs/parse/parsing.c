@@ -12,6 +12,18 @@
 
 #include "cub3d.h"
 
+static bool	has_cub_extension(const char *file)
+{
+	size_t	len;
+
+	if (!file)
+		return (false);
+	len = ft_strlen(file);
+	if (len < 4)
+		return (false);
+	return (ft_strncmp(file + len - 4, ".cub", 5) == 0);
+}
+
 static t_parse_error	element_handler(char *line, char *value, t_app *app)
 {
 	t_color_element_args	ca;
@@ -55,7 +67,7 @@ t_parse_error	parse_map(t_app *app, const char *file)
 {
 	t_parse_error	error;
 
-	if (!ft_strnstr(file, ".cub", ft_strlen(file)))
+	if (!has_cub_extension(file))
 		return (PARSE_ERR_INVALID_EXTENSION);
 	error = read_and_parse_file(file, app);
 	if (error != PARSE_SUCCESS)
