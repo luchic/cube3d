@@ -6,11 +6,20 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 13:39:10 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/16 13:39:26 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/16 17:50:18 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+void	exit_with_error(const char *message, t_app *app)
+{
+	(void)app;
+	ft_printf("Error: %s\n", message);
+	//mlx cleanup
+	ft_clean();
+	exit(1);
+}
 
 char	*malloc_strdup(const char *src)
 {

@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:23:57 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/16 16:17:33 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/16 17:36:31 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,32 @@
 # include <unistd.h>
 
 # include <stdio.h>
+
+typedef struct s_map
+{
+	char			**grid;
+	int32_t			grid_width;
+	int32_t			grid_height;
+	char			*north_texture_path;
+	char			*south_texture_path;
+	char			*west_texture_path;
+	char			*east_texture_path;
+	int32_t			floor_color[3];
+	int32_t			ceiling_color[3];
+	//uint8_t			elements_found[ELEMENT_COUNT];
+	int32_t			player_start_x;
+	int32_t			player_start_y;
+	int8_t			player_start_dir;
+}					t_map;
+
+typedef struct s_app
+{
+	mlx_t			*mlx;
+	mlx_image_t		*image;
+	t_map			*map;
+	int32_t			window_width;
+	int32_t			window_height;
+}					t_app;
 
 
 typedef enum e_parse_error
@@ -51,9 +77,10 @@ typedef enum e_parse_error
 }					t_parse_error;
 
 //parsing
-t_parse_error	parse_map(const char *file);
+t_parse_error	parse_map(t_app *app,const char *file);
 
 // utils
+void			exit_with_error(const char *message, t_app *app);
 char			*malloc_strdup(const char *src);
 char			**str_array_dup(char **src, int32_t height);
 int32_t			validate_texture_file(const char *path);

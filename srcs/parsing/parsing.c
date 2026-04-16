@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:58:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/16 16:19:59 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/16 17:52:19 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,12 @@ static bool check_file_extension(const char *file)
 	
 } 
 
-t_parse_error	parse_map(const char *file)
+t_parse_error	parse_map(t_app *app, const char *file)
 {
 	//t_parse_error	error;
 
+	(void)app;
+	// open file to check if it exists/permission
 	if (!check_file_extension(file))
 		return (PARSE_ERR_INVALID_EXTENSION);
 	
