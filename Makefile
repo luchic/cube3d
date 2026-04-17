@@ -26,7 +26,8 @@ EXT_LIBS = $(MACOS_GLFW_LIB_DIR) -ldl -lglfw -pthread -lm
 SRC_FILES = \
 	srcs/main.c \
 	srcs/parsing/parsing.c \
-	srcs/tools/utils.c
+	srcs/tools/utils.c \
+	srcs/tools/error.c
 
 
 SRC_OBJS = $(SRC_FILES:.c=.o)

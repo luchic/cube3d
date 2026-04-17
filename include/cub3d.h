@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:23:57 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/16 17:36:31 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/17 10:33:44 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ typedef enum e_parse_error
 
 //parsing
 t_parse_error	parse_map(t_app *app,const char *file);
+
+//parsing error
+void			print_parse_error(t_parse_error error);
+const char		*get_parse_error_message(t_parse_error error);
 
 // utils
 void			exit_with_error(const char *message, t_app *app);
