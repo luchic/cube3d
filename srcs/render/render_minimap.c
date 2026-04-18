@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 18:08:23 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 18:08:27 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 20:58:05 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void	draw_map_tile(t_app *app, t_point center, t_point map_pos,
 	color = get_tile_color(app->map->grid[map_pos.y][map_pos.x]);
 	if (color == 0)
 		return ;
-	tile.x = center.x + (int32_t)round((map_pos.x - app->player.pos_x)
+	tile.x = center.x + (int32_t)round((map_pos.x - app->player.origin.x)
 			* MINIMAP_TILE_SIZE);
-	tile.y = center.y + (int32_t)round((map_pos.y - app->player.pos_y)
+	tile.y = center.y + (int32_t)round((map_pos.y - app->player.origin.y)
 			* MINIMAP_TILE_SIZE);
 	style.color = color;
 	draw_rect(app, tile, MINIMAP_TILE_SIZE, style);
@@ -40,7 +40,7 @@ static void	draw_map_tile(t_app *app, t_point center, t_point map_pos,
 
 static void	draw_map_tiles(t_app *app, t_point center, t_minimap_style style)
 {
-	t_point		map_pos;
+	t_point	map_pos;
 
 	map_pos.y = 0;
 	while (map_pos.y < app->map->grid_height)
@@ -82,6 +82,7 @@ static void	draw_minimap_frame(t_app *app, int32_t panel_size)
 void	render_minimap(t_app *app)
 {
 	t_minimap_style	style;
+	t_ray			player_direction;
 	t_point			center;
 	t_point			player;
 	t_point			direction;
@@ -97,9 +98,10 @@ void	render_minimap(t_app *app)
 	player.y = center.y - MINIMAP_PLAYER_SIZE / 2;
 	style.color = get_rgba(255, 80, 80, 255);
 	draw_rect(app, player, MINIMAP_PLAYER_SIZE, style);
-	direction.x = center.x + (int32_t)round(app->player.dir_x
+	player_direction = radian_to_vector(app->player.direction_radian);
+	direction.x = center.x + (int32_t)round(player_direction.x
 			* MINIMAP_DIRECTION_SIZE);
-	direction.y = center.y + (int32_t)round(app->player.dir_y
+	direction.y = center.y + (int32_t)round(player_direction.y
 			* MINIMAP_DIRECTION_SIZE);
 	draw_line(app, center, direction, style);
 }

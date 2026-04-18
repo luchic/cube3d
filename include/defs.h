@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/18 20:44:21 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 20:57:40 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ typedef struct s_images
 	mlx_image_t		*screen;
 }					t_images;
 
-// Image and img. It's bad naming
+// TODO: Image and img. It's bad naming
 typedef struct s_app
 {
 	mlx_t			*mlx;
