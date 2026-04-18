@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/13 15:56:24 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 11:57:59 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ void			setup_hooks(t_app *app);
 int				load_textures(t_app *app);
 void			cleanup_textures(t_images *img);
 void			cleanup_graphics(t_app *app);
+
+//==============================================================================
+//                       cast rays
+//==============================================================================
+
+t_ray			sub(t_ray a, t_ray b);
+t_ray			floor_ray(t_ray ray);
+t_ray			sign(t_ray ray);
+double			get_radian(double angle);
+t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction);
 
 //==============================================================================
 //                       render

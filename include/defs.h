@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/14 14:35:47 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 11:49:11 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,21 @@
 # define MINIMAP_PLAYER_SIZE 6
 # define MINIMAP_DIRECTION_SIZE 14
 # define APP_TITLE "Cub3D"
+
+# define PIXEL_FACTOR 0.015625
+#define M_PI 3.14159265358979323846
+
+typedef struct s_ray
+{
+	double			x;
+	double			y;
+}					t_ray;
+
+typedef struct s_casting_info
+{
+	int		hit;
+	t_ray	length;
+} t_casting_info;
 
 typedef struct s_floor_view
 {
