@@ -42,7 +42,7 @@ t_casting_info	start_casting(t_app *app, int x)
 // 	}
 // }
 
-static int32_t __get_texture_color(t_app *app, int cur, int max_height, int column)
+static int32_t get_texture_color(t_app *app, int cur, int max_height, int column)
 {
 	double tmp = (double)cur / (double) max_height;
 	double tmp_y = tmp * 64.0;
@@ -71,7 +71,7 @@ static void	drow_line_from_texture(t_app *app, int pixel, int x, int text_pos)
 	tex_y = 0;
 	while (y < y_end)
 	{
-		color = __get_texture_color(app, tex_y, pixel, text_pos);
+		color = get_texture_color(app, tex_y, pixel, text_pos);
 		mlx_put_pixel(app->img->screen, x, y, color);
 		y++;
 		tex_y++;

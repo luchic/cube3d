@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/18 18:21:30 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 21:12:58 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,10 @@ t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction);
 //==============================================================================
 
 void			render(t_app *app);
-void			draw_frame(t_app *app);
-void			draw_walls(t_app *app);
-void			process_ray(t_app *app, int32_t x, t_ray_data *ray_data);
-void			init_dda(t_app *app, t_ray_data *ray);
-void			execute_dda(t_app *app, t_ray_data *ray);
-void			calculate_wall_params(t_app *app, t_ray_data *ray);
-void			calculate_texture_params(t_app *app, t_ray_data *ray);
 void			draw_vertical_strip(t_app *app, int32_t x, t_ray_data *ray);
 int32_t			get_texture_num(double ray_dir_x, double ray_dir_y,
 					int32_t side);
 uint32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
-uint32_t		get_texture_color(t_app *app, int32_t tex_num, int32_t tex_x,
-					int32_t tex_y);
 int32_t			get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
 void			draw_sky(t_app *app, int32_t ceiling_color);
 void			draw_floor(t_app *app);
