@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:15:15 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/05 12:11:43 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 13:43:27 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	render(t_app *app)
 {
-	draw_frame(app);
+	re_draw(app);
 }
