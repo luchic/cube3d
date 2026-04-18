@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/14 14:39:21 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 20:41:48 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	resize_callback(int32_t width, int32_t height, void *param)
 	if (!app->img->screen || !app->img->screen->pixels)
 		exit_with_error("Failed to recreate screen image after resize", app);
 	mlx_image_to_window(app->mlx, app->img->screen, 0, 0);
+	app->player.radian_shifting = (FOV_DEGREE / 180.0 * M_PI) / (double)width;
 }
 
 void	setup_hooks(t_app *app)
