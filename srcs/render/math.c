@@ -31,3 +31,12 @@ double	get_radian(double angle)
 {
 	return (M_PI * (2.0 - angle / 180.0));
 }
+
+t_ray	radian_to_vector(double radian)
+{
+	t_ray	ray;
+
+	ray.x = cos(radian);
+	ray.y = sin(radian);
+	return (ray);
+}
