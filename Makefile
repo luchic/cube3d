@@ -44,6 +44,9 @@ SRC_FILES = \
 	srcs/render/render_minimap.c \
 	srcs/render/render_texture.c \
 	srcs/render/render_walls.c \
+	srcs/render/render_frame.c \
+	srcs/render/math.c \
+	srcs/render/cast_ray.c \
 	srcs/tools/element_handler_utils.c \
 	srcs/tools/utils.c \
 	srcs/tools/error_handling.c \
