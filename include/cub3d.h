@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/18 11:57:59 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 18:21:30 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "defs.h"
+# include <math.h>
 
 //==============================================================================
 //                        mlx
@@ -33,6 +34,7 @@ t_ray			sub(t_ray a, t_ray b);
 t_ray			floor_ray(t_ray ray);
 t_ray			sign(t_ray ray);
 double			get_radian(double angle);
+t_ray			radian_to_vector(double radian);
 t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction);
 
 //==============================================================================
@@ -67,6 +69,7 @@ void			draw_rect(t_app *app, t_point point, int32_t size,
 					t_minimap_style style);
 void			draw_line(t_app *app, t_point start, t_point end,
 					t_minimap_style style);
+void			re_draw(t_app *app);
 
 //==============================================================================
 //                       parse

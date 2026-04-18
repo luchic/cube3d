@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/18 11:49:11 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 20:44:21 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@
 # define MINIMAP_DIRECTION_SIZE 14
 # define APP_TITLE "Cub3D"
 
-# define PIXEL_FACTOR 0.015625
-#define M_PI 3.14159265358979323846
+# define PIXEL_FACTOR 0.015625 // -> 1 / 64
+# define M_PI 3.14159265358979323846
+# define FOV_DEGREE 60
+# define TILE_SIZE_INT 64
+# define TILE_SIZE_DOUBLE 64.0
 
 typedef struct s_ray
 {
@@ -48,9 +51,13 @@ typedef struct s_ray
 
 typedef struct s_casting_info
 {
-	int		hit;
-	t_ray	length;
-} t_casting_info;
+	int				hit;
+	int 			side;
+	double			distanse;
+	t_ray			direction;
+	t_ray 			hit_position;
+	t_ray			length;
+}					t_casting_info;
 
 typedef struct s_floor_view
 {
@@ -148,6 +155,11 @@ typedef struct s_player
 	double			dir_y;
 	double			plane_x;
 	double			plane_y;
+	double			direction_radian;
+	double			plane_radian;
+	t_ray			origin;
+	double			radian_shifting;
+	double			len_to_screen;
 }					t_player;
 
 typedef struct s_images
