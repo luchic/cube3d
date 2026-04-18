@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 21:40:58 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/05 12:03:56 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 18:24:40 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,14 @@ void	move_forward_backward(t_app *app, double move_dir)
 	double	move_speed;
 
 	move_speed = MOVE_SPEED;
-	new_pos_x = app->player.pos_x + app->player.dir_x * move_speed * move_dir;
-	new_pos_y = app->player.pos_y + app->player.dir_y * move_speed * move_dir;
-	if (!has_wall_padding(app, new_pos_x, app->player.pos_y))
-		app->player.pos_x = new_pos_x;
-	if (!has_wall_padding(app, app->player.pos_x, new_pos_y))
-		app->player.pos_y = new_pos_y;
+	double dir_x = cos(app->player.direction_radian);
+	double dir_y = sin(app->player.direction_radian);
+	new_pos_x = app->player.origin.x + dir_x * move_speed * move_dir;
+	new_pos_y = app->player.origin.y + dir_y * move_speed * move_dir;
+	if (!has_wall_padding(app, new_pos_x, app->player.origin.y))
+		app->player.origin.x = new_pos_x;
+	if (!has_wall_padding(app, app->player.origin.x, new_pos_y))
+		app->player.origin.y = new_pos_y;
 }
 
 void	move_strafe(t_app *app, double strafe_dir)
@@ -53,14 +55,14 @@ void	move_strafe(t_app *app, double strafe_dir)
 	double	new_pos_x;
 	double	new_pos_y;
 	double	move_speed;
-
+	t_ray plane = radian_to_vector(app->player.plane_radian);
 	move_speed = MOVE_SPEED;
-	new_pos_x = app->player.pos_x + app->player.plane_x * move_speed
+	new_pos_x = app->player.origin.x + plane.x * move_speed
 		* strafe_dir;
-	new_pos_y = app->player.pos_y + app->player.plane_y * move_speed
+	new_pos_y = app->player.origin.y + plane.y * move_speed
 		* strafe_dir;
-	if (!has_wall_padding(app, new_pos_x, app->player.pos_y))
-		app->player.pos_x = new_pos_x;
-	if (!has_wall_padding(app, app->player.pos_x, new_pos_y))
-		app->player.pos_y = new_pos_y;
+	if (!has_wall_padding(app, new_pos_x, app->player.origin.y))
+		app->player.origin.x = new_pos_x;
+	if (!has_wall_padding(app, app->player.origin.x, new_pos_y))
+		app->player.origin.y = new_pos_y;
 }

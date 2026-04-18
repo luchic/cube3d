@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:17:10 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/05 12:06:01 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/18 18:27:34 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ static void	rotate_player(t_player *player, double angle)
 	player->plane_x = player->plane_x * cos(angle) - player->plane_y
 		* sin(angle);
 	player->plane_y = old_plane_x * sin(angle) + player->plane_y * cos(angle);
+	player->direction_radian += angle * 2;
+	player->plane_radian += angle * 2;
 }
 
 static void	handle_rotation(t_app *app)
 {
 	double	rot_speed;
 
-	rot_speed = ROTATE_SPPED;
+	rot_speed = PIXEL_FACTOR;
 	if (app->keys[4])
 	{
 		rotate_player(&app->player, -rot_speed);
