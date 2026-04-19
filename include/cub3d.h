@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:23:57 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/17 16:32:24 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/19 18:34:53 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@
 # define ELEM_C  0x20
 # define ELEM_ALL 0x3F
 
+// Assets
+// Grid
+// Plazer
+
+// parsing_output
+
 typedef struct s_map
 {
 	char			**grid;
@@ -59,8 +65,6 @@ typedef struct s_player
 	double			pos_y;
 	double			dir_x;
 	double			dir_y;
-	double			plane_x;
-	double			plane_y;
 }					t_player;
 
 typedef struct s_app
