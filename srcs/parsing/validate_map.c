@@ -6,94 +6,83 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:20:00 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/17 12:20:00 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/19 18:01:20 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static int	is_player(char c)
-{
-	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
-}
 
-static int	is_walkable(char c)
+static t_parse_error	validate_character(t_app *app, int32_t x, int32_t y,
+		int32_t *player_count)
 {
-	return (c == '0' || is_player(c));
-}
+	char	c;
+	t_map	*map;
 
-static t_parse_error	check_enclosed(t_map *map, int y, int x)
-{
-	if (y == 0 || y == map->grid_height - 1 || x == 0 || x == map->grid_width - 1)
-		return (PARSE_ERR_MAP_NOT_ENCLOSED);
-	if (map->grid[y - 1][x] == ' ' || map->grid[y + 1][x] == ' '
-		|| map->grid[y][x - 1] == ' ' || map->grid[y][x + 1] == ' ')
-		return (PARSE_ERR_MAP_NOT_ENCLOSED);
+	map = app->map;
+	c = map->grid[y][x];
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		if (*player_count > 0)
+			return (PARSE_ERR_INVALID_PLAYER_COUNT);
+		map->player_start_x = x;
+		map->player_start_y = y;
+		map->player_start_dir = c;
+		(*player_count)++;
+	}
+	else if (c != '0' && c != '1' && c != ' ')
+		return (PARSE_ERR_INVALID_MAP_CHAR);
 	return (PARSE_SUCCESS);
 }
 
-t_parse_error	validate_map(t_map *map)
+static t_parse_error	check_map_characters(t_app *app)
 {
-	int	y;
-	int	x;
-	int	players;
+	int32_t			player_count;
+	int32_t			y;
+	int32_t			x;
+	t_map			*map;
+	t_parse_error	error;
 
-	players = 0;
-	y = 0;
-	while (y < map->grid_height)
+	map = app->map;
+	player_count = 0;
+	y = -1;
+	while (++y < map->grid_height)
 	{
-		x = 0;
-		while (map->grid[y][x])
+		x = -1;
+		while (++x < map->grid_width)
 		{
-			if (!ft_strchr("01 NSEW", map->grid[y][x]))
-				return (PARSE_ERR_INVALID_MAP_CHAR);
-			if (is_player(map->grid[y][x]))
-			{
-				players++;
-				map->player_start_x = x;
-				map->player_start_y = y;
-				map->player_start_dir = map->grid[y][x];
-			}
-			if (is_walkable(map->grid[y][x]))
-			{
-				if (check_enclosed(map, y, x) != PARSE_SUCCESS)
-					return (PARSE_ERR_MAP_NOT_ENCLOSED);
-			}
-			x++;
+			error = validate_character(app, x, y, &player_count);
+			if (error != PARSE_SUCCESS)
+				return (error);
 		}
-		y++;
 	}
-	if (players != 1)
+	if (player_count != 1)
 		return (PARSE_ERR_INVALID_PLAYER_COUNT);
 	return (PARSE_SUCCESS);
 }
 
-t_parse_error	pad_grid(t_map *map)
+static t_parse_error	check_elements_present(t_app *app)
 {
-	char	**new_grid;
-	int		y;
-	int		x;
+	int32_t	i;
 
-	new_grid = ft_calloc(map->grid_height + 1, sizeof(char *));
-	if (!new_grid)
-		return (PARSE_ERR_ALLOC);
-	y = 0;
-	while (y < map->grid_height)
+	i = -1;
+	while (++i < ELEMENT_COUNT)
 	{
-		new_grid[y] = ft_calloc(map->grid_width + 1, sizeof(char));
-		if (!new_grid[y])
-			return (PARSE_ERR_ALLOC);
-		ft_memset(new_grid[y], ' ', map->grid_width);
-		x = 0;
-		while (map->grid[y][x])
-		{
-			new_grid[y][x] = map->grid[y][x];
-			x++;
-		}
-		y++;
+		if (!app->map->elements_found[i])
+			return (PARSE_ERR_MISSING_ELEMENTS);
 	}
-	// Free old grid nodes (not contents if we reuse, but here we replace everything)
-	// For simplicity, assuming caller handles or we leak for now until full GC.
-	map->grid = new_grid;
 	return (PARSE_SUCCESS);
+}
+
+t_parse_error	validate_map(t_app *app)
+{
+	t_parse_error	error;
+
+	error = check_elements_present(app);
+	if (error != PARSE_SUCCESS)
+		return (error);
+	error = check_map_characters(app);
+	if (error != PARSE_SUCCESS)
+		return (error);
+	return (check_walls_enclosed(app));
 }
