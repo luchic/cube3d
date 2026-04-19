@@ -6,11 +6,24 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 18:25:52 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 13:01:12 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	init_freames(t_app *app)
+{
+	app->frames.sky_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
+	app->frames.floor_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
+	app->frames.walls_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
+
+	mlx_image_to_window(app->mlx, app->frames.sky_frame, 0, 0);
+	mlx_image_to_window(app->mlx, app->frames.floor_frame, 0, 0);
+	mlx_image_to_window(app->mlx, app->frames.walls_frame, 0, 0);
+
+	return (1);
+}
 
 static int	create_screen_image(t_app *app)
 {
@@ -63,6 +76,7 @@ void	setup_graphics(t_app *app)
 	{
 		exit_with_error("Failed to load west texture.", app);
 	}
+	init_freames(app);
 	if (!create_screen_image(app))
 	{
 		exit_with_error("Failed to create screen image", app);

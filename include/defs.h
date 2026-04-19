@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 12:14:16 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 12:36:14 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,18 +172,26 @@ typedef struct s_images
 	mlx_image_t		*screen;
 }					t_images;
 
+typedef struct s_frames
+{
+	mlx_image_t *sky_frame;
+	mlx_image_t *floor_frame;
+	mlx_image_t *walls_frame;
+} t_frames;
+
+
 // TODO: Image and img. It's bad naming
 typedef struct s_app
 {
-	mlx_t			*mlx;
-	mlx_image_t		*image;
-	t_map			*map;
-	t_images		*img;
-	t_player		player;
 	bool			keys[6];
 	int32_t			window_width;
 	int32_t			window_height;
 	double			last_time;
+	mlx_t			*mlx;
+	t_map			*map;
+	t_images		*img;
+	t_frames		frames;
+	t_player		player;
 }					t_app;
 
 // parsing
