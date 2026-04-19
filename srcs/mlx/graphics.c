@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 13:01:12 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 13:11:43 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,13 @@ static int	init_freames(t_app *app)
 	app->frames.sky_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
 	app->frames.floor_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
 	app->frames.walls_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
+	app->frames.tools_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
 
 	mlx_image_to_window(app->mlx, app->frames.sky_frame, 0, 0);
 	mlx_image_to_window(app->mlx, app->frames.floor_frame, 0, 0);
 	mlx_image_to_window(app->mlx, app->frames.walls_frame, 0, 0);
+	mlx_image_to_window(app->mlx, app->frames.tools_frame, 0, 0);
 
-	return (1);
-}
-
-static int	create_screen_image(t_app *app)
-{
-	app->img->screen = mlx_new_image(app->mlx, app->window_width,
-			app->window_height);
-	if (!app->img->screen || !app->img->screen->pixels)
-		return (0);
-	mlx_image_to_window(app->mlx, app->img->screen, 0, 0);
 	return (1);
 }
 
@@ -57,8 +49,6 @@ void	cleanup_graphics(t_app *app)
 		return ;
 	if (app->img)
 		cleanup_textures(app->img);
-	if (app->img && app->img->screen)
-		mlx_delete_image(app->mlx, app->img->screen);
 	if (app->mlx)
 		mlx_terminate(app->mlx);
 }
@@ -77,8 +67,4 @@ void	setup_graphics(t_app *app)
 		exit_with_error("Failed to load west texture.", app);
 	}
 	init_freames(app);
-	if (!create_screen_image(app))
-	{
-		exit_with_error("Failed to create screen image", app);
-	}
 }

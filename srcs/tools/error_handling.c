@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/03 13:20:00 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 12:17:19 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ void	exit_with_error(const char *message, t_app *app)
 	ft_printf("Error: %s\n", message);
 	if (app)
 	{
-		if (app->image)
-			mlx_delete_image(app->mlx, app->image);
 		if (app->mlx)
 			mlx_terminate(app->mlx);
 	}

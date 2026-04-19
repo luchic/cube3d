@@ -138,7 +138,7 @@ void	re_draw(t_app *app)
 {
 	int32_t ceiling_color;
 
-	if (!app || !app->img || !app->img->screen)
+	if (!app || !app->img)
 		return ;
 	ceiling_color = get_rgba(app->map->ceiling_color[0],
 			app->map->ceiling_color[1], app->map->ceiling_color[2], 255);

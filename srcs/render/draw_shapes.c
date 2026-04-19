@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 18:08:12 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 18:08:13 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 13:11:56 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	put_pixel_safe_screen(t_app *app, t_point point, uint32_t color)
 	if (point.x < 0 || point.y < 0 || point.x >= app->window_width
 		|| point.y >= app->window_height)
 		return ;
-	mlx_put_pixel(app->img->screen, point.x, point.y, color);
+	mlx_put_pixel(app->frames.tools_frame, point.x, point.y, color);
 }
 
 void	put_minimap_pixel(t_app *app, t_point point, t_minimap_style style)

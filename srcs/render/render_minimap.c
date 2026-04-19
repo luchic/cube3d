@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 18:08:23 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 13:05:58 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 13:09:14 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	render_minimap(t_app *app)
 	t_point			player;
 	t_point			direction;
 
-	if (!app || !app->map || !app->img || !app->img->screen)
+	if (!app || !app->map || !app->img)
 		return ;
 	style.panel_size = MINIMAP_VISIBLE_TILES * MINIMAP_TILE_SIZE + 4;
 	draw_minimap_frame(app, style.panel_size);
