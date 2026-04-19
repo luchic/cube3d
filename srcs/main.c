@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:15:36 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/17 10:37:01 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/19 16:29:58 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,15 @@ static t_app	*setup_app()
 int32_t	main(int32_t argc, char **argv)
 {
 	t_app	*app;
-	t_parse_error error;
+	t_parse_error	error;
 
 	if (argc != 2)
 	{
 		printf("Usage: %s <path to map_file>\n", argv[0]);
 		return (1);
 	}
-	//app = setup_app(argv[1]);
-	app = NULL;
-
-	setup_app();
-	error = parse_map(app,argv[1]);
+	app = setup_app();
+	error = parse_map(app, argv[1]);
 	print_parse_error(error);
 	//app->last_time = mlx_get_time();
 	ft_printf("Welcome to Cub3D!\n");

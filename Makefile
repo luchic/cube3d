@@ -26,6 +26,9 @@ EXT_LIBS = $(MACOS_GLFW_LIB_DIR) -ldl -lglfw -pthread -lm
 SRC_FILES = \
 	srcs/main.c \
 	srcs/parsing/parsing.c \
+	srcs/parsing/parse_elements.c \
+	srcs/parsing/parse_grid.c \
+	srcs/parsing/validate_map.c \
 	srcs/tools/utils.c \
 	srcs/tools/error.c
 
