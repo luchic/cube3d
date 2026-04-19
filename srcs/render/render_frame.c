@@ -72,7 +72,7 @@ static void	drow_line_from_texture(t_app *app, int pixel, int x, int text_pos)
 	while (y < y_end)
 	{
 		color = get_texture_color(app, tex_y, pixel, text_pos);
-		mlx_put_pixel(app->img->screen, x, y, color);
+		mlx_put_pixel(app->frames.walls_frame, x, y, color);
 		y++;
 		tex_y++;
 	}
@@ -106,12 +106,23 @@ void	draw_wertical_line(t_app *app, t_casting_info info, int x)
 	drow_line_from_texture(app, (int)height, x, texture_column);
 }
 
+void	clean_wall_frame(t_app *app)
+{
+	int color = get_rgba(0,0,0,0);
+	for (int i = 0; i < app->window_height; i ++)
+	{
+		for (int j = 0; j < app->window_width; j ++)
+			mlx_put_pixel(app->frames.walls_frame, j, i, color);
+	}
+}
+
 void	render_walls(t_app *app)
 {
 	int32_t			x;
 	t_casting_info	info;
 
 	x = 0;
+	clean_wall_frame(app);
 	while (x < app->window_width)
 	{
 		info = start_casting(app, x);

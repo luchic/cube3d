@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:25:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 18:24:24 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 13:00:15 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	draw_floor_row(t_app *app, mlx_texture_t *texture,
 			% (int32_t)texture->height;
 		color = get_pixel(texture, tex_x, tex_y);
 		color = apply_distance_shading(color, floor_row->factor);
-		mlx_put_pixel(app->img->screen, x, y, color);
+		mlx_put_pixel(app->frames.floor_frame, x, y, color);
 		floor_row->floor_x += floor_row->floor_step_x;
 		floor_row->floor_y += floor_row->floor_step_y;
 		x++;
@@ -56,6 +56,8 @@ static void	draw_floor_row(t_app *app, mlx_texture_t *texture,
 void	draw_floor(t_app *app)
 {
 	mlx_texture_t	*texture;
+	t_ray			player_direction;
+	t_ray			player_plane;
 	int32_t			y;
 	t_floor_view	view;
 	t_floor_row		floor_row;
@@ -63,10 +65,12 @@ void	draw_floor(t_app *app)
 	texture = app->img->txt_floor;
 	if (!texture)
 		return ;
-	view.ray_dir_x0 = app->player.dir_x - app->player.plane_x;
-	view.ray_dir_y0 = app->player.dir_y - app->player.plane_y;
-	view.ray_dir_x1 = app->player.dir_x + app->player.plane_x;
-	view.ray_dir_y1 = app->player.dir_y + app->player.plane_y;
+	player_direction = radian_to_vector(app->player.direction_radian);
+	player_plane = radian_to_vector(app->player.plane_radian);
+	view.ray_dir_x0 = player_direction.x - player_plane.x;
+	view.ray_dir_y0 = player_direction.y - player_plane.y;
+	view.ray_dir_x1 = player_direction.x + player_plane.x;
+	view.ray_dir_y1 = player_direction.y + player_plane.y;
 	y = app->window_height / 2 + 1;
 	while (y < app->window_height)
 	{

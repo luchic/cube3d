@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_ceiling.c                                   :+:      :+:    :+:   */
+/*   render_sky.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:25:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/13 15:44:39 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 12:39:57 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	draw_sky(t_app *app, int32_t ceiling_color)
 		x = 0;
 		while (x < app->window_width)
 		{
-			mlx_put_pixel(app->img->screen, x, y, shaded_color);
+			mlx_put_pixel(app->frames.sky_frame, x, y, shaded_color);
 			x++;
 		}
 		y++;
