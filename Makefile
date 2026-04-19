@@ -35,7 +35,7 @@ SRC_FILES = \
 	srcs/player/player_move.c \
 	srcs/render/render.c \
 	srcs/render/handle_rays.c \
-	srcs/render/render_ceiling.c \
+	srcs/render/render_sky.c \
 	srcs/render/render_draw.c \
 	srcs/render/draw_shapes.c \
 	srcs/render/render_floor.c \
