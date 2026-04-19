@@ -42,39 +42,37 @@ t_casting_info	start_casting(t_app *app, int x)
 // 	}
 // }
 
-static int32_t get_texture_color(t_app *app, int cur, int max_height, int column)
+static int32_t get_texture_color(t_app *app, int relative, int max_height, int texture_x)
 {
-	double tmp = (double)cur / (double) max_height;
-	double tmp_y = tmp * 64.0;
-	int tex_y = tmp_y;
+	double texture_y;
 
-	return (get_pixel(app->img->txt_no, column, tex_y));
+	texture_y = (double) relative / (double) max_height * TILE_SIZE_DOUBLE;
+	return (get_pixel(app->img->txt_no, texture_x, texture_y));
 }
 
-static void	drow_line_from_texture(t_app *app, int pixel, int x, int text_pos)
+static void	drow_line_from_texture(t_app *app, int wall_height, int x, int texture_x)
 {
-	int32_t		y;
-	int32_t		y_end;
+	int			draw_start;
+	int			draw_end;
+	int			wall_top;
+	int			wall_bottom;
 	uint32_t	color;
-	int tex_y;
 
-	if (pixel < app->window_height)
+	wall_top = app->window_height / 2 - wall_height / 2;
+	wall_bottom = app->window_height / 2 + wall_height / 2;
+
+	draw_start = wall_top;
+	draw_end = wall_bottom;
+	if (draw_start < 0)
+		draw_start = 0;
+	if (draw_end > app->window_height)
+		draw_end = app->window_height;
+
+	while (draw_start < draw_end)
 	{
-		y = app->window_height / 2 - pixel / 2;
-		y_end = app->window_height / 2 + pixel / 2;
-	}
-	else
-	{
-		y = 0;
-		y_end = app->window_height;
-	}
-	tex_y = 0;
-	while (y < y_end)
-	{
-		color = get_texture_color(app, tex_y, pixel, text_pos);
-		mlx_put_pixel(app->frames.walls_frame, x, y, color);
-		y++;
-		tex_y++;
+		color = get_texture_color(app, draw_start - wall_top, wall_height, texture_x);
+		mlx_put_pixel(app->frames.walls_frame, x, draw_start, color);
+		draw_start++;
 	}
 }
 
