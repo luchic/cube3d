@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 13:11:07 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 15:15:17 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define WINDOW_HEIGHT 768
 # define MOVE_SPEED 0.05
 # define ROTATE_SPPED 0.06
-# define PLAYER_RADIUS 0.18
+# define PLAYER_RADIUS 0.25
 # define MINIMAP_MARGIN 16
 # define MINIMAP_TILE_SIZE 18
 # define MINIMAP_VISIBLE_TILES 9

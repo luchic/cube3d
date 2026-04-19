@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 13:10:19 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 15:33:18 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ static void	main_loop_hook(void *param)
 	app->last_time = now;
 }
 
+static void resize_frames(t_app *app)
+{
+	mlx_delete_image(app->mlx, app->frames.floor_frame);
+	mlx_delete_image(app->mlx, app->frames.sky_frame);
+	mlx_delete_image(app->mlx, app->frames.tools_frame);
+	mlx_delete_image(app->mlx, app->frames.walls_frame);
+
+	init_frames(app);
+}
+
 static void	resize_callback(int32_t width, int32_t height, void *param)
 {
 	t_app	*app;
@@ -36,8 +46,8 @@ static void	resize_callback(int32_t width, int32_t height, void *param)
 		return ;
 	app->window_width = width;
 	app->window_height = height;
-	// TODO: Add resizing for frames
 	app->player.radian_shifting = (FOV_DEGREE / 180.0 * M_PI) / (double)width;
+	resize_frames(app);
 }
 
 void	setup_hooks(t_app *app)

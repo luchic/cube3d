@@ -6,13 +6,13 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 13:11:43 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 15:32:53 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	init_freames(t_app *app)
+int	init_frames(t_app *app)
 {
 	app->frames.sky_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
 	app->frames.floor_frame = mlx_new_image(app->mlx, app->window_width, app->window_height);
@@ -66,5 +66,5 @@ void	setup_graphics(t_app *app)
 	{
 		exit_with_error("Failed to load west texture.", app);
 	}
-	init_freames(app);
+	init_frames(app);
 }

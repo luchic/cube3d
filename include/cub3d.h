@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 12:14:22 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 15:32:53 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void			setup_hooks(t_app *app);
 int				load_textures(t_app *app);
 void			cleanup_textures(t_images *img);
 void			cleanup_graphics(t_app *app);
+int				init_frames(t_app *app);
 
 //==============================================================================
 //                       cast rays
