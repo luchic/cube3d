@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/18 20:57:40 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 12:14:16 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,31 +213,6 @@ typedef struct s_flood_fill_data
 	int32_t			width;
 	int32_t			height;
 }					t_flood_fill_data;
-
-typedef struct s_ray_data
-{
-	double			ray_dir_x;
-	double			ray_dir_y;
-	int32_t			map_x;
-	int32_t			map_y;
-	double			side_dist_x;
-	double			side_dist_y;
-	double			delta_dist_x;
-	double			delta_dist_y;
-	double			perp_wall_dist;
-	int32_t			step_x;
-	int32_t			step_y;
-	int32_t			hit;
-	int32_t			side;
-	int32_t			line_height;
-	int32_t			draw_start;
-	int32_t			draw_end;
-	int32_t			tex_num;
-	double			wall_x;
-	int32_t			tex_x;
-	double			tex_step;
-	double			tex_pos;
-}					t_ray_data;
 
 typedef struct s_texture_element_args
 {

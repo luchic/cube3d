@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/18 21:12:58 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/19 12:14:22 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction);
 //==============================================================================
 
 void			render(t_app *app);
-void			draw_vertical_strip(t_app *app, int32_t x, t_ray_data *ray);
 int32_t			get_texture_num(double ray_dir_x, double ray_dir_y,
 					int32_t side);
 uint32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
