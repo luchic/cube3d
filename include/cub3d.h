@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:23:57 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/17 10:33:44 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/17 16:32:24 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,16 @@
 # include <stdint.h>
 # include <stdlib.h>
 # include <unistd.h>
-
 # include <stdio.h>
+# include <string.h>
+
+# define ELEM_NO 0x01
+# define ELEM_SO 0x02
+# define ELEM_WE 0x04
+# define ELEM_EA 0x08
+# define ELEM_F  0x10
+# define ELEM_C  0x20
+# define ELEM_ALL 0x3F
 
 typedef struct s_map
 {
@@ -40,21 +48,37 @@ typedef struct s_map
 	char			*east_texture_path;
 	int32_t			floor_color[3];
 	int32_t			ceiling_color[3];
-	//uint8_t			elements_found[ELEMENT_COUNT];
 	int32_t			player_start_x;
 	int32_t			player_start_y;
 	int8_t			player_start_dir;
 }					t_map;
+
+typedef struct s_player
+{
+	double			pos_x;
+	double			pos_y;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+}					t_player;
 
 typedef struct s_app
 {
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	t_map			*map;
+	t_player		player;
 	int32_t			window_width;
 	int32_t			window_height;
 }					t_app;
 
+typedef struct s_parse_ctx
+{
+	int32_t		fd;
+	t_map		*map;
+	uint8_t		elements_found;
+}				t_parse_ctx;
 
 typedef enum e_parse_error
 {
@@ -77,7 +101,11 @@ typedef enum e_parse_error
 }					t_parse_error;
 
 //parsing
-t_parse_error	parse_map(t_app *app,const char *file);
+t_parse_error	parse_map(t_app *app, const char *file);
+t_parse_error	parse_element(char *line, t_parse_ctx *ctx);
+t_parse_error	parse_grid(t_parse_ctx *ctx, char *first_line);
+t_parse_error	validate_map(t_map *map);
+t_parse_error	pad_grid(t_map *map);
 
 //parsing error
 void			print_parse_error(t_parse_error error);
@@ -89,5 +117,7 @@ char			*malloc_strdup(const char *src);
 char			**str_array_dup(char **src, int32_t height);
 int32_t			validate_texture_file(const char *path);
 char			*ft_strpbrk(const char *s, const char *charset);
+int				is_empty_line(char *line);
+int				check_extension(const char *file, const char *ext);
 
 #endif
