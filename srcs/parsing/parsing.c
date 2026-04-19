@@ -6,44 +6,52 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:58:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/17 16:33:48 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/19 18:18:01 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-static t_parse_error	parse_lines(t_parse_ctx *ctx)
+static t_parse_error	parse_elements_loop(t_parse_ctx *ctx)
 {
 	char			*line;
-	t_parse_error	error;
+	t_parse_error	err;
+
+	while (ctx->elements_found < ELEM_ALL)
+	{
+		line = get_next_line(ctx->fd);
+		if (!line)
+			return (PARSE_ERR_MISSING_ELEMENTS);
+		err = parse_element(line, ctx);
+		if (err != PARSE_SUCCESS && err != PARSE_NO_MATCH)
+			return (err);
+	}
+	return (PARSE_SUCCESS);
+}
+
+static t_parse_error	find_grid_start(t_parse_ctx *ctx, char **first_line)
+{
+	char	*line;
 
 	while (1)
 	{
 		line = get_next_line(ctx->fd);
 		if (!line)
-			break ;
-		if (line[ft_strlen(line) - 1] == '\n')
-			line[ft_strlen(line) - 1] = '\0';
-		error = parse_element(line, ctx);
-		if (error == PARSE_NO_MATCH)
+			return (PARSE_ERR_MAP_GRID_NOT_FOUND);
+		if (!is_empty_line(line))
 		{
-			error = parse_grid(ctx, line);
-			free(line);
-			return (error);
+			*first_line = line;
+			break ;
 		}
-		free(line);
-		if (error != PARSE_SUCCESS)
-			return (error);
 	}
-	if (ctx->elements_found != ELEM_ALL)
-		return (PARSE_ERR_MISSING_ELEMENTS);
-	return (PARSE_ERR_MAP_GRID_NOT_FOUND);
+	return (PARSE_SUCCESS);
 }
 
 t_parse_error	parse_map(t_app *app, const char *file)
 {
 	t_parse_ctx		ctx;
-	t_parse_error	error;
+	char			*first_line;
+	t_parse_error	err;
 
 	if (!check_extension(file, ".cub"))
 		return (PARSE_ERR_INVALID_EXTENSION);
@@ -52,13 +60,15 @@ t_parse_error	parse_map(t_app *app, const char *file)
 		return (PARSE_ERR_OPEN_FILE);
 	ctx.map = app->map;
 	ctx.elements_found = 0;
-	error = parse_lines(&ctx);
+	err = parse_elements_loop(&ctx);
+	if (err != PARSE_SUCCESS)
+		return (close(ctx.fd), err);
+	err = find_grid_start(&ctx, &first_line);
+	if (err != PARSE_SUCCESS)
+		return (close(ctx.fd), err);
+	err = parse_grid(&ctx, first_line);
 	close(ctx.fd);
-	if (error != PARSE_SUCCESS)
-		return (error);
-	error = pad_grid(app->map);
-	if (error != PARSE_SUCCESS)
-		return (error);
-	error = validate_map(app->map);
-	return (error);
+	if (err != PARSE_SUCCESS)
+		return (err);
+	return (validate_map(ctx.map));
 }
