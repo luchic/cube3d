@@ -30,7 +30,8 @@ SRC_FILES = \
 	srcs/parsing/parse_grid.c \
 	srcs/parsing/validate_map.c \
 	srcs/tools/utils.c \
-	srcs/tools/error.c
+	srcs/tools/error.c \
+	srcs/tools/debug.c
 
 
 SRC_OBJS = $(SRC_FILES:.c=.o)
@@ -43,7 +44,7 @@ debug: CFLAGS += -g3 -fsanitize=address
 debug: LDFLAGS += -fsanitize=address
 debug: re
 
-$(NAME): $(MLX42LIB) $(LIBFT) $(SRC_OBJS)
+$(NAME): $(MLX42LIB) $(SRC_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(SRC_OBJS) -o $(NAME) -L$(DLIBFT) -l$(FT) \
 		-L$(BUILD_DIR) -lmlx42 $(EXT_LIBS) $(LDFLAGS)
 

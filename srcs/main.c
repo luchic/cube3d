@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stefan <stefan@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:15:36 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/17 16:16:59 by stefan           ###   ########.fr       */
+/*   Updated: 2026/04/19 19:16:38 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int32_t	main(int32_t argc, char **argv)
 	error = parse_map(app, argv[1]);
 	print_parse_error(error);
 	//app->last_time = mlx_get_time();
+	debug_print_map(app->map);
 	ft_printf("Welcome to Cub3D!\n");
 	//mlx_loop(app->mlx);
 	//cleanup_graphics(app);
