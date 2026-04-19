@@ -83,3 +83,28 @@ char	*ft_strpbrk(const char *s, const char *charset)
 	}
 	return (NULL);
 }
+
+int	is_empty_line(char *line)
+{
+	while (*line)
+	{
+		if (!ft_isspace(*line))
+			return (0);
+		line++;
+	}
+	return (1);
+}
+
+int	check_extension(const char *file, const char *ext)
+{
+	size_t	file_len;
+	size_t	ext_len;
+
+	if (!file || !ext)
+		return (0);
+	file_len = ft_strlen(file);
+	ext_len = ft_strlen(ext);
+	if (file_len < ext_len)
+		return (0);
+	return (ft_strcmp(file + file_len - ext_len, ext) == 0);
+}
