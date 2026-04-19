@@ -3,3 +3,6 @@
 mlx42
 libft
 cub3D
+assets
+.vscode
+*.sh

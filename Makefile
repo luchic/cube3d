@@ -30,7 +30,8 @@ SRC_FILES = \
 	srcs/parsing/parse_grid.c \
 	srcs/parsing/validate_map.c \
 	srcs/tools/utils.c \
-	srcs/tools/error.c
+	srcs/tools/error.c \
+	srcs/tools/debug.c
 
 
 SRC_OBJS = $(SRC_FILES:.c=.o)
