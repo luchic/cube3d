@@ -3,14 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 21:22:46 by sruff             #+#    #+#             */
-/*   Updated: 2026/03/30 11:44:06 by nluchini         ###   ########.fr       */
+/*   Created: 2026/04/16 13:39:10 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/16 17:50:18 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../include/cub3d.h"
+
+void	exit_with_error(const char *message, t_app *app)
+{
+	(void)app;
+	ft_printf("Error: %s\n", message);
+	//mlx cleanup
+	ft_clean();
+	exit(1);
+}
 
 char	*malloc_strdup(const char *src)
 {
@@ -73,4 +82,30 @@ char	*ft_strpbrk(const char *s, const char *charset)
 		s++;
 	}
 	return (NULL);
+}
+
+int	is_empty_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	if (!line)
+		return (1);
+	while (line[i])
+	{
+		if (!ft_isspace(line[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	check_extension(const char *file, const char *ext)
+{
+	char	*dot;
+
+	dot = ft_strrchr(file, '.');
+	if (!dot || ft_strcmp(dot, ext))
+		return (0);
+	return (1);
 }

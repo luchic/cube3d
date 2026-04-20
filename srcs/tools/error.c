@@ -1,42 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_handling.c                                   :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/03 13:20:00 by nluchini         ###   ########.fr       */
+/*   Created: 2026/04/17 10:27:59 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/17 10:32:16 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../include/cub3d.h"
 
-void	clean_exit(t_app *app)
-{
-	cleanup_graphics(app);
-	ft_clean();
-	exit(1);
-}
 
-void	print_parse_error(t_parse_error error)
-{
-	ft_printf("Error: %s\n", get_parse_error_message(error));
-}
-
-void	exit_with_error(const char *message, t_app *app)
-{
-	ft_printf("Error: %s\n", message);
-	if (app)
-	{
-		if (app->image)
-			mlx_delete_image(app->mlx, app->image);
-		if (app->mlx)
-			mlx_terminate(app->mlx);
-	}
-	ft_clean();
-	exit(1);
-}
+//fn_exit with error + cleanup (mem and mlx)
 
 static const char	*get_rest_error_messages(t_parse_error error)
 {
@@ -74,4 +51,9 @@ const char	*get_parse_error_message(t_parse_error error)
 	if (error == PARSE_ERR_INVALID_LINE || error == PARSE_NO_MATCH)
 		return ("Invalid line or missing elements before map grid.");
 	return (get_rest_error_messages(error));
+}
+
+void	print_parse_error(t_parse_error error)
+{
+	ft_printf("Error: %s\n", get_parse_error_message(error));
 }
