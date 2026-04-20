@@ -6,11 +6,28 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:25:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 13:00:15 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/20 21:18:31 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	init_floor_row(t_app *app, t_floor_view *view,
+		t_floor_row *floor_row, int32_t y)
+{
+	floor_row->row_distance = (app->player.len_to_screen * (TILE_SIZE_DOUBLE
+				/ 2.0)) / (y - app->window_height / 2.0);
+	floor_row->floor_step_x = floor_row->row_distance * (view->ray_dir_x1
+			- view->ray_dir_x0) / app->window_width;
+	floor_row->floor_step_y = floor_row->row_distance * (view->ray_dir_y1
+			- view->ray_dir_y0) / app->window_width;
+	floor_row->floor_x = app->player.origin.x + floor_row->row_distance
+		* view->ray_dir_x0;
+	floor_row->floor_y = app->player.origin.y + floor_row->row_distance
+		* view->ray_dir_y0;
+	floor_row->factor = (double)(y - app->window_height / 2)
+		/ (app->window_height / 2);
+}
 
 static int32_t	apply_distance_shading(int32_t color, double factor)
 {
@@ -38,12 +55,10 @@ static void	draw_floor_row(t_app *app, mlx_texture_t *texture,
 	x = 0;
 	while (x < app->window_width)
 	{
-		tex_x = (int32_t)(texture->width
-				* (floor_row->floor_x - floor(floor_row->floor_x)))
-			% (int32_t)texture->width;
-		tex_y = (int32_t)(texture->height
-				* (floor_row->floor_y - floor(floor_row->floor_y)))
-			% (int32_t)texture->height;
+		tex_x = (int32_t)(texture->width * (floor_row->floor_x
+					- floor(floor_row->floor_x))) % (int32_t)texture->width;
+		tex_y = (int32_t)(texture->height * (floor_row->floor_y
+					- floor(floor_row->floor_y))) % (int32_t)texture->height;
 		color = get_pixel(texture, tex_x, tex_y);
 		color = apply_distance_shading(color, floor_row->factor);
 		mlx_put_pixel(app->frames.floor_frame, x, y, color);
@@ -55,18 +70,18 @@ static void	draw_floor_row(t_app *app, mlx_texture_t *texture,
 
 void	draw_floor(t_app *app)
 {
-	mlx_texture_t	*texture;
 	t_ray			player_direction;
 	t_ray			player_plane;
 	int32_t			y;
 	t_floor_view	view;
 	t_floor_row		floor_row;
 
-	texture = app->img->txt_floor;
-	if (!texture)
+	if (!app->img->txt_floor)
 		return ;
 	player_direction = radian_to_vector(app->player.direction_radian);
 	player_plane = radian_to_vector(app->player.plane_radian);
+	player_plane.x *= tan((FOV_DEGREE / 2) * M_PI / 180);
+	player_plane.y *= tan((FOV_DEGREE / 2) * M_PI / 180);
 	view.ray_dir_x0 = player_direction.x - player_plane.x;
 	view.ray_dir_y0 = player_direction.y - player_plane.y;
 	view.ray_dir_x1 = player_direction.x + player_plane.x;
@@ -75,7 +90,7 @@ void	draw_floor(t_app *app)
 	while (y < app->window_height)
 	{
 		init_floor_row(app, &view, &floor_row, y);
-		draw_floor_row(app, texture, &floor_row, y);
+		draw_floor_row(app, app->img->txt_floor, &floor_row, y);
 		y++;
 	}
 }
