@@ -1,6 +1,7 @@
 NAME = cub3D
 
 CC = cc
+
 UNAME_S := $(shell uname -s)
 CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX42)/include/MLX42 -Ilibft/includes
 
@@ -25,14 +26,29 @@ EXT_LIBS = $(MACOS_GLFW_LIB_DIR) -ldl -lglfw -pthread -lm
 
 SRC_FILES = \
 	srcs/main.c \
-	srcs/parsing/parsing.c \
-	srcs/parsing/parse_elements.c \
-	srcs/parsing/parse_grid.c \
-	srcs/parsing/validate_map.c \
+	srcs/mlx/mlx_load_texture.c \
+	srcs/mlx/mlx_setup.c \
+	srcs/parse/pad_map_grid.c \
+	srcs/parse/parse_colors.c \
+	srcs/parse/parse_element_utils.c \
+	srcs/parse/parse_file.c \
+	srcs/parse/parse_file_utils.c \
+	srcs/parse/parse_textures.c \
+	srcs/parse/parsing.c \
+	srcs/player/init_player.c \
+	srcs/player/keypress.c \
+	srcs/player/player.c \
+	srcs/player/player_move.c \
+	srcs/render/dda_init.c \
+	srcs/render/render.c \
+	srcs/render/render_dda.c \
+	srcs/render/render_draw.c \
+	srcs/render/render_texture.c \
+	srcs/render/render_walls.c \
+	srcs/tools/element_handler_utils.c \
 	srcs/tools/utils.c \
-	srcs/tools/error.c \
-	srcs/tools/debug.c
-
+	srcs/validate/check_walls.c \
+	srcs/validate/validate_map.c
 
 SRC_OBJS = $(SRC_FILES:.c=.o)
 
