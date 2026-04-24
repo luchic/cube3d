@@ -3,59 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   texture_loader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:23:36 by sruff             #+#    #+#             */
-/*   Updated: 2025/08/24 19:00:26 by sruff            ###   ########.fr       */
+/*   Updated: 2026/03/30 12:49:09 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	load_north_texture(t_app *app)
+static int	load_wall_texture(mlx_texture_t	**wall_texture, const char *path)
 {
-	app->img->txt_no = mlx_load_png(app->map->north_texture_path);
-	if (!app->img->txt_no)
-	{
-		cleanup_textures(app->img);
-		exit_with_error("Failed to load north texture.", app);
-	}
+	(*wall_texture) = mlx_load_png(path);
+	if (!(*wall_texture))
+		return (0);
+	return (1);
 }
 
-static void	load_south_texture(t_app *app)
+int	load_wall_textures(t_app *app)
 {
-	app->img->txt_so = mlx_load_png(app->map->south_texture_path);
-	if (!app->img->txt_so)
+	load_wall_texture(&(app->img->txt_no), app->map->north_texture_path);
+	load_wall_texture(&(app->img->txt_so), app->map->south_texture_path);
+	load_wall_texture(&(app->img->txt_ea), app->map->east_texture_path);
+	load_wall_texture(&(app->img->txt_we), app->map->west_texture_path);
+	if (!app->img->txt_no
+		|| !app->img->txt_so
+		|| !app->img->txt_ea
+		|| !app->img->txt_we)
 	{
 		cleanup_textures(app->img);
-		exit_with_error("Failed to load south texture.", app);
+		return (0);
 	}
-}
-
-static void	load_east_texture(t_app *app)
-{
-	app->img->txt_ea = mlx_load_png(app->map->east_texture_path);
-	if (!app->img->txt_ea)
-	{
-		cleanup_textures(app->img);
-		exit_with_error("Failed to load east texture.", app);
-	}
-}
-
-static void	load_west_texture(t_app *app)
-{
-	app->img->txt_we = mlx_load_png(app->map->west_texture_path);
-	if (!app->img->txt_we)
-	{
-		cleanup_textures(app->img);
-		exit_with_error("Failed to load west texture.", app);
-	}
-}
-
-void	load_textures(t_app *app)
-{
-	load_north_texture(app);
-	load_south_texture(app);
-	load_east_texture(app);
-	load_west_texture(app);
+	return (1);
 }

@@ -182,7 +182,7 @@ void			init_dda(t_app *app, t_ray_data *ray);
 
 void			create_screen_image(t_app *app);
 void			init_player(t_app *app);
-void			load_textures(t_app *app);
+int				load_wall_textures(t_app *app);
 void			setup_graphics(t_app *app);
 void			move_forward_backward(t_app *app, double move_dir);
 void			move_strafe(t_app *app, double strafe_dir);
@@ -201,5 +201,7 @@ uint32_t		get_texture_color(t_app *app, int32_t tex_num, int32_t tex_x,
 
 void			clean_exit(t_app *app);
 void			print_parse_error(t_parse_error error);
+
+void			setup_hooks(t_app *app);
 
 #endif
