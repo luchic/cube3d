@@ -47,9 +47,11 @@ SRC_FILES = \
 	srcs/render/render_floor.c \
 	srcs/render/render_minimap.c \
 	srcs/render/render_texture.c \
-	srcs/render/render_frame.c \
 	srcs/render/math.c \
 	srcs/render/cast_ray.c \
+	srcs/render/setup_ray.c \
+	srcs/render/render_tools.c \
+	srcs/render/draw_line_from_texture.c \
 	srcs/tools/utils.c \
 	srcs/tools/error_handling.c \
 	srcs/tools/error.c \

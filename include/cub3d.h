@@ -64,6 +64,7 @@ t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction);
 //==============================================================================
 
 void			render(t_app *app);
+void			render_walls(t_app *app);
 int32_t			get_texture_num(double ray_dir_x, double ray_dir_y,
 					int32_t side);
 uint32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
@@ -79,8 +80,9 @@ void			draw_rect(t_app *app, t_point point, int32_t size,
 					t_minimap_style style);
 void			draw_line(t_app *app, t_point start, t_point end,
 					t_minimap_style style);
-void			re_draw(t_app *app);
-
+void			clean_wall_frame(mlx_image_t *image);
+t_casting_info	start_casting(t_app *app, int x);
+void			draw_wertical_line(t_app *app, t_casting_info info, int x);
 
 //==============================================================================
 //                        player

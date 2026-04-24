@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 18:49:35 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 18:49:38 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 20:16:53 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,25 @@ static inline t_casting_info	setup_hit(t_map *map, t_ray map_check,
 	return (info);
 }
 
+static inline void	update_ray_info(t_casting_info *cast_info, t_ray *map_check,
+		t_ray *ray_unit_step_size, t_ray *step)
+{
+	if (cast_info->length.x < cast_info->length.y)
+	{
+		cast_info->distanse = cast_info->length.x;
+		map_check->x += step->x;
+		cast_info->length.x += ray_unit_step_size->x;
+		cast_info->side = 0;
+	}
+	else
+	{
+		cast_info->side = 1;
+		cast_info->distanse = cast_info->length.y;
+		map_check->y += step->y;
+		cast_info->length.y += ray_unit_step_size->y;
+	}
+}
+
 t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction)
 {
 	t_ray			map_check;
@@ -88,20 +107,7 @@ t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction)
 			ray_unit_step_size);
 	while (can_prapogate(map, map_check))
 	{
-		if (cast_info.length.x < cast_info.length.y)
-		{
-			cast_info.distanse = cast_info.length.x;
-			map_check.x += step.x;
-			cast_info.length.x += ray_unit_step_size.x;
-			cast_info.side = 0;
-		}
-		else
-		{
-			cast_info.side = 1;
-			cast_info.distanse = cast_info.length.y;
-			map_check.y += step.y;
-			cast_info.length.y += ray_unit_step_size.y;
-		}
+		update_ray_info(&cast_info, &map_check, &ray_unit_step_size, &step);
 	}
 	cast_info.hit_position.x = origin.x + direction.x * cast_info.distanse;
 	cast_info.hit_position.y = origin.y + direction.y * cast_info.distanse;
