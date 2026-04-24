@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/16 13:39:10 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 15:15:29 by sruff            ###   ########.fr       */
+/*   Created: 2026/04/24 15:23:40 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 15:23:52 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
 
 char	*malloc_strdup(const char *src)
 {
@@ -76,7 +75,6 @@ char	*ft_strpbrk(const char *s, const char *charset)
 	return (NULL);
 }
 
-<<<<<<< HEAD
 int	is_empty_line(char *line)
 {
 	while (*line)

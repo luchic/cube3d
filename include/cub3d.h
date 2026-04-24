@@ -28,6 +28,7 @@
 # include <string.h>
 # include <unistd.h>
 
+
 # define ELEM_NO 0x01
 # define ELEM_SO 0x02
 # define ELEM_WE 0x04
@@ -174,5 +175,6 @@ void			validate_map(t_app *app);
 uint32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
 uint32_t		get_texture_color(t_app *app, int32_t tex_num, int32_t tex_x,
 					int32_t tex_y);
+
 
 #endif
