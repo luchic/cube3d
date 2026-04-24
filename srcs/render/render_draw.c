@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:15:15 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/13 15:44:42 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:46:00 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int32_t	get_rgba(int32_t r, int32_t g, int32_t b, int32_t a)
 		| (uint32_t)a);
 }
 
-void	cast_rays(t_app *app)
+void	draw_walls(t_app *app)
 {
 	int32_t		x;
 	t_ray_data	ray_data;
@@ -43,6 +43,6 @@ void	draw_frame(t_app *app)
 			app->map->ceiling_color[1], app->map->ceiling_color[2], 255);
 	draw_sky(app, ceiling_color);
 	draw_floor(app);
-	cast_rays(app);
+	draw_walls(app);
 	render_minimap(app);
 }
