@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:15:15 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/05 18:19:07 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:44:42 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_frame(t_app *app)
 		return ;
 	ceiling_color = get_rgba(app->map->ceiling_color[0],
 			app->map->ceiling_color[1], app->map->ceiling_color[2], 255);
-	draw_ceiling(app, ceiling_color);
+	draw_sky(app, ceiling_color);
 	draw_floor(app);
 	cast_rays(app);
 	render_minimap(app);

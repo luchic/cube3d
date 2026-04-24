@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:25:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 18:20:57 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:44:39 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int32_t	get_gradient_color(int32_t base_color, double factor)
 	return (get_rgba(r, g, b, 255));
 }
 
-void	draw_ceiling(t_app *app, int32_t ceiling_color)
+void	draw_sky(t_app *app, int32_t ceiling_color)
 {
 	int32_t	x;
 	int32_t	y;
