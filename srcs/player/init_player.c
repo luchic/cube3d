@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/24 18:47:58 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 18:48:42 by sruff            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static double	get_radian_player(t_app *app)
@@ -7,14 +19,13 @@ static double	get_radian_player(t_app *app)
 
 	dir_x = app->player.dir_x;
 	dir_y = app->player.dir_y;
-
-	if (dir_x == 1  && dir_y == 0)
+	if (dir_x == 1 && dir_y == 0)
 		return (0);
-	else if (dir_x == 0  && dir_y == 1)
+	else if (dir_x == 0 && dir_y == 1)
 		return (M_PI / 2.0);
-	else if (dir_x == -1  && dir_y == 0)
+	else if (dir_x == -1 && dir_y == 0)
 		return (M_PI);
-	else if (dir_x == 0  && dir_y == -1)
+	else if (dir_x == 0 && dir_y == -1)
 		return (3 * M_PI / 2.0);
 	return (0);
 }
@@ -43,7 +54,7 @@ static void	init_player_direction(t_app *app)
 	}
 }
 
-void	setup_lenght_to_projection(t_app  *app)
+void	setup_lenght_to_projection(t_app *app)
 {
 	double	lenght_to_screen;
 	double	radian;

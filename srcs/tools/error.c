@@ -6,14 +6,11 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 10:27:59 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/23 15:38:44 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 18:39:43 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-
-//fn_exit with error + cleanup (mem and mlx)
 
 static const char	*get_rest_error_messages(t_parse_error error)
 {

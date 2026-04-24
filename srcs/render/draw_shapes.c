@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_shapes.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/24 18:49:56 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 18:49:59 by sruff            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -41,8 +52,7 @@ void	draw_rect(t_app *app, t_point point, int32_t size,
 	}
 }
 
-void	draw_line(t_app *app, t_point start, t_point end,
-		t_minimap_style style)
+void	draw_line(t_app *app, t_point start, t_point end, t_minimap_style style)
 {
 	t_line_draw	line;
 	t_point		pixel;

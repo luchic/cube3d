@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 16:40:23 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 17:33:14 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ static t_app	*allocate_app(void)
 	app->map = ft_calloc(1, sizeof(t_map));
 	if (!app->map)
 		exit_with_error("Memory allocation for map failed.", app);
+	app->img = ft_calloc(1, sizeof(t_images));
+	if (!app->img)
+		exit_with_error("Memory allocation for textures failed.", app);
 	return (app);
 }
 
@@ -37,10 +40,10 @@ static t_app	*setup_app(const char *map_path)
 		print_parse_error(error);
 		clean_exit(app);
 	}
+	init_player(app);
 	setup_graphics(app);
 	setup_hooks(app);
 	app->last_time = mlx_get_time();
-
 	return (app);
 }
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cast_ray.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/24 18:49:35 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 18:49:38 by sruff            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static inline t_ray	setup_initial_ray_length(t_ray origin, t_ray direction,
@@ -48,7 +60,7 @@ static inline t_casting_info	setup_hit(t_map *map, t_ray map_check,
 	int	x;
 	int	y;
 
-	(void) ray_unit_step_size;
+	(void)ray_unit_step_size;
 	x = map_check.x;
 	y = map_check.y;
 	info.hit = 0;
