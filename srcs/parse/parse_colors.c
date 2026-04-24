@@ -27,17 +27,6 @@ static void	free_split_values(char **values)
 	free(values);
 }
 
-static t_parse_error	check_valid_color_format(char *str)
-{
-	while (*str)
-	{
-		if (!ft_isdigit(*str) && *str != ',' && !ft_isspace(*str))
-			return (PARSE_ERR_INVALID_RGB);
-		str++;
-	}
-	return (PARSE_SUCCESS);
-}
-
 static t_parse_error	is_valid_color_component(char *str,
 		int32_t *color_component)
 {
@@ -58,7 +47,7 @@ static t_parse_error	is_valid_color_component(char *str,
 	return (PARSE_SUCCESS);
 }
 
-static t_parse_error	validate_and_assign_color_component(char *str_val,
+t_parse_error	validate_and_assign_color_component(char *str_val,
 		int32_t *color_component)
 {
 	char	*str;
@@ -71,37 +60,19 @@ static t_parse_error	validate_and_assign_color_component(char *str_val,
 	return (is_valid_color_component(str, color_component));
 }
 
-static t_parse_error	assign_color_values(char **rgb_values, int32_t color[3])
-{
-	int32_t	i;
-	t_parse_error	error;
-
-	i = 0;
-	while (i < 3)
-	{
-		error = validate_and_assign_color_component(rgb_values[i], &color[i]);
-		if (error != PARSE_SUCCESS)
-			return (error);
-		i++;
-	}
-	return (PARSE_SUCCESS);
-}
-
 t_parse_error	parse_color(char *line, int32_t color[3], t_app *app)
 {
-	char	**rgb_values;
-	int32_t	count;
+	char			**rgb_values;
+	int32_t			count;
 	t_parse_error	error;
 
-	count = 0;
 	error = check_valid_color_format(line);
 	if (error != PARSE_SUCCESS)
 		return (error);
 	rgb_values = ft_split(line, ',');
 	if (!rgb_values)
 		return (PARSE_ERR_ALLOC);
-	while (rgb_values[count])
-		count++;
+	count = count_str_array(rgb_values);
 	if (count != 3)
 	{
 		free_split_values(rgb_values);

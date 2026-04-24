@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defs.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
+/*   Updated: 2026/04/03 13:30:00 by nluchini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFS_H
 # define DEFS_H
 
@@ -129,7 +141,7 @@ typedef struct s_flood_fill_data
 	int32_t				height;
 }						t_flood_fill_data;
 
-typedef struct
+typedef struct s_ray_data
 {
 	double				camera_x;
 	double				ray_dir_x;

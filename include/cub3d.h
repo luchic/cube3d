@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/15 14:23:57 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/19 19:15:46 by sruff            ###   ########.fr       */
+/*   Created: 2026/04/24 15:31:15 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 15:31:15 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,17 +144,36 @@ int32_t			get_texture_num(double ray_dir_x, double ray_dir_y,
 					int32_t side);
 int32_t			is_wall(t_app *app, double x, double y);
 int32_t			validate_texture_file(const char *path);
+int32_t			count_str_array(char **values);
 const char		*get_parse_error_message(t_parse_error error);
 t_parse_error	check_all_elements_found(t_parse_file_data *file_data,
 					t_app *app);
 bool			flood_fill(char **grid, t_flood_fill_data *data);
 bool			flood_fill_recursive(char **grid, t_flood_fill_data *data);
+t_parse_error	assign_color_values(char **rgb_values, int32_t color[3]);
+t_parse_error	check_valid_color_format(char *str);
+t_parse_error	validate_and_assign_color_component(char *str_val,
+					int32_t *color_component);
 t_parse_error	handle_color_element(const t_color_element_args *a);
+t_parse_error	handle_empty_line(t_parse_file_data *file_data, t_app *app,
+					int32_t *consecutive_empty_lines,
+					t_map_lines_data *map_data);
 t_parse_error	handle_texture_element(const t_texture_element_args *a);
 t_parse_error	handle_texture_elements(char *line, char *value, t_app *app);
+t_parse_error	handle_file_line(t_parse_file_data *file_data, t_app *app,
+					int32_t *consecutive_empty_lines,
+					t_map_lines_data *map_data);
+t_parse_error	init_file_read(const char *filename,
+					t_parse_file_data *file_data, t_map_lines_data *map_data);
+t_parse_error	finalize_parsed_map(t_parse_file_data *file_data, t_app *app,
+					char **temp_map_lines, int32_t temp_map_height);
 t_parse_error	parse_element(char *line, t_app *app);
 t_parse_error	parse_map(t_app *app, const char *file);
+t_parse_error	pad_map_line(t_map *map, int32_t i);
 t_parse_error	process_element_line(t_parse_file_data *file_data, t_app *app);
+
+t_parse_error	process_valid_line(t_parse_file_data *file_data, t_app *app,
+					t_map_lines_data *map_data);
 
 char			**str_array_dup(char **src, int32_t height);
 char			*malloc_strdup(const char *src);
@@ -174,7 +192,9 @@ void			cast_rays(t_app *app);
 t_parse_error	check_walls_enclosed(t_app *app);
 void			cleanup_graphics(t_app *app);
 void			cleanup_textures(t_images *img);
+void			draw_ceiling(t_app *app, int32_t ceiling_color);
 void			draw_frame(t_app *app);
+void			draw_floor(t_app *app, int32_t floor_color);
 void			draw_vertical_strip(t_app *app, int32_t x, t_ray_data *ray);
 void			execute_dda(t_app *app, t_ray_data *ray);
 void			handle_movement(t_app *app);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graphics.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
+/*   Updated: 2026/04/03 13:20:00 by nluchini         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	create_screen_image(t_app *app)
@@ -37,8 +49,6 @@ void	cleanup_graphics(t_app *app)
 		mlx_terminate(app->mlx);
 }
 
-// TODO; May be this error printing not good, becasue i used another way 
-// with printing error in map_parsing
 void	setup_graphics(t_app *app)
 {
 	app->window_width = WINDOW_WIDTH;

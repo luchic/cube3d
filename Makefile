@@ -30,10 +30,14 @@ SRC_FILES = \
 	srcs/mlx/setup_hooks.c \
 	srcs/mlx/texture_loader.c \
 	srcs/parse/pad_map_grid.c \
+	srcs/parse/pad_map_grid_utils.c \
 	srcs/parse/parse_colors.c \
+	srcs/parse/parse_colors_utils.c \
 	srcs/parse/parse_element_utils.c \
 	srcs/parse/parse_file.c \
+	srcs/parse/parse_file_line.c \
 	srcs/parse/parse_file_utils.c \
+	srcs/parse/parse_file_utils_helpers.c \
 	srcs/parse/parse_textures.c \
 	srcs/parse/parsing.c \
 	srcs/player/init_player.c \
@@ -43,7 +47,9 @@ SRC_FILES = \
 	srcs/render/dda_init.c \
 	srcs/render/render.c \
 	srcs/render/render_dda.c \
+	srcs/render/render_ceiling.c \
 	srcs/render/render_draw.c \
+	srcs/render/render_floor.c \
 	srcs/render/render_texture.c \
 	srcs/render/render_walls.c \
 	srcs/tools/element_handler_utils.c \
