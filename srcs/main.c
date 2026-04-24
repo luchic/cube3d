@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 14:15:36 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/19 19:16:38 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/23 15:40:28 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,14 @@ int32_t	main(int32_t argc, char **argv)
 	}
 	app = setup_app();
 	error = parse_map(app, argv[1]);
-	print_parse_error(error);
+	if (error){
+		print_parse_error(error);
+		ft_clean();
+		return 1;
+	}
 	//app->last_time = mlx_get_time();
-	debug_print_map(app->map);
-	ft_printf("Welcome to Cub3D!\n");
+	//debug_print_map(app->map);
+	//ft_printf("Welcome to Cub3D!\n");
 	//mlx_loop(app->mlx);
 	//cleanup_graphics(app);
 	ft_clean();
