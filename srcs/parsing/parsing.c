@@ -6,11 +6,22 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:58:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 17:21:56 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 18:32:08 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
+
+static void	trim_trailing_whitespace(char *str)
+{
+	int	len;
+
+	if (!str)
+		return ;
+	len = ft_strlen(str);
+	while (len > 0 && ft_isspace(str[len - 1]))
+		str[--len] = '\0';
+}
 
 static t_parse_error	parse_elements_loop(t_parse_ctx *ctx)
 {
@@ -22,6 +33,7 @@ static t_parse_error	parse_elements_loop(t_parse_ctx *ctx)
 		line = get_next_line(ctx->fd);
 		if (!line)
 			return (PARSE_ERR_MISSING_ELEMENTS);
+		trim_trailing_whitespace(line);
 		err = parse_element(line, ctx);
 		if (err != PARSE_SUCCESS && err != PARSE_NO_MATCH)
 			return (err);

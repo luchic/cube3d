@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:00:00 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 16:57:50 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 18:32:08 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,10 @@
 static t_parse_error	parse_texture(char **split, char **path, uint8_t bit,
 		t_parse_ctx *ctx)
 {
-	int	len;
-
 	if (ctx->elements_found & bit)
 		return (PARSE_ERR_DUPLICATE_TEXTURE);
 	if (!split[1] || split[2])
 		return (PARSE_ERR_INVALID_LINE);
-	len = ft_strlen(split[1]);
-	while (len > 0 && ft_isspace(split[1][len - 1]))
-		split[1][--len] = '\0';
 	*path = ft_strdup(split[1]);
 	if (!*path)
 		return (PARSE_ERR_ALLOC);
@@ -79,10 +74,30 @@ static t_parse_error	parse_color(char **split, int32_t color[3], uint8_t bit,
 	return (PARSE_SUCCESS);
 }
 
+static t_parse_error	parse_element_from_split(char **split, t_parse_ctx *ctx)
+{
+	if (!ft_strcmp(split[0], "NO"))
+		return (parse_texture(split, &ctx->map->north_texture_path, ELEM_NO,
+				ctx));
+	if (!ft_strcmp(split[0], "SO"))
+		return (parse_texture(split, &ctx->map->south_texture_path, ELEM_SO,
+				ctx));
+	if (!ft_strcmp(split[0], "WE"))
+		return (parse_texture(split, &ctx->map->west_texture_path, ELEM_WE,
+				ctx));
+	if (!ft_strcmp(split[0], "EA"))
+		return (parse_texture(split, &ctx->map->east_texture_path, ELEM_EA,
+				ctx));
+	if (!ft_strcmp(split[0], "F"))
+		return (parse_color(split, ctx->map->floor_color, ELEM_F, ctx));
+	if (!ft_strcmp(split[0], "C"))
+		return (parse_color(split, ctx->map->ceiling_color, ELEM_C, ctx));
+	return (PARSE_NO_MATCH);
+}
+
 t_parse_error	parse_element(char *line, t_parse_ctx *ctx)
 {
-	char 			**split;
-	t_parse_error	err;
+	char	**split;
 
 	if (!line || !*line)
 		return (PARSE_NO_MATCH);
@@ -91,18 +106,5 @@ t_parse_error	parse_element(char *line, t_parse_ctx *ctx)
 		return (PARSE_ERR_ALLOC);
 	if (!split[0])
 		return (PARSE_NO_MATCH);
-	err = PARSE_NO_MATCH;
-	if (!ft_strcmp(split[0], "NO"))
-		err = parse_texture(split, &ctx->map->north_texture_path, ELEM_NO, ctx);
-	else if (!ft_strcmp(split[0], "SO"))
-		err = parse_texture(split, &ctx->map->south_texture_path, ELEM_SO, ctx);
-	else if (!ft_strcmp(split[0], "WE"))
-		err = parse_texture(split, &ctx->map->west_texture_path, ELEM_WE, ctx);
-	else if (!ft_strcmp(split[0], "EA"))
-		err = parse_texture(split, &ctx->map->east_texture_path, ELEM_EA, ctx);
-	else if (!ft_strcmp(split[0], "F"))
-		err = parse_color(split, ctx->map->floor_color, ELEM_F, ctx);
-	else if (!ft_strcmp(split[0], "C"))
-		err = parse_color(split, ctx->map->ceiling_color, ELEM_C, ctx);
-	return (err);
+	return (parse_element_from_split(split, ctx));
 }
