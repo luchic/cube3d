@@ -33,8 +33,7 @@ static t_app	*setup_app(const char *map_path)
 
 int32_t	main(int32_t argc, char **argv)
 {
-	t_app			*app;
-	t_parse_error	error;
+	t_app	*app;
 
 	if (argc != 2)
 	{

@@ -77,7 +77,6 @@ void			execute_dda(t_app *app, t_ray_data *ray);
 void			handle_movement(t_app *app);
 void			init_dda(t_app *app, t_ray_data *ray);
 
-void			create_screen_image(t_app *app);
 void			init_player(t_app *app);
 int				load_textures(t_app *app);
 void			setup_graphics(t_app *app);
@@ -85,13 +84,11 @@ void			move_forward_backward(t_app *app, double move_dir);
 void			move_strafe(t_app *app, double strafe_dir);
 void			movehook(void *param);
 t_parse_error	pad_map_grid(t_app *app);
-t_parse_error	parse_color(char *line, int32_t color[3], t_app *app);
 t_parse_error	process_file_lines(t_parse_file_data *file_data, t_app *app,
 					t_map_lines_data *map_data);
 void			process_ray(t_app *app, int32_t x, t_ray_data *ray_data);
 t_parse_error	read_and_parse_file(const char *filename, t_app *app);
 void			render(t_app *app);
-t_parse_error	validate_map(t_app *app);
 
 int32_t			get_texture_num(double ray_dir_x, double ray_dir_y,
 					int32_t side);
@@ -135,11 +132,7 @@ t_parse_error	process_valid_line(t_parse_file_data *file_data, t_app *app,
 t_parse_error	process_element_line(t_parse_file_data *file_data, t_app *app);
 t_parse_error	finalize_parsed_map(t_parse_file_data *file_data, t_app *app,
 					char **temp_map_lines, int32_t temp_map_height);
-t_parse_error	parse_element(char *line, t_app *app);
-t_parse_error	handle_texture_element(const t_texture_element_args *a);
-t_parse_error	handle_texture_elements(char *line, char *value, t_app *app);
 t_parse_error	handle_color_element(const t_color_element_args *a);
-t_parse_error	parse_color(char *line, int32_t color[3], t_app *app);
 t_parse_error	check_valid_color_format(char *str);
 t_parse_error	validate_and_assign_color_component(char *str_val,
 					int32_t *color_component);
@@ -159,15 +152,6 @@ void			handle_movement(t_app *app);
 void			movehook(void *param);
 void			move_forward_backward(t_app *app, double move_dir);
 void			move_strafe(t_app *app, double strafe_dir);
-
-//==============================================================================
-//                        validate
-//==============================================================================
-
-t_parse_error	validate_map(t_app *app);
-t_parse_error	check_walls_enclosed(t_app *app);
-bool			flood_fill(char **grid, t_flood_fill_data *data);
-bool			flood_fill_recursive(char **grid, t_flood_fill_data *data);
 
 //==============================================================================
 //                        tools
