@@ -6,10 +6,9 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 15:19:32 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 15:20:12 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 15:21:09 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../include/cub3d.h"
 
@@ -26,19 +25,19 @@ static t_app	*allocate_app(void)
 	return (app);
 }
 
-static t_app	*setup_app()
+static t_app	*setup_app(void)
 {
-	t_app			*app;
+	t_app	*app;
 
 	app = allocate_app();
-	//setup_graphics
-	//setup_hooks
+	// setup_graphics
+	// setup_hooks
 	return (app);
 }
 
 int32_t	main(int32_t argc, char **argv)
 {
-	t_app	*app;
+	t_app			*app;
 	t_parse_error	error;
 
 	if (argc != 2)
@@ -48,17 +47,17 @@ int32_t	main(int32_t argc, char **argv)
 	}
 	app = setup_app();
 	error = parse_map(app, argv[1]);
-	if (error){
+	if (error)
+	{
 		print_parse_error(error);
 		ft_clean();
-		return 1;
-
+		return (1);
 	}
-	//app->last_time = mlx_get_time();
-	//debug_print_map(app->map);
-	//ft_printf("Welcome to Cub3D!\n");
-	//mlx_loop(app->mlx);
-	//cleanup_graphics(app);
-	ft_clean();
+	app->window_width = WINDOW_WIDTH;
+	app->window_height = WINDOW_HEIGHT;
+	setup_graphics(app);
+	mlx_loop_hook(app->mlx, main_loop_hook, app);
+	mlx_loop(app->mlx);
+	cleanup_graphics(app);
 	return (0);
 }

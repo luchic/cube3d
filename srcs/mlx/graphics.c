@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mlx_setup.c                                        :+:      :+:    :+:   */
+/*   graphics.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	init_img(t_app *app)
+void	create_screen_image(t_app *app)
 {
 	app->img->screen = mlx_new_image(app->mlx, app->window_width,
 			app->window_height);
@@ -53,7 +53,7 @@ void	cleanup_textures(t_images *img)
 		mlx_delete_texture(img->txt_we);
 }
 
-void	cleanup_mlx(t_app *app)
+void	cleanup_graphics(t_app *app)
 {
 	if (!app)
 		return ;
@@ -65,14 +65,14 @@ void	cleanup_mlx(t_app *app)
 		mlx_terminate(app->mlx);
 }
 
-void	mlx_setup(t_app *app)
+void	setup_graphics(t_app *app)
 {
 	app->mlx = mlx_init(app->window_width, app->window_height, "Cub3D", true);
 	if (!app->mlx)
 	{
 		exit_with_error("MLX initialization failed.", app);
 	}
-	load_all_textures(app);
-	init_img(app);
+	load_textures(app);
+	create_screen_image(app);
 	mlx_resize_hook(app->mlx, resize_callback, app);
 }

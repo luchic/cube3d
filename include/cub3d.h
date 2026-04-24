@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -124,7 +124,6 @@ char			*ft_strpbrk(const char *s, const char *charset);
 int				is_empty_line(char *line);
 int				check_extension(const char *file, const char *ext);
 
-
 int32_t			get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
 int32_t			get_texture_num(double ray_dir_x, double ray_dir_y,
 					int32_t side);
@@ -143,8 +142,9 @@ bool			process_element_line(t_parse_file_data *file_data, t_app *app);
 char			**str_array_dup(char **src, int32_t height);
 char			*malloc_strdup(const char *src);
 char			*ft_strpbrk(const char *s, const char *charset);
-void	calculate_and_draw_wall(t_app *app, int32_t x,
-				t_ray_data *ray_data);
+void			calculate_and_draw_wall(t_app *app, int32_t x,
+					t_ray_data *ray_data);
+
 void			calculate_texture_params(t_app *app, t_ray_data *ray);
 void			calculate_wall_params(t_app *app, t_ray_data *ray);
 void			cast_rays(t_app *app);
@@ -165,14 +165,14 @@ void			move_strafe(t_app *app, double strafe_dir);
 void			movehook(void *param);
 void			pad_map_grid(t_app *app);
 void			parse_color(char *line, int32_t color[3], t_app *app);
-void	process_file_lines(t_parse_file_data *file_data, t_app *app,
-				t_map_lines_data *map_data);
+void			process_file_lines(t_parse_file_data *file_data, t_app *app,
+					t_map_lines_data *map_data);
 void			process_ray(t_app *app, int32_t x, t_ray_data *ray_data);
 void			read_and_parse_file(const char *filename, t_app *app);
 void			render(t_app *app);
 void			validate_map(t_app *app);
 uint32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
-uint32_t	get_texture_color(t_app *app, int32_t tex_num, int32_t tex_x,
-				int32_t tex_y);
+uint32_t		get_texture_color(t_app *app, int32_t tex_num, int32_t tex_x,
+					int32_t tex_y);
 
 #endif

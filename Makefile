@@ -26,8 +26,8 @@ EXT_LIBS = $(MACOS_GLFW_LIB_DIR) -ldl -lglfw -pthread -lm
 
 SRC_FILES = \
 	srcs/main.c \
-	srcs/mlx/mlx_load_texture.c \
-	srcs/mlx/mlx_setup.c \
+	srcs/mlx/graphics.c \
+	srcs/mlx/texture_loader.c \
 	srcs/parse/pad_map_grid.c \
 	srcs/parse/parse_colors.c \
 	srcs/parse/parse_element_utils.c \
