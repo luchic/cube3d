@@ -41,10 +41,10 @@ typedef struct s_ray
 typedef struct s_casting_info
 {
 	int				hit;
-	int 			side;
+	int				side;
 	double			distanse;
 	t_ray			direction;
-	t_ray 			hit_position;
+	t_ray			hit_position;
 	t_ray			length;
 }					t_casting_info;
 
@@ -52,14 +52,6 @@ typedef struct s_floor_view
 {
 	t_ray			ray_dir0;
 	t_ray			ray_dir1;
-}
-
-typedef struct s_floor_view
-{
-	double			ray_dir_x0;
-	double			ray_dir_y0;
-	double			ray_dir_x1;
-	double			ray_dir_y1;
 }					t_floor_view;
 
 typedef struct s_floor_row
@@ -178,28 +170,23 @@ typedef struct s_images
 
 typedef struct s_frames
 {
-	mlx_image_t *sky_frame;
-	mlx_image_t *floor_frame;
-	mlx_image_t *walls_frame;
-	mlx_image_t *tools_frame;
-} t_frames;
-
+	mlx_image_t		*sky_frame;
+	mlx_image_t		*floor_frame;
+	mlx_image_t		*walls_frame;
+	mlx_image_t		*tools_frame;
+}					t_frames;
 
 // Image and img. It's bad naming
 typedef struct s_app
 {
 	mlx_t			*mlx;
-	mlx_image_t		*image;
 	t_map			*map;
 	t_images		*img;
-	t_player		player;
 	bool			keys[6];
 	int32_t			window_width;
 	int32_t			window_height;
 	double			last_time;
-	mlx_t			*mlx;
-	t_map			*map;
-	t_images		*img;
+
 	t_frames		frames;
 	t_player		player;
 }					t_app;

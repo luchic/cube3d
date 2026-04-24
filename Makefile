@@ -1,13 +1,9 @@
 NAME = cub3D
 
 CC = cc
-<<<<<<< HEAD
-CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX42)/include/MLX42 -Ilibft/includes
-=======
 
 UNAME_S := $(shell uname -s)
-CFLAGS = -Wall -Wextra -Werror -Iinclude -I$(MLX42)/include/MLX42 -Ilibft/includes
->>>>>>> merged-final
+CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX42)/include/MLX42 -Ilibft/includes
 
 DLIBFT = libft
 LIBFT = $(DLIBFT)/libft.a
@@ -63,7 +59,7 @@ SRC_FILES = \
 	srcs/tools/utils.c \
 	srcs/tools/error_handling.c \
 	srcs/validate/check_walls.c \
-	srcs/validate/validate_map.c
+	srcs/validate/validate_map.c \
 	srcs/render/render_walls.c \
 	srcs/tools/utils.c \
 	srcs/tools/error_handling.c \

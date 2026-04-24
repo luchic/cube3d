@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 16:20:32 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 16:40:23 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,6 @@ static t_app	*allocate_app(void)
 	app->map = ft_calloc(1, sizeof(t_map));
 	if (!app->map)
 		exit_with_error("Memory allocation for map failed.", app);
-	app->img = ft_calloc(1, sizeof(t_images));
-	if (!app->img)
-		exit_with_error("Memory allocation for images failed.", app);
-
 	return (app);
 }
 

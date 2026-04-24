@@ -91,44 +91,6 @@ void			re_draw(t_app *app);
 
 
 //==============================================================================
-//                       parse
-//==============================================================================
-
-t_parse_error	parse_map(t_app *app, const char *file);
-t_parse_error	read_and_parse_file(const char *filename, t_app *app);
-t_parse_error	init_file_read(const char *filename,
-					t_parse_file_data *file_data, t_map_lines_data *map_data);
-t_parse_error	process_file_lines(t_parse_file_data *file_data, t_app *app,
-					t_map_lines_data *map_data);
-t_parse_error	handle_file_line(t_parse_file_data *file_data, t_app *app,
-					int32_t *consecutive_empty_lines,
-					t_map_lines_data *map_data);
-t_parse_error	handle_empty_line(t_parse_file_data *file_data, t_app *app,
-					int32_t *consecutive_empty_lines,
-					t_map_lines_data *map_data);
-t_parse_error	process_valid_line(t_parse_file_data *file_data, t_app *app,
-					t_map_lines_data *map_data);
-t_parse_error	process_element_line(t_parse_file_data *file_data, t_app *app);
-t_parse_error	finalize_parsed_map(t_parse_file_data *file_data, t_app *app,
-					char **temp_map_lines, int32_t temp_map_height);
-t_parse_error	parse_element(char *line, t_app *app);
-t_parse_error	handle_texture_element(const t_texture_element_args *a);
-t_parse_error	handle_texture_elements(char *line, char *value, t_app *app);
-t_parse_error	handle_color_element(const t_color_element_args *a);
-t_parse_error	parse_color(char *line, int32_t color[3], t_app *app);
-t_parse_error	handle_color_element(const t_color_element_args *a);
-
-t_parse_error	check_valid_color_format(char *str);
-t_parse_error	validate_and_assign_color_component(char *str_val,
-					int32_t *color_component);
-t_parse_error	assign_color_values(char **rgb_values, int32_t color[3]);
-int32_t			count_str_array(char **values);
-t_parse_error	pad_map_grid(t_app *app);
-t_parse_error	pad_map_line(t_map *map, int32_t i);
-t_parse_error	check_all_elements_found(t_parse_file_data *file_data,
-					t_app *app);
-
-//==============================================================================
 //                        player
 //==============================================================================
 
