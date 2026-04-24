@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 15:15:17 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 14:51:00 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,15 @@ typedef struct s_casting_info
 
 typedef struct s_floor_view
 {
-	double			ray_dir_x0;
-	double			ray_dir_y0;
-	double			ray_dir_x1;
-	double			ray_dir_y1;
+	t_ray			ray_dir0;
+	t_ray			ray_dir1;
 }					t_floor_view;
 
 typedef struct s_floor_row
 {
 	double			row_distance;
-	double			floor_step_x;
-	double			floor_step_y;
-	double			floor_x;
-	double			floor_y;
+	t_ray			floor_setp;
+	t_ray			floor_pos;
 	double			factor;
 }					t_floor_row;
 
