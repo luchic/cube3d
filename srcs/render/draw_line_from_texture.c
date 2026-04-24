@@ -6,7 +6,14 @@ static int32_t	get_texture_color(t_app *app, int relative, int max_height,
 	double	texture_y;
 
 	texture_y = (double)relative / (double)max_height * TILE_SIZE_DOUBLE;
-	return (get_pixel(app->img->txt_no, texture_x, texture_y));
+	if (app->temporary_info->face == WALL_EAST)
+		return (get_pixel(app->img->txt_ea, texture_x, texture_y));
+	else if (app->temporary_info->face == WALL_WEST)
+		return (get_pixel(app->img->txt_we, texture_x, texture_y));
+	else if (app->temporary_info->face == WALL_SOUTH)
+		return (get_pixel(app->img->txt_so, texture_x, texture_y));
+	else
+		return (get_pixel(app->img->txt_no, texture_x, texture_y));
 }
 
 static void	drow_line_from_texture(t_app *app, int wall_height, int x,
@@ -62,5 +69,6 @@ void	draw_wertical_line(t_app *app, t_casting_info info, int x)
 
 	height = app->player.len_to_screen / info.distanse * TILE_SIZE_DOUBLE;
 	texture_column = get_tex_x(info);
+	app->temporary_info = &info;
 	drow_line_from_texture(app, (int)height, x, texture_column);
 }

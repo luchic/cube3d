@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 18:49:35 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 20:16:53 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 21:06:31 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction)
 
 	map_check = floor_ray(origin);
 	step = sign(direction);
+	cast_info.direction = direction;
 	ray_unit_step_size.x = sqrt(1 + pow(direction.y / direction.x, 2));
 	ray_unit_step_size.y = sqrt(1 + pow(direction.x / direction.y, 2));
 	cast_info.length = setup_initial_ray_length(origin, direction, map_check,
@@ -111,5 +112,8 @@ t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction)
 	}
 	cast_info.hit_position.x = origin.x + direction.x * cast_info.distanse;
 	cast_info.hit_position.y = origin.y + direction.y * cast_info.distanse;
-	return (setup_hit(map, map_check, ray_unit_step_size, cast_info));
+	cast_info = setup_hit(map, map_check, ray_unit_step_size, cast_info);
+	if (cast_info.hit)
+		cast_info.face = get_wall_face(cast_info);
+	return (cast_info);
 }

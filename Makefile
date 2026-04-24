@@ -49,6 +49,7 @@ SRC_FILES = \
 	srcs/render/render_texture.c \
 	srcs/render/math.c \
 	srcs/render/cast_ray.c \
+	srcs/render/cast_ray1.c \
 	srcs/render/render_tools.c \
 	srcs/render/draw_line_from_texture.c \
 	srcs/tools/utils.c \

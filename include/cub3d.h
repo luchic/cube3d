@@ -83,6 +83,7 @@ void			draw_line(t_app *app, t_point start, t_point end,
 void			clean_wall_frame(mlx_image_t *image);
 t_casting_info	start_casting(t_app *app, int x);
 void			draw_wertical_line(t_app *app, t_casting_info info, int x);
+t_wall_face		get_wall_face(t_casting_info info);
 
 //==============================================================================
 //                        player

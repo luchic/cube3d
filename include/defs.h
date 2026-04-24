@@ -32,6 +32,14 @@
 # define TILE_SIZE_INT 64
 # define TILE_SIZE_DOUBLE 64.0
 
+typedef enum e_wall_face
+{
+	WALL_NORTH,
+	WALL_SOUTH,
+	WALL_WEST,
+	WALL_EAST
+}					t_wall_face;
+
 typedef struct s_ray
 {
 	double			x;
@@ -43,6 +51,7 @@ typedef struct s_casting_info
 	int				hit;
 	int				side;
 	double			distanse;
+	t_wall_face		face;
 	t_ray			direction;
 	t_ray			hit_position;
 	t_ray			length;
@@ -193,6 +202,7 @@ typedef struct s_app
 
 	t_frames		frames;
 	t_player		player;
+	t_casting_info	*temporary_info;
 }					t_app;
 
 // parsing
