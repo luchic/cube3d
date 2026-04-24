@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 15:32:30 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 15:33:06 by sruff            ###   ########.fr       */
+/*   Created: 2026/04/24 15:33:37 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 15:33:48 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # include <string.h>
 # include <unistd.h>
 
-<<<<<<< HEAD
 # define ELEM_NO 0x01
 # define ELEM_SO 0x02
 # define ELEM_WE 0x04
@@ -190,7 +189,7 @@ void			cleanup_mlx(t_app *app);
 void			calculate_texture_params(t_app *app, t_ray_data *ray);
 
 //==============================================================================
-//                        mlx   
+//                        mlx
 //==============================================================================
 
 void			setup_graphics(t_app *app);
@@ -200,7 +199,7 @@ void			cleanup_textures(t_images *img);
 void			cleanup_graphics(t_app *app);
 
 //==============================================================================
-//                       render   
+//                       render
 //==============================================================================
 
 void			render(t_app *app);
@@ -246,9 +245,18 @@ void			draw_ceiling(t_app *app, int32_t ceiling_color);
 void			draw_floor(t_app *app, int32_t floor_color);
 void			init_floor_row(t_app *app, t_floor_view *view,
 					t_floor_row *floor_row, int32_t y);
+void			render_minimap(t_app *app);
+void			put_pixel_safe_screen(t_app *app, t_point point,
+					uint32_t color);
+void			put_minimap_pixel(t_app *app, t_point point,
+					t_minimap_style style);
+void			draw_rect(t_app *app, t_point point, int32_t size,
+					t_minimap_style style);
+void			draw_line(t_app *app, t_point start, t_point end,
+					t_minimap_style style);
 
 //==============================================================================
-//                       parse   
+//                       parse
 //==============================================================================
 
 t_parse_error	parse_map(t_app *app, const char *file);
@@ -284,7 +292,7 @@ t_parse_error	check_all_elements_found(t_parse_file_data *file_data,
 					t_app *app);
 
 //==============================================================================
-//                        player   
+//                        player
 //==============================================================================
 
 void			init_player(t_app *app);
@@ -294,7 +302,7 @@ void			move_forward_backward(t_app *app, double move_dir);
 void			move_strafe(t_app *app, double strafe_dir);
 
 //==============================================================================
-//                        validate   
+//                        validate
 //==============================================================================
 
 t_parse_error	validate_map(t_app *app);
@@ -303,7 +311,7 @@ bool			flood_fill(char **grid, t_flood_fill_data *data);
 bool			flood_fill_recursive(char **grid, t_flood_fill_data *data);
 
 //==============================================================================
-//                        tools   
+//                        tools
 //==============================================================================
 
 void			exit_with_error(const char *message, t_app *app);
