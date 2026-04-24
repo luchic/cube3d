@@ -1,16 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 15:29:48 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 15:29:58 by sruff            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-
 
 #include "../include/cub3d.h"
 
@@ -54,8 +41,8 @@ int32_t	main(int32_t argc, char **argv)
 		printf("Usage: %s <path to map_file>\n", argv[0]);
 		return (1);
 	}
-	ft_printf("Welcome to Cub3D!\n");
 	app = setup_app(argv[1]);
+	ft_printf("Welcome to Cub3D!\n");
 	mlx_loop(app->mlx);
 	cleanup_graphics(app);
 	return (0);
