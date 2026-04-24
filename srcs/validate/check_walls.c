@@ -56,7 +56,7 @@ bool	flood_fill(char **grid, t_flood_fill_data *data)
 	return (flood_fill_recursive(grid, data));
 }
 
-void	check_walls_enclosed(t_app *app)
+t_parse_error	check_walls_enclosed(t_app *app)
 {
 	char				**map_copy;
 	t_map				*map;
@@ -65,11 +65,12 @@ void	check_walls_enclosed(t_app *app)
 	map = app->map;
 	map_copy = str_array_dup(map->grid, map->grid_height);
 	if (!map_copy)
-		exit_with_error("Failed to create map copy for validation.", app);
+		return (PARSE_ERR_ALLOC);
 	ff_data.x = map->player_start_x;
 	ff_data.y = map->player_start_y;
 	ff_data.width = map->grid_width;
 	ff_data.height = map->grid_height;
 	if (!flood_fill(map_copy, &ff_data))
-		exit_with_error("Map is not enclosed by walls.", app);
+		return (PARSE_ERR_MAP_NOT_ENCLOSED);
+	return (PARSE_SUCCESS);
 }

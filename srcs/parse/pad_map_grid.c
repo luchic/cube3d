@@ -34,7 +34,7 @@ static int32_t	find_max_grid_width(t_map *map)
 	return (max_width);
 }
 
-void	pad_map_grid(t_app *app)
+t_parse_error	pad_map_grid(t_app *app)
 {
 	int32_t		i;
 	int32_t		len;
@@ -52,7 +52,7 @@ void	pad_map_grid(t_app *app)
 		{
 			new_line = ft_malloc(map->grid_width + 1);
 			if (!new_line)
-				exit_with_error("Memory allocation failed for padding.", app);
+				return (PARSE_ERR_ALLOC);
 			ft_memcpy(new_line, map->grid[i], len);
 			j = len;
 			while (j < map->grid_width)
@@ -61,4 +61,6 @@ void	pad_map_grid(t_app *app)
 			map->grid[i] = new_line;
 		}
 	}
+	(void)app;
+	return (PARSE_SUCCESS);
 }

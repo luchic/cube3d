@@ -13,53 +13,61 @@
 #include "cub3d.h"
 #include <string.h> // strcmp
 
-static bool	process_texture(const t_texture_element_args *a, const char *msg)
+static t_parse_error	process_texture(const t_texture_element_args *a,
+		t_parse_error error_code)
 {
 	t_map	*map;
 
 	map = a->app->map;
 	if (map->elements_found[a->texture_type])
-		exit_with_error((char *)msg, a->app);
+		return (error_code);
 	if (!validate_texture_file(a->value))
-		exit_with_error("Texture file not found or inaccessible.", a->app);
+		return (PARSE_ERR_TEXTURE_FILE);
 	*(a->texture_path_ptr) = malloc_strdup(a->value);
+	if (!*(a->texture_path_ptr))
+		return (PARSE_ERR_ALLOC);
 	map->elements_found[a->texture_type] = true;
-	return (true);
+	return (PARSE_SUCCESS);
 }
 
-bool	handle_texture_element(const t_texture_element_args *a)
+t_parse_error	handle_texture_element(const t_texture_element_args *a)
 {
 	if (strcmp(a->key, "NO") == 0 && a->texture_type == NORTH_TEXTURE)
-		return (process_texture(a, "Duplicate NO texture."));
+		return (process_texture(a, PARSE_ERR_DUPLICATE_TEXTURE));
 	if (strcmp(a->key, "SO") == 0 && a->texture_type == SOUTH_TEXTURE)
-		return (process_texture(a, "Duplicate SO texture."));
+		return (process_texture(a, PARSE_ERR_DUPLICATE_TEXTURE));
 	if (strcmp(a->key, "WE") == 0 && a->texture_type == WEST_TEXTURE)
-		return (process_texture(a, "Duplicate WE texture."));
+		return (process_texture(a, PARSE_ERR_DUPLICATE_TEXTURE));
 	if (strcmp(a->key, "EA") == 0 && a->texture_type == EAST_TEXTURE)
-		return (process_texture(a, "Duplicate EA texture."));
-	return (false);
+		return (process_texture(a, PARSE_ERR_DUPLICATE_TEXTURE));
+	return (PARSE_NO_MATCH);
 }
 
-bool	handle_color_element(const t_color_element_args *a)
+t_parse_error	handle_color_element(const t_color_element_args *a)
 {
 	t_map	*map;
+	t_parse_error	error;
 
 	map = a->app->map;
 	if (strcmp(a->key, "F") == 0 && a->color_type == FLOOR_COLOR)
 	{
 		if (map->elements_found[FLOOR_COLOR])
-			exit_with_error("Duplicate F color.", a->app);
-		parse_color(a->value, a->color_array, a->app);
+			return (PARSE_ERR_DUPLICATE_COLOR);
+		error = parse_color(a->value, a->color_array, a->app);
+		if (error != PARSE_SUCCESS)
+			return (error);
 		map->elements_found[FLOOR_COLOR] = true;
-		return (true);
+		return (PARSE_SUCCESS);
 	}
 	if (strcmp(a->key, "C") == 0 && a->color_type == CEILING_COLOR)
 	{
 		if (map->elements_found[CEILING_COLOR])
-			exit_with_error("Duplicate C color.", a->app);
-		parse_color(a->value, a->color_array, a->app);
+			return (PARSE_ERR_DUPLICATE_COLOR);
+		error = parse_color(a->value, a->color_array, a->app);
+		if (error != PARSE_SUCCESS)
+			return (error);
 		map->elements_found[CEILING_COLOR] = true;
-		return (true);
+		return (PARSE_SUCCESS);
 	}
-	return (false);
+	return (PARSE_NO_MATCH);
 }

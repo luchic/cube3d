@@ -176,5 +176,4 @@ uint32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
 uint32_t		get_texture_color(t_app *app, int32_t tex_num, int32_t tex_x,
 					int32_t tex_y);
 
-
 #endif
