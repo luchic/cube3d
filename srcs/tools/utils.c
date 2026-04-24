@@ -6,25 +6,11 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 21:22:46 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 16:30:37 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 16:57:45 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-char	*malloc_strdup(const char *src)
-{
-	char	*dest;
-	size_t	len;
-
-	if (!src)
-		return (NULL);
-	len = ft_strlen(src) + 1;
-	dest = ft_malloc(len);
-	if (!dest)
-		return (NULL);
-	ft_memcpy(dest, src, len);
-	return (dest);
-}
 
 char	**str_array_dup(char **src, int32_t height)
 {
@@ -39,7 +25,7 @@ char	**str_array_dup(char **src, int32_t height)
 	i = 0;
 	while (i < height)
 	{
-		dest[i] = malloc_strdup(src[i]);
+		dest[i] = ft_strdup(src[i]);
 		if (!dest[i])
 		{
 			return (NULL);
@@ -97,19 +83,4 @@ int	check_extension(const char *file, const char *ext)
 	if (file_len < ext_len)
 		return (0);
 	return (ft_strcmp(file + file_len - ext_len, ext) == 0);
-}
-
-
-void	exit_with_error(const char *message, t_app *app)
-{
-	ft_printf("Error: %s\n", message);
-	if (app)
-	{
-		if (app->image)
-			mlx_delete_image(app->mlx, app->image);
-		if (app->mlx)
-			mlx_terminate(app->mlx);
-	}
-	ft_clean();
-	exit(1);
 }

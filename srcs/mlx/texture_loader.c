@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:23:36 by sruff             #+#    #+#             */
-/*   Updated: 2026/03/30 12:49:09 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 16:52:58 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ static int	load_texture(mlx_texture_t **texture, const char *path)
 	if (!(*texture))
 		return (0);
 	return (1);
+}
+
+void cleanup_textures(t_images *textures)
+{
+	(void) textures;
+	return;
 }
 
 int	load_textures(t_app *app)

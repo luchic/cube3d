@@ -33,14 +33,8 @@ t_parse_error	validate_map(t_map *map);
 t_parse_error	pad_grid(t_map *map);
 void			debug_print_map(t_map *map);
 
-// parsing error
-void			print_parse_error(t_parse_error error);
-
 // utils
-void			exit_with_error(const char *message, t_app *app);
-char			*malloc_strdup(const char *src);
 char			**str_array_dup(char **src, int32_t height);
-int32_t			validate_texture_file(const char *path);
 char			*ft_strpbrk(const char *s, const char *charset);
 int				is_empty_line(char *line);
 int				check_extension(const char *file, const char *ext);
@@ -108,7 +102,6 @@ void			exit_with_error(const char *message, t_app *app);
 void			clean_exit(t_app *app);
 void			print_parse_error(t_parse_error error);
 const char		*get_parse_error_message(t_parse_error error);
-char			*malloc_strdup(const char *src);
 char			**str_array_dup(char **src, int32_t height);
 char			*ft_strpbrk(const char *s, const char *charset);
 int32_t			validate_texture_file(const char *path);

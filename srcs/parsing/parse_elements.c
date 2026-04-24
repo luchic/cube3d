@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:00:00 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/19 18:31:11 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 16:57:50 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static t_parse_error	parse_texture(char **split, char **path, uint8_t bit,
 		return (PARSE_ERR_DUPLICATE_TEXTURE);
 	if (!split[1] || split[2])
 		return (PARSE_ERR_INVALID_LINE);
-	*path = malloc_strdup(split[1]);
+	*path = ft_strdup(split[1]);
 	if (!*path)
 		return (PARSE_ERR_ALLOC);
 	ctx->elements_found |= bit;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:10:00 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/19 18:22:13 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 16:57:55 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static t_parse_error	add_line_to_grid(t_map *map, char *line)
 	len = ft_strlen(line);
 	if (len > 0 && line[len - 1] == '\n')
 		line[--len] = '\0';
-	new_grid[i] = malloc_strdup(line);
+	new_grid[i] = ft_strdup(line);
 	if (!new_grid[i])
 		return (PARSE_ERR_ALLOC);
 	new_grid[i + 1] = NULL;

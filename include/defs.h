@@ -52,6 +52,10 @@ typedef struct s_floor_view
 {
 	t_ray			ray_dir0;
 	t_ray			ray_dir1;
+	double			ray_dir_x0;
+	double			ray_dir_y0;
+	double			ray_dir_x1;
+	double			ray_dir_y1;
 }					t_floor_view;
 
 typedef struct s_floor_row

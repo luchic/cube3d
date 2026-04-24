@@ -42,11 +42,7 @@ SRC_FILES = \
 	srcs/player/player_move.c \
 	srcs/render/render.c \
 	srcs/render/render_sky.c \
-	srcs/render/dda_init.c \
 	srcs/render/render.c \
-	srcs/render/handle_rays.c \
-	srcs/render/render_dda.c \
-	srcs/render/render_ceiling.c \
 	srcs/render/render_draw.c \
 	srcs/render/draw_shapes.c \
 	srcs/render/render_floor.c \
@@ -55,11 +51,8 @@ SRC_FILES = \
 	srcs/render/render_frame.c \
 	srcs/render/math.c \
 	srcs/render/cast_ray.c \
-	srcs/tools/element_handler_utils.c \
 	srcs/tools/utils.c \
 	srcs/tools/error_handling.c \
-	srcs/validate/check_walls.c \
-	srcs/validate/validate_map.c \
 	srcs/render/render_walls.c \
 	srcs/tools/utils.c \
 	srcs/tools/error_handling.c \
