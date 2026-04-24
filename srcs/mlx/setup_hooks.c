@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   setup_hooks.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/24 18:41:33 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 18:41:50 by sruff            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void	main_loop_hook(void *param)
@@ -15,13 +27,12 @@ static void	main_loop_hook(void *param)
 	app->last_time = now;
 }
 
-static void resize_frames(t_app *app)
+static void	resize_frames(t_app *app)
 {
 	mlx_delete_image(app->mlx, app->frames.floor_frame);
 	mlx_delete_image(app->mlx, app->frames.sky_frame);
 	mlx_delete_image(app->mlx, app->frames.tools_frame);
 	mlx_delete_image(app->mlx, app->frames.walls_frame);
-
 	init_frames(app);
 }
 

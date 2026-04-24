@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture_loader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:23:36 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 16:52:58 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 18:44:34 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ static int	load_texture(mlx_texture_t **texture, const char *path)
 	return (1);
 }
 
-void cleanup_textures(t_images *textures)
+void	cleanup_textures(t_images *textures)
 {
-	(void) textures;
-	return;
+	(void)textures;
+	return ;
 }
 
 int	load_textures(t_app *app)
@@ -35,11 +35,8 @@ int	load_textures(t_app *app)
 	load_texture(&(app->img->txt_ea), app->map->east_texture_path);
 	load_texture(&(app->img->txt_we), app->map->west_texture_path);
 	load_texture(&(app->img->txt_floor), FLOOR_TEXTURE_PATH);
-	if (!app->img->txt_no
-		|| !app->img->txt_so
-		|| !app->img->txt_ea
-		|| !app->img->txt_we
-		|| !app->img->txt_floor)
+	if (!app->img->txt_no || !app->img->txt_so || !app->img->txt_ea
+		|| !app->img->txt_we || !app->img->txt_floor)
 	{
 		cleanup_textures(app->img);
 		return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 16:40:23 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 17:33:14 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static t_app	*setup_app(const char *map_path)
 	setup_graphics(app);
 	setup_hooks(app);
 	app->last_time = mlx_get_time();
-
 	return (app);
 }
 
