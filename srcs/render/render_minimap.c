@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_minimap.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/05 18:08:23 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 13:09:14 by nluchini         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -40,7 +29,7 @@ static void	draw_map_tile(t_app *app, t_point center, t_point map_pos,
 
 static void	draw_map_tiles(t_app *app, t_point center, t_minimap_style style)
 {
-	t_point	map_pos;
+	t_point		map_pos;
 
 	map_pos.y = 0;
 	while (map_pos.y < app->map->grid_height)

@@ -1,7 +1,13 @@
 NAME = cub3D
 
 CC = cc
+<<<<<<< HEAD
 CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX42)/include/MLX42 -Ilibft/includes
+=======
+
+UNAME_S := $(shell uname -s)
+CFLAGS = -Wall -Wextra -Werror -Iinclude -I$(MLX42)/include/MLX42 -Ilibft/includes
+>>>>>>> merged-final
 
 DLIBFT = libft
 LIBFT = $(DLIBFT)/libft.a
@@ -13,28 +19,38 @@ MLX42LIB = $(BUILD_DIR)/libmlx42.a
 
 EXT_LIBS = -ldl -lglfw -pthread -lm
 
+MACOS_GLFW_LIB_DIR =
+ifeq ($(UNAME_S),Darwin)
+ifneq ($(wildcard /opt/homebrew/lib/libglfw.dylib),)
+MACOS_GLFW_LIB_DIR = -L/opt/homebrew/lib
+else ifneq ($(wildcard /usr/local/lib/libglfw.dylib),)
+MACOS_GLFW_LIB_DIR = -L/usr/local/lib
+endif
+endif
+
+EXT_LIBS = $(MACOS_GLFW_LIB_DIR) -ldl -lglfw -pthread -lm
+
+
 SRC_FILES = \
 	srcs/main.c \
 	srcs/mlx/graphics.c \
 	srcs/mlx/setup_hooks.c \
 	srcs/mlx/texture_loader.c \
-	srcs/parse/pad_map_grid.c \
-	srcs/parse/pad_map_grid_utils.c \
-	srcs/parse/parse_colors.c \
-	srcs/parse/parse_colors_utils.c \
-	srcs/parse/parse_element_utils.c \
-	srcs/parse/parse_file.c \
-	srcs/parse/parse_file_line.c \
-	srcs/parse/parse_file_utils.c \
-	srcs/parse/parse_file_utils_helpers.c \
-	srcs/parse/parse_textures.c \
-	srcs/parse/parsing.c \
+	srcs/parsing/parse_elements.c \
+	srcs/parsing/parse_grid.c \
+	srcs/parsing/parsing.c \
+	srcs/parsing/validate_map.c \
 	srcs/player/init_player.c \
 	srcs/player/keypress.c \
 	srcs/player/handle_movement.c \
 	srcs/player/player_move.c \
 	srcs/render/render.c \
 	srcs/render/render_sky.c \
+	srcs/render/dda_init.c \
+	srcs/render/render.c \
+	srcs/render/handle_rays.c \
+	srcs/render/render_dda.c \
+	srcs/render/render_ceiling.c \
 	srcs/render/render_draw.c \
 	srcs/render/draw_shapes.c \
 	srcs/render/render_floor.c \
@@ -48,6 +64,9 @@ SRC_FILES = \
 	srcs/tools/error_handling.c \
 	srcs/validate/check_walls.c \
 	srcs/validate/validate_map.c
+	srcs/render/render_walls.c \
+	srcs/tools/utils.c \
+	srcs/tools/error_handling.c \
 
 SRC_OBJS = $(SRC_FILES:.c=.o)
 
@@ -55,12 +74,20 @@ all: $(NAME)
 
 bonus: $(NAME)
 
+debug: CFLAGS += -g3 -fsanitize=address
+debug: LDFLAGS += -fsanitize=address
+debug: re
+
 $(NAME): $(MLX42LIB) $(SRC_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(SRC_OBJS) -o $(NAME) -L$(DLIBFT) -l$(FT) \
-		-L$(BUILD_DIR) -lmlx42 $(EXT_LIBS)
+		-L$(BUILD_DIR) -lmlx42 $(EXT_LIBS) $(LDFLAGS)
 
 $(LIBFT):
-	$(MAKE) -C $(DLIBFT) all
+	@if [ ! -d $(DLIBFT) ]; then \
+		git clone https://github.com/luchic/mylibft.git $(DLIBFT); \
+	fi
+	@$(MAKE) -C $(DLIBFT) all
+
 
 $(MLX42LIB):
 	if [ ! -d $(MLX42) ]; then \
@@ -76,12 +103,13 @@ $(MLX42LIB):
 
 clean:
 	rm -f $(SRC_OBJS)
-	$(MAKE) -C $(DLIBFT) clean
+
+	@if [ -d $(DLIBFT) ]; then $(MAKE) -C $(DLIBFT) clean; fi
 
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(DLIBFT) fclean
+	@if [ -d $(DLIBFT) ]; then $(MAKE) -C $(DLIBFT) fclean; fi
 
 re: fclean all
 
-.PHONY: all bonus clean fclean re
+.PHONY: all bonus debug clean fclean re

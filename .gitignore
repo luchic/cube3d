@@ -1,5 +1,12 @@
 *.a
 *.o
 mlx42
+libft
+cub3D
+assets
+.vscode
+*.sh
+*.json
+cub3D
 cub3D
 .codex

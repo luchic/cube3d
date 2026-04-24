@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   defs.h                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/24 14:51:00 by nluchini         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef DEFS_H
 # define DEFS_H
@@ -63,6 +52,14 @@ typedef struct s_floor_view
 {
 	t_ray			ray_dir0;
 	t_ray			ray_dir1;
+}
+
+typedef struct s_floor_view
+{
+	double			ray_dir_x0;
+	double			ray_dir_y0;
+	double			ray_dir_x1;
+	double			ray_dir_y1;
 }					t_floor_view;
 
 typedef struct s_floor_row
@@ -70,6 +67,10 @@ typedef struct s_floor_row
 	double			row_distance;
 	t_ray			floor_setp;
 	t_ray			floor_pos;
+	double			floor_step_x;
+	double			floor_step_y;
+	double			floor_x;
+	double			floor_y;
 	double			factor;
 }					t_floor_row;
 
@@ -143,6 +144,13 @@ typedef struct s_map
 	int8_t			player_start_dir;
 }					t_map;
 
+typedef struct s_parse_ctx
+{
+	int32_t			fd;
+	t_map			*map;
+	uint8_t			elements_found;
+}					t_parse_ctx;
+
 typedef struct s_player
 {
 	double			pos_x;
@@ -156,6 +164,7 @@ typedef struct s_player
 	t_ray			origin;
 	double			radian_shifting;
 	double			len_to_screen;
+
 }					t_player;
 
 typedef struct s_images
@@ -176,9 +185,14 @@ typedef struct s_frames
 } t_frames;
 
 
-// TODO: Image and img. It's bad naming
+// Image and img. It's bad naming
 typedef struct s_app
 {
+	mlx_t			*mlx;
+	mlx_image_t		*image;
+	t_map			*map;
+	t_images		*img;
+	t_player		player;
 	bool			keys[6];
 	int32_t			window_width;
 	int32_t			window_height;

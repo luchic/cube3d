@@ -6,12 +6,11 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 21:22:46 by sruff             #+#    #+#             */
-/*   Updated: 2026/03/30 11:44:06 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 16:30:37 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 char	*malloc_strdup(const char *src)
 {
 	char	*dest;
@@ -73,4 +72,44 @@ char	*ft_strpbrk(const char *s, const char *charset)
 		s++;
 	}
 	return (NULL);
+}
+
+int	is_empty_line(char *line)
+{
+	while (*line)
+	{
+		if (!ft_isspace(*line))
+			return (0);
+		line++;
+	}
+	return (1);
+}
+
+int	check_extension(const char *file, const char *ext)
+{
+	size_t	file_len;
+	size_t	ext_len;
+
+	if (!file || !ext)
+		return (0);
+	file_len = ft_strlen(file);
+	ext_len = ft_strlen(ext);
+	if (file_len < ext_len)
+		return (0);
+	return (ft_strcmp(file + file_len - ext_len, ext) == 0);
+}
+
+
+void	exit_with_error(const char *message, t_app *app)
+{
+	ft_printf("Error: %s\n", message);
+	if (app)
+	{
+		if (app->image)
+			mlx_delete_image(app->mlx, app->image);
+		if (app->mlx)
+			mlx_terminate(app->mlx);
+	}
+	ft_clean();
+	exit(1);
 }

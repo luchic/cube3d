@@ -1,20 +1,49 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/20 21:18:21 by nluchini         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
 # include "defs.h"
+# include <fcntl.h>
+# include <limits.h>
 # include <math.h>
+# include <stdbool.h>
+# include <stdint.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+
+# define ELEM_NO 0x01
+# define ELEM_SO 0x02
+# define ELEM_WE 0x04
+# define ELEM_EA 0x08
+# define ELEM_F 0x10
+# define ELEM_C 0x20
+# define ELEM_ALL 0x3F
+
+// Assets
+// Grid
+// Plazer
+
+// parsing
+t_parse_error	parse_map(t_app *app, const char *file);
+t_parse_error	parse_element(char *line, t_parse_ctx *ctx);
+t_parse_error	parse_grid(t_parse_ctx *ctx, char *first_line);
+t_parse_error	validate_map(t_map *map);
+t_parse_error	pad_grid(t_map *map);
+void			debug_print_map(t_map *map);
+
+// parsing error
+void			print_parse_error(t_parse_error error);
+
+// utils
+void			exit_with_error(const char *message, t_app *app);
+char			*malloc_strdup(const char *src);
+char			**str_array_dup(char **src, int32_t height);
+int32_t			validate_texture_file(const char *path);
+char			*ft_strpbrk(const char *s, const char *charset);
+int				is_empty_line(char *line);
+int				check_extension(const char *file, const char *ext);
 
 //==============================================================================
 //                        mlx
@@ -60,6 +89,7 @@ void			draw_line(t_app *app, t_point start, t_point end,
 					t_minimap_style style);
 void			re_draw(t_app *app);
 
+
 //==============================================================================
 //                       parse
 //==============================================================================
@@ -86,6 +116,8 @@ t_parse_error	handle_texture_element(const t_texture_element_args *a);
 t_parse_error	handle_texture_elements(char *line, char *value, t_app *app);
 t_parse_error	handle_color_element(const t_color_element_args *a);
 t_parse_error	parse_color(char *line, int32_t color[3], t_app *app);
+t_parse_error	handle_color_element(const t_color_element_args *a);
+
 t_parse_error	check_valid_color_format(char *str);
 t_parse_error	validate_and_assign_color_component(char *str_val,
 					int32_t *color_component);
@@ -106,16 +138,7 @@ void			movehook(void *param);
 void			move_forward_backward(t_app *app, double move_dir);
 void			move_strafe(t_app *app, double strafe_dir);
 
-//==============================================================================
-//                        validate
-//==============================================================================
-
-t_parse_error	validate_map(t_app *app);
-t_parse_error	check_walls_enclosed(t_app *app);
-bool			flood_fill(char **grid, t_flood_fill_data *data);
-bool			flood_fill_recursive(char **grid, t_flood_fill_data *data);
-
-//==============================================================================
+//==============================================================================l
 //                        tools
 //==============================================================================
 

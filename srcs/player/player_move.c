@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   player_move.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/24 21:40:58 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/18 18:24:40 by nluchini         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "cub3d.h"
 
 static int	is_wall(t_app *app, double x, double y)
@@ -55,6 +43,7 @@ void	move_strafe(t_app *app, double strafe_dir)
 	double	new_pos_x;
 	double	new_pos_y;
 	double	move_speed;
+
 	t_ray plane = radian_to_vector(app->player.plane_radian);
 	move_speed = MOVE_SPEED;
 	new_pos_x = app->player.origin.x + plane.x * move_speed
