@@ -42,7 +42,6 @@ SRC_FILES = \
 	srcs/player/player_move.c \
 	srcs/render/render.c \
 	srcs/render/render_sky.c \
-	srcs/render/render.c \
 	srcs/render/render_draw.c \
 	srcs/render/draw_shapes.c \
 	srcs/render/render_floor.c \
@@ -53,9 +52,8 @@ SRC_FILES = \
 	srcs/render/cast_ray.c \
 	srcs/tools/utils.c \
 	srcs/tools/error_handling.c \
+	srcs/tools/error.c \
 	srcs/render/render_walls.c \
-	srcs/tools/utils.c \
-	srcs/tools/error_handling.c \
 
 SRC_OBJS = $(SRC_FILES:.c=.o)
 

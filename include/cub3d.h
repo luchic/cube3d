@@ -33,12 +33,10 @@ t_parse_error	validate_map(t_map *map);
 t_parse_error	pad_grid(t_map *map);
 void			debug_print_map(t_map *map);
 
-// utils
 char			**str_array_dup(char **src, int32_t height);
 char			*ft_strpbrk(const char *s, const char *charset);
 int				is_empty_line(char *line);
 int				check_extension(const char *file, const char *ext);
-
 //==============================================================================
 //                        mlx
 //==============================================================================
