@@ -1,3 +1,4 @@
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -196,6 +197,7 @@ void			draw_walls(t_app *app);
 void			process_ray(t_app *app, int32_t x, t_ray_data *ray_data);
 void			init_dda(t_app *app, t_ray_data *ray);
 void			execute_dda(t_app *app, t_ray_data *ray);
+
 void			calculate_and_draw_wall(t_app *app, int32_t x,
 					t_ray_data *ray_data);
 
