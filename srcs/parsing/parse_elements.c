@@ -15,10 +15,15 @@
 static t_parse_error	parse_texture(char **split, char **path, uint8_t bit,
 		t_parse_ctx *ctx)
 {
+	int	len;
+
 	if (ctx->elements_found & bit)
 		return (PARSE_ERR_DUPLICATE_TEXTURE);
 	if (!split[1] || split[2])
 		return (PARSE_ERR_INVALID_LINE);
+	len = ft_strlen(split[1]);
+	while (len > 0 && ft_isspace(split[1][len - 1]))
+		split[1][--len] = '\0';
 	*path = ft_strdup(split[1]);
 	if (!*path)
 		return (PARSE_ERR_ALLOC);

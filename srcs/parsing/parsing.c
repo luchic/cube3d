@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:58:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/19 18:18:01 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 17:21:56 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static t_parse_error	find_grid_start(t_parse_ctx *ctx, char **first_line)
 
 t_parse_error	parse_map(t_app *app, const char *file)
 {
-	t_parse_ctx		ctx;
-	char			*first_line;
-	t_parse_error	err;
+	t_parse_ctx ctx;
+	char *first_line;
+	t_parse_error err;
 
 	if (!check_extension(file, ".cub"))
 		return (PARSE_ERR_INVALID_EXTENSION);
