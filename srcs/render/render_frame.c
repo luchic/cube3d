@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 18:52:37 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 18:54:21 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 19:57:51 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ t_casting_info	start_casting(t_app *app, int x)
 static int32_t	get_texture_color(t_app *app, int relative, int max_height,
 		int texture_x)
 {
+	double	texture_y;
+
 	texture_y = (double)relative / (double)max_height * TILE_SIZE_DOUBLE;
 	return (get_pixel(app->img->txt_no, texture_x, texture_y));
 }
