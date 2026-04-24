@@ -8,3 +8,5 @@ assets
 *.sh
 *.json
 cub3D
+cub3D
+.codex
