@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/05 12:26:24 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:35:47 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct s_app
 	bool			keys[6];
 	int32_t			window_width;
 	int32_t			window_height;
+	double			last_time;
 }					t_app;
 
 // parsing
@@ -188,7 +189,6 @@ typedef struct s_flood_fill_data
 
 typedef struct s_ray_data
 {
-	double			camera_x;
 	double			ray_dir_x;
 	double			ray_dir_y;
 	int32_t			map_x;
