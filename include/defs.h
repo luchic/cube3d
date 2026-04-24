@@ -158,17 +158,11 @@ typedef struct s_parse_ctx
 
 typedef struct s_player
 {
-	double			pos_x;
-	double			pos_y;
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
 	double			direction_radian;
 	double			plane_radian;
-	t_ray			origin;
 	double			radian_shifting;
 	double			len_to_screen;
+	t_ray			origin;
 
 }					t_player;
 
