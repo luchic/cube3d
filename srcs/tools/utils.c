@@ -6,20 +6,12 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 13:39:10 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/19 16:30:02 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 15:15:29 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-void	exit_with_error(const char *message, t_app *app)
-{
-	(void)app;
-	ft_printf("Error: %s\n", message);
-	//mlx cleanup
-	ft_clean();
-	exit(1);
-}
 
 char	*malloc_strdup(const char *src)
 {
@@ -84,6 +76,7 @@ char	*ft_strpbrk(const char *s, const char *charset)
 	return (NULL);
 }
 
+<<<<<<< HEAD
 int	is_empty_line(char *line)
 {
 	while (*line)
@@ -107,4 +100,18 @@ int	check_extension(const char *file, const char *ext)
 	if (file_len < ext_len)
 		return (0);
 	return (ft_strcmp(file + file_len - ext_len, ext) == 0);
+}
+
+void	exit_with_error(const char *message, t_app *app)
+{
+	ft_printf("Error: %s\n", message);
+	if (app)
+	{
+		if (app->image)
+			mlx_delete_image(app->mlx, app->image);
+		if (app->mlx)
+			mlx_terminate(app->mlx);
+	}
+	ft_clean();
+	exit(1);
 }
