@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/24 15:47:41 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 15:51:49 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,13 @@ typedef struct s_map
 	int32_t			player_start_y;
 	int8_t			player_start_dir;
 }					t_map;
+
+typedef struct s_parse_ctx
+{
+	int32_t			fd;
+	t_map			*map;
+	uint8_t			elements_found;
+}					t_parse_ctx;
 
 typedef struct s_player
 {
