@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_floor.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/24 18:52:14 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 18:52:16 by sruff            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -5,7 +16,7 @@ static void	init_floor_row(t_app *app, t_floor_view *view,
 		t_floor_row *floor_row, int32_t y)
 {
 	floor_row->row_distance = (app->player.len_to_screen * TILE_SIZE_DOUBLE
-				/ 2.0) / (y - app->window_height / 2.0);
+			/ 2.0) / (y - app->window_height / 2.0);
 	floor_row->floor_setp.x = floor_row->row_distance * (view->ray_dir1.x
 			- view->ray_dir0.x) / app->window_width;
 	floor_row->floor_setp.y = floor_row->row_distance * (view->ray_dir1.y
@@ -47,7 +58,8 @@ static void	draw_floor_row(t_app *app, mlx_texture_t *texture,
 		tex_x = (int32_t)(texture->width * (floor_row->floor_pos.x
 					- floor(floor_row->floor_pos.x))) % (int32_t)texture->width;
 		tex_y = (int32_t)(texture->height * (floor_row->floor_pos.y
-					- floor(floor_row->floor_pos.y))) % (int32_t)texture->height;
+					- floor(floor_row->floor_pos.y)))
+			% (int32_t)texture->height;
 		color = get_pixel(texture, tex_x, tex_y);
 		color = apply_distance_shading(color, floor_row->factor);
 		mlx_put_pixel(app->frames.floor_frame, x, y, color);

@@ -1,6 +1,16 @@
-#include "cub3d.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   render_frame.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/24 18:52:37 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 18:54:21 by sruff            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "cub3d.h"
 
 t_casting_info	start_casting(t_app *app, int x)
 {
@@ -48,10 +58,10 @@ t_casting_info	start_casting(t_app *app, int x)
 	double			camera_x;
 	double			ray_length;
 	t_casting_info	info;
+	double			texture_y;
 
 	direction = radian_to_vector(app->player.direction_radian);
 	plane = radian_to_vector(app->player.plane_radian);
-	
 	camera_x = 2.0 * x / (double)app->window_width - 1.0;
 	plane.x *= tan((FOV_DEGREE / 2.0) * M_PI / 180.0) * camera_x;
 	plane.y *= tan((FOV_DEGREE / 2.0) * M_PI / 180.0) * camera_x;
@@ -64,13 +74,11 @@ t_casting_info	start_casting(t_app *app, int x)
 	info.distanse /= ray_length;
 	return (info);
 }*/
-
 // static void	drow_line_cast(t_app *app, int pixel, int x)
 // {
 // 	int32_t		y;
 // 	int32_t		y_end;
 // 	uint32_t	color;
-
 // 	if (pixel < app->window_height)
 // 	{
 // 		y = app->window_height / 2 - pixel / 2;
@@ -88,16 +96,15 @@ t_casting_info	start_casting(t_app *app, int x)
 // 		y++;
 // 	}
 // }
-
-static int32_t get_texture_color(t_app *app, int relative, int max_height, int texture_x)
+static int32_t	get_texture_color(t_app *app, int relative, int max_height,
+		int texture_x)
 {
-	double texture_y;
-
-	texture_y = (double) relative / (double) max_height * TILE_SIZE_DOUBLE;
+	texture_y = (double)relative / (double)max_height * TILE_SIZE_DOUBLE;
 	return (get_pixel(app->img->txt_no, texture_x, texture_y));
 }
 
-static void	drow_line_from_texture(t_app *app, int wall_height, int x, int texture_x)
+static void	drow_line_from_texture(t_app *app, int wall_height, int x,
+		int texture_x)
 {
 	int			draw_start;
 	int			draw_end;
@@ -107,28 +114,28 @@ static void	drow_line_from_texture(t_app *app, int wall_height, int x, int textu
 
 	wall_top = app->window_height / 2 - wall_height / 2;
 	wall_bottom = app->window_height / 2 + wall_height / 2;
-
 	draw_start = wall_top;
 	draw_end = wall_bottom;
 	if (draw_start < 0)
 		draw_start = 0;
 	if (draw_end > app->window_height)
 		draw_end = app->window_height;
-
 	while (draw_start < draw_end)
 	{
-		color = get_texture_color(app, draw_start - wall_top, wall_height, texture_x);
+		color = get_texture_color(app, draw_start - wall_top, wall_height,
+				texture_x);
 		mlx_put_pixel(app->frames.walls_frame, x, draw_start, color);
 		draw_start++;
 	}
 }
 
-static int get_tex_x(t_casting_info info)
+static int	get_tex_x(t_casting_info info)
 {
 	double	wall_x;
 	int		tex_x;
-	int texture_width = 64;
+	int		texture_width;
 
+	texture_width = 64;
 	if (info.side == 0)
 		wall_x = info.hit_position.y;
 	else
@@ -145,7 +152,7 @@ static int get_tex_x(t_casting_info info)
 void	draw_wertical_line(t_app *app, t_casting_info info, int x)
 {
 	double	height;
-	int texture_column;
+	int		texture_column;
 
 	height = app->player.len_to_screen / info.distanse * 64.0;
 	texture_column = get_tex_x(info);
@@ -158,7 +165,7 @@ void	clean_wall_frame(t_app *app)
 	int	i;
 	int	j;
 
-	color = get_rgba(0,0,0,0);
+	color = get_rgba(0, 0, 0, 0);
 	i = 0;
 	while (i < app->window_height)
 	{
@@ -192,7 +199,7 @@ void	render_walls(t_app *app)
 
 void	re_draw(t_app *app)
 {
-	int32_t ceiling_color;
+	int32_t	ceiling_color;
 
 	if (!app || !app->img)
 		return ;
