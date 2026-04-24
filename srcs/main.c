@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 15:19:32 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 15:25:32 by sruff            ###   ########.fr       */
+/*   Created: 2026/04/24 15:28:12 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 15:28:13 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,6 @@ static void	setup_hooks(t_app *app)
 	mlx_loop_hook(app->mlx, main_loop_hook, app);
 }
 
-static void	exit_without_message(t_app *app)
-{
-	cleanup_graphics(app);
-	ft_clean();
-	exit(1);
-}
-
-static void	print_parse_error(t_parse_error error)
-{
-	ft_printf("Error: %s\n", get_parse_error_message(error));
-}
-
 static t_app	*setup_app(const char *map_path)
 {
 	t_app			*app;
@@ -62,7 +50,7 @@ static t_app	*setup_app(const char *map_path)
 	if (error != PARSE_SUCCESS)
 	{
 		print_parse_error(error);
-		exit_without_message(app);
+		clean_exit(app);
 	}
 	app->window_width = WINDOW_WIDTH;
 	app->window_height = WINDOW_HEIGHT;

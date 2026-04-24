@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 15:23:40 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 15:26:53 by sruff            ###   ########.fr       */
+/*   Created: 2026/04/24 15:27:40 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 15:28:02 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ char	*ft_strpbrk(const char *s, const char *charset)
 	return (NULL);
 }
 
-
 int	is_empty_line(char *line)
 {
 	while (*line)
@@ -99,6 +98,7 @@ int	check_extension(const char *file, const char *ext)
 	if (file_len < ext_len)
 		return (0);
 	return (ft_strcmp(file + file_len - ext_len, ext) == 0);
+}
 
 const char	*get_parse_error_message(t_parse_error error)
 {

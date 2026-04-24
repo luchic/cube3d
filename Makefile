@@ -47,6 +47,7 @@ SRC_FILES = \
 	srcs/render/render_walls.c \
 	srcs/tools/element_handler_utils.c \
 	srcs/tools/utils.c \
+	srcs/tools/error_handling.c \
 	srcs/validate/check_walls.c \
 	srcs/validate/validate_map.c
 
