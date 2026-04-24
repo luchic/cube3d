@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/15 14:15:36 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 15:17:46 by sruff            ###   ########.fr       */
+/*   Created: 2026/04/24 15:19:32 by sruff             #+#    #+#             */
+/*   Updated: 2026/04/24 15:20:12 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../include/cub3d.h"
 
@@ -51,6 +52,7 @@ int32_t	main(int32_t argc, char **argv)
 		print_parse_error(error);
 		ft_clean();
 		return 1;
+
 	}
 	//app->last_time = mlx_get_time();
 	//debug_print_map(app->map);

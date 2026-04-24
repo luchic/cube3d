@@ -50,12 +50,6 @@ bool	parse_element(char *line, t_app *app)
 
 int32_t	parse_map(t_app *app, const char *file)
 {
-	app->map = ft_malloc(sizeof(t_map));
-	if (!app->map)
-	{
-		exit_with_error("Memory allocation for map failed", app);
-	}
-	ft_memset(app->map, 0, sizeof(t_map));
 	if (!ft_strnstr(file, ".cub", ft_strlen(file)))
 		exit_with_error("Map file must have a .cub extension.", NULL);
 	read_and_parse_file(file, app);
