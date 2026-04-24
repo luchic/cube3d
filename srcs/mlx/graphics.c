@@ -6,11 +6,20 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 15:32:53 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/22 15:02:28 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static void	init_sky(t_app *app)
+{
+	int32_t ceiling_color;
+
+	ceiling_color = get_rgba(app->map->ceiling_color[0],
+			app->map->ceiling_color[1], app->map->ceiling_color[2], 255);
+	draw_sky(app, ceiling_color);
+}
 
 int	init_frames(t_app *app)
 {
@@ -55,6 +64,8 @@ void	cleanup_graphics(t_app *app)
 
 void	setup_graphics(t_app *app)
 {
+	int32_t ceiling_color;
+
 	app->window_width = WINDOW_WIDTH;
 	app->window_height = WINDOW_HEIGHT;
 	app->mlx = mlx_init(app->window_width, app->window_height, APP_TITLE, true);
@@ -67,4 +78,8 @@ void	setup_graphics(t_app *app)
 		exit_with_error("Failed to load west texture.", app);
 	}
 	init_frames(app);
+	ceiling_color = get_rgba(app->map->ceiling_color[0],
+			app->map->ceiling_color[1], app->map->ceiling_color[2], 255);
+	draw_sky(app, ceiling_color);
+	init_sky(app);
 }

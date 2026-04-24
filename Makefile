@@ -34,7 +34,6 @@ SRC_FILES = \
 	srcs/player/handle_movement.c \
 	srcs/player/player_move.c \
 	srcs/render/render.c \
-	srcs/render/handle_rays.c \
 	srcs/render/render_sky.c \
 	srcs/render/render_draw.c \
 	srcs/render/draw_shapes.c \

@@ -4,19 +4,66 @@
 
 t_casting_info	start_casting(t_app *app, int x)
 {
-	double			radian;
+	double			plane_scale;
 	double			beta;
 	t_ray			direction;
+	t_ray			plane;
 	t_casting_info	info;
 
-	x = x - app->window_width / 2;
-	beta = app->player.radian_shifting * x;
-	radian = app->player.direction_radian + beta;
-	direction = radian_to_vector(radian);
+	direction = radian_to_vector(app->player.direction_radian);
+	plane = radian_to_vector(app->player.plane_radian);
+	plane_scale = 2.0 * x / (double)app->window_width - 1.0;
+	plane.x *= (plane_scale * tan((FOV_DEGREE / 2.0) * M_PI / 180.0));
+	plane.y *= (plane_scale * tan((FOV_DEGREE / 2.0) * M_PI / 180.0));
+	direction.x += plane.x;
+	direction.y += plane.y;
 	info = cast_ray(app->map, app->player.origin, direction);
+	beta = ((double)x - (double)app->window_width / 2)
+		* app->player.radian_shifting;
 	info.distanse = info.distanse * cos(beta);
 	return (info);
 }
+
+// t_casting_info	start_casting(t_app *app, int x)
+// {
+// 	double			radian;
+// 	double			beta;
+// 	t_ray			direction;
+// 	t_casting_info	info;
+
+// 	x = x - app->window_width / 2;
+// 	beta = app->player.radian_shifting * x;
+// 	radian = app->player.direction_radian + beta;
+// 	direction = radian_to_vector(radian);
+// 	info = cast_ray(app->map, app->player.origin, direction);
+// 	info.distanse = info.distanse * cos(beta);
+// 	return (info);
+// }
+
+/*
+t_casting_info	start_casting(t_app *app, int x)
+{
+	t_ray			direction;
+	t_ray			plane;
+	double			camera_x;
+	double			ray_length;
+	t_casting_info	info;
+
+	direction = radian_to_vector(app->player.direction_radian);
+	plane = radian_to_vector(app->player.plane_radian);
+	
+	camera_x = 2.0 * x / (double)app->window_width - 1.0;
+	plane.x *= tan((FOV_DEGREE / 2.0) * M_PI / 180.0) * camera_x;
+	plane.y *= tan((FOV_DEGREE / 2.0) * M_PI / 180.0) * camera_x;
+	direction.x += plane.x;
+	direction.y += plane.y;
+	ray_length = sqrt(direction.x * direction.x + direction.y * direction.y);
+	direction.x /= ray_length;
+	direction.y /= ray_length;
+	info = cast_ray(app->map, app->player.origin, direction);
+	info.distanse /= ray_length;
+	return (info);
+}*/
 
 // static void	drow_line_cast(t_app *app, int pixel, int x)
 // {
@@ -99,6 +146,7 @@ void	draw_wertical_line(t_app *app, t_casting_info info, int x)
 {
 	double	height;
 	int texture_column;
+
 	height = app->player.len_to_screen / info.distanse * 64.0;
 	texture_column = get_tex_x(info);
 	drow_line_from_texture(app, (int)height, x, texture_column);
@@ -106,11 +154,21 @@ void	draw_wertical_line(t_app *app, t_casting_info info, int x)
 
 void	clean_wall_frame(t_app *app)
 {
-	int color = get_rgba(0,0,0,0);
-	for (int i = 0; i < app->window_height; i ++)
+	int	color;
+	int	i;
+	int	j;
+
+	color = get_rgba(0,0,0,0);
+	i = 0;
+	while (i < app->window_height)
 	{
-		for (int j = 0; j < app->window_width; j ++)
+		j = 0;
+		while (j < app->window_width)
+		{
 			mlx_put_pixel(app->frames.walls_frame, j, i, color);
+			j++;
+		}
+		i++;
 	}
 }
 
@@ -140,9 +198,7 @@ void	re_draw(t_app *app)
 		return ;
 	ceiling_color = get_rgba(app->map->ceiling_color[0],
 			app->map->ceiling_color[1], app->map->ceiling_color[2], 255);
-	// I don't need to recalculate it all the time. I need just another one layer
-	// For my sky
-	draw_sky(app, ceiling_color);
+	// draw_sky(app, ceiling_color);
 	draw_floor(app);
 	render_walls(app);
 	render_minimap(app);
