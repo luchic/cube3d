@@ -3,7 +3,7 @@ NAME = cub3D
 CC = cc
 
 UNAME_S := $(shell uname -s)
-CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX42)/include/MLX42 -Ilibft/includes
+CFLAGS = -Wall -Wextra -Werror -Iinclude -I$(MLX42)/include/MLX42 -Ilibft/includes
 
 DLIBFT = libft
 LIBFT = $(DLIBFT)/libft.a
@@ -29,17 +29,10 @@ SRC_FILES = \
 	srcs/mlx/graphics.c \
 	srcs/mlx/setup_hooks.c \
 	srcs/mlx/texture_loader.c \
-	srcs/parse/pad_map_grid.c \
-	srcs/parse/pad_map_grid_utils.c \
-	srcs/parse/parse_colors.c \
-	srcs/parse/parse_colors_utils.c \
-	srcs/parse/parse_element_utils.c \
-	srcs/parse/parse_file.c \
-	srcs/parse/parse_file_line.c \
-	srcs/parse/parse_file_utils.c \
-	srcs/parse/parse_file_utils_helpers.c \
-	srcs/parse/parse_textures.c \
-	srcs/parse/parsing.c \
+	srcs/parsing/parse_elements.c \
+	srcs/parsing/parse_grid.c \
+	srcs/parsing/parsing.c \
+	srcs/parsing/validate_map.c \
 	srcs/player/init_player.c \
 	srcs/player/keypress.c \
 	srcs/player/handle_movement.c \
@@ -55,11 +48,8 @@ SRC_FILES = \
 	srcs/render/render_minimap.c \
 	srcs/render/render_texture.c \
 	srcs/render/render_walls.c \
-	srcs/tools/element_handler_utils.c \
 	srcs/tools/utils.c \
 	srcs/tools/error_handling.c \
-	srcs/validate/check_walls.c \
-	srcs/validate/validate_map.c
 
 SRC_OBJS = $(SRC_FILES:.c=.o)
 
