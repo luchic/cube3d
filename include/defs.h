@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   defs.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:30:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/14 14:35:47 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/24 15:47:41 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFS_H
 # define DEFS_H
 
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include "libft.h"
-# include "mlx42/include/MLX42/MLX42.h"
+# include "../libft/includes/ft_printf.h"
+# include "../libft/includes/get_next_line.h"
+# include "../libft/includes/libft.h"
+# include "../mlx42/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
