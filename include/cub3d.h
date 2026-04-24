@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/24 15:33:37 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 15:33:48 by sruff            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -242,7 +231,7 @@ uint32_t		get_texture_color(t_app *app, int32_t tex_num, int32_t tex_x,
 					int32_t tex_y);
 int32_t			get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
 void			draw_ceiling(t_app *app, int32_t ceiling_color);
-void			draw_floor(t_app *app, int32_t floor_color);
+void			draw_floor(t_app *app);
 void			init_floor_row(t_app *app, t_floor_view *view,
 					t_floor_row *floor_row, int32_t y);
 void			render_minimap(t_app *app);
