@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   texture_loader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:23:36 by sruff             #+#    #+#             */
 /*   Updated: 2026/04/25 14:11:51 by sruff            ###   ########.fr       */
@@ -12,7 +12,6 @@
 
 #include "cub3d.h"
 
-#define FLOOR_TEXTURE_PATH "assets/textures/FLOOR_1A.PNG"
 
 static int	load_texture(mlx_texture_t **texture, const char *path)
 {
@@ -22,20 +21,19 @@ static int	load_texture(mlx_texture_t **texture, const char *path)
 	return (1);
 }
 
-void	cleanup_textures(t_images *img)
+void	cleanup_textures(t_images *textures)
 {
-	if (!img)
+
+	if (!textures)
 		return ;
-	if (img->txt_no)
-		mlx_delete_texture(img->txt_no);
-	if (img->txt_so)
-		mlx_delete_texture(img->txt_so);
-	if (img->txt_ea)
-		mlx_delete_texture(img->txt_ea);
-	if (img->txt_we)
-		mlx_delete_texture(img->txt_we);
-	if (img->txt_floor)
-		mlx_delete_texture(img->txt_floor);
+	if (textures->txt_ea)
+		mlx_delete_texture(textures->txt_ea);
+	if (textures->txt_no)
+		mlx_delete_texture(textures->txt_no);
+	if (textures->txt_so)
+		mlx_delete_texture(textures->txt_so);
+	if (textures->txt_we)
+		mlx_delete_texture(textures->txt_we);
 }
 
 int	load_textures(t_app *app)
@@ -44,9 +42,8 @@ int	load_textures(t_app *app)
 	load_texture(&(app->img->txt_so), app->map->south_texture_path);
 	load_texture(&(app->img->txt_ea), app->map->east_texture_path);
 	load_texture(&(app->img->txt_we), app->map->west_texture_path);
-	load_texture(&(app->img->txt_floor), FLOOR_TEXTURE_PATH);
 	if (!app->img->txt_no || !app->img->txt_so || !app->img->txt_ea
-		|| !app->img->txt_we || !app->img->txt_floor)
+		|| !app->img->txt_we)
 	{
 		cleanup_textures(app->img);
 		return (0);

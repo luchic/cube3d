@@ -47,6 +47,7 @@ int				load_textures(t_app *app);
 void			cleanup_textures(t_images *img);
 void			cleanup_graphics(t_app *app);
 int				init_frames(t_app *app);
+void			clean_frames(t_app *app);
 
 //==============================================================================
 //                       cast rays
@@ -70,7 +71,7 @@ int32_t			get_texture_num(double ray_dir_x, double ray_dir_y,
 uint32_t		get_pixel(mlx_texture_t *texture, int32_t x, int32_t y);
 int32_t			get_rgba(int32_t r, int32_t g, int32_t b, int32_t a);
 void			draw_sky(t_app *app, int32_t ceiling_color);
-void			draw_floor(t_app *app);
+void			draw_floor(t_app *app, int32_t ceiling_color);
 void			render_minimap(t_app *app);
 void			put_pixel_safe_screen(t_app *app, t_point point,
 					uint32_t color);
@@ -84,7 +85,7 @@ void			clean_wall_frame(mlx_image_t *image);
 t_casting_info	start_casting(t_app *app, int x);
 void			draw_wertical_line(t_app *app, t_casting_info info, int x);
 t_wall_face		get_wall_face(t_casting_info info);
-
+void			draw_background(t_app *app);
 //==============================================================================
 //                        player
 //==============================================================================

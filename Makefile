@@ -31,6 +31,7 @@ SRC_FILES = \
 	srcs/main.c \
 	srcs/mlx/graphics.c \
 	srcs/mlx/setup_hooks.c \
+	srcs/mlx/init_frames.c \
 	srcs/mlx/texture_loader.c \
 	srcs/parsing/parse_elements.c \
 	srcs/parsing/parse_grid.c \
@@ -44,7 +45,6 @@ SRC_FILES = \
 	srcs/render/render_sky.c \
 	srcs/render/render_draw.c \
 	srcs/render/draw_shapes.c \
-	srcs/render/render_floor.c \
 	srcs/render/render_minimap.c \
 	srcs/render/render_texture.c \
 	srcs/render/math.c \
