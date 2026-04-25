@@ -44,7 +44,6 @@ SRC_FILES = \
 	srcs/render/render_sky.c \
 	srcs/render/render_draw.c \
 	srcs/render/draw_shapes.c \
-	srcs/render/render_floor.c \
 	srcs/render/render_minimap.c \
 	srcs/render/render_texture.c \
 	srcs/render/math.c \
