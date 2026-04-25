@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 18:47:58 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 21:24:43 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/25 15:11:30 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	setup_lenght_to_projection(t_app *app)
 	double	lenght_to_screen;
 	double	radian;
 
-	radian = FOV_DEGREE / 360.0 * M_PI; // (fov / 2) / 180 * PI
+	radian = FOV_DEGREE / 360.0 * M_PI;
 	lenght_to_screen = (WINDOW_WIDTH / 2.0) / tan(radian);
 	app->player.len_to_screen = lenght_to_screen / TILE_SIZE_DOUBLE;
 }
