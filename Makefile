@@ -31,6 +31,7 @@ SRC_FILES = \
 	srcs/main.c \
 	srcs/mlx/graphics.c \
 	srcs/mlx/setup_hooks.c \
+	srcs/mlx/init_frames.c \
 	srcs/mlx/texture_loader.c \
 	srcs/parsing/parse_elements.c \
 	srcs/parsing/parse_grid.c \
