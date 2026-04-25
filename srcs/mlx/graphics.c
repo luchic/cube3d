@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/25 11:16:24 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/25 12:09:01 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,11 @@ static void	init_background(t_app *app)
 	draw_floor(app, floor_color);
 }
 
-int	init_frames(t_app *app)
-{
-	app->frames.sky_frame = mlx_new_image(app->mlx, app->window_width,
-			app->window_height);
-	app->frames.floor_frame = mlx_new_image(app->mlx, app->window_width,
-			app->window_height);
-	app->frames.walls_frame = mlx_new_image(app->mlx, app->window_width,
-			app->window_height);
-	app->frames.tools_frame = mlx_new_image(app->mlx, app->window_width,
-			app->window_height);
-	mlx_image_to_window(app->mlx, app->frames.sky_frame, 0, 0);
-	mlx_image_to_window(app->mlx, app->frames.floor_frame, 0, 0);
-	mlx_image_to_window(app->mlx, app->frames.walls_frame, 0, 0);
-	mlx_image_to_window(app->mlx, app->frames.tools_frame, 0, 0);
-	return (1);
-}
-
 void	cleanup_graphics(t_app *app)
 {
 	if (!app)
 		return ;
+	clean_frames(app);
 	if (app->mlx)
 		mlx_terminate(app->mlx);
 }
@@ -63,6 +47,9 @@ void	setup_graphics(t_app *app)
 	{
 		exit_with_error("Failed to load west texture.", app);
 	}
-	init_frames(app);
+	if (!init_frames(app))
+	{
+		exit_with_error("Failed to load west texture.", app);
+	}
 	init_background(app);
 }

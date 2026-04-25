@@ -47,6 +47,7 @@ int				load_textures(t_app *app);
 void			cleanup_textures(t_images *img);
 void			cleanup_graphics(t_app *app);
 int				init_frames(t_app *app);
+void			clean_frames(t_app *app);
 
 //==============================================================================
 //                       cast rays
