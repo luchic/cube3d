@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:17:40 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/25 15:17:57 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/25 15:23:23 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define ELEM_EA 0x08
 # define ELEM_F 0x10
 # define ELEM_C 0x20
+# define ELEM_ALL 0x3F
 // Assets
 // Grid
 // Plazer

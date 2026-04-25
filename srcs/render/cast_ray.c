@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 18:49:35 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/25 15:00:44 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/25 15:21:21 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,7 @@ t_casting_info	cast_ray(t_map *map, t_ray origin, t_ray direction)
 	cast_info.length = setup_initial_ray_length(origin, direction, map_check,
 			ray_unit_step_size);
 	while (can_prapogate(map, map_check))
-	{
 		update_ray_info(&cast_info, &map_check, &ray_unit_step_size, &step);
-	}
 	ray_length = hypot(direction.x, direction.y);
 	cast_info.hit_position.x = origin.x + direction.x / ray_length
 		* cast_info.distanse;
