@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   texture_loader.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:23:36 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/25 14:11:51 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/25 15:11:16 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 static int	load_texture(mlx_texture_t **texture, const char *path)
 {
@@ -23,7 +22,6 @@ static int	load_texture(mlx_texture_t **texture, const char *path)
 
 void	cleanup_textures(t_images *textures)
 {
-
 	if (!textures)
 		return ;
 	if (textures->txt_ea)
