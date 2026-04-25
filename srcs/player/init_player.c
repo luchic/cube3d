@@ -52,7 +52,7 @@ void	init_player(t_app *app)
 	ft_memset(&app->player, 0, sizeof(t_player));
 	init_player_direction(app);
 	app->player.origin.x = app->map->player_start_x + 0.5;
-	app->player.origin.y = app->map->player_start_x + 0.5;
+	app->player.origin.y = app->map->player_start_y + 0.5;
 	app->player.radian_shifting = (FOV_DEGREE / 180.0 * M_PI) / WINDOW_WIDTH;
 	setup_lenght_to_projection(app);
 }

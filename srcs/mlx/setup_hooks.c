@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 18:41:33 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/25 12:24:15 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/25 14:28:43 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	resize_callback(int32_t width, int32_t height, void *param)
 
 	app = (t_app *)param;
 	if (!app || !app->img)
+		return ;
+	if (width <= 0 || height <= 0)
 		return ;
 	app->window_width = width;
 	app->window_height = height;
