@@ -32,6 +32,14 @@
 # define TILE_SIZE_INT 64
 # define TILE_SIZE_DOUBLE 64.0
 
+typedef enum e_wall_face
+{
+	WALL_NORTH,
+	WALL_SOUTH,
+	WALL_WEST,
+	WALL_EAST
+}					t_wall_face;
+
 typedef struct s_ray
 {
 	double			x;
@@ -43,32 +51,11 @@ typedef struct s_casting_info
 	int				hit;
 	int				side;
 	double			distanse;
+	t_wall_face		face;
 	t_ray			direction;
 	t_ray			hit_position;
 	t_ray			length;
 }					t_casting_info;
-
-typedef struct s_floor_view
-{
-	t_ray			ray_dir0;
-	t_ray			ray_dir1;
-	double			ray_dir_x0;
-	double			ray_dir_y0;
-	double			ray_dir_x1;
-	double			ray_dir_y1;
-}					t_floor_view;
-
-typedef struct s_floor_row
-{
-	double			row_distance;
-	t_ray			floor_setp;
-	t_ray			floor_pos;
-	double			floor_step_x;
-	double			floor_step_y;
-	double			floor_x;
-	double			floor_y;
-	double			factor;
-}					t_floor_row;
 
 typedef struct s_point
 {
@@ -149,17 +136,11 @@ typedef struct s_parse_ctx
 
 typedef struct s_player
 {
-	double			pos_x;
-	double			pos_y;
-	double			dir_x;
-	double			dir_y;
-	double			plane_x;
-	double			plane_y;
 	double			direction_radian;
 	double			plane_radian;
-	t_ray			origin;
 	double			radian_shifting;
 	double			len_to_screen;
+	t_ray			origin;
 
 }					t_player;
 
@@ -169,7 +150,6 @@ typedef struct s_images
 	mlx_texture_t	*txt_so;
 	mlx_texture_t	*txt_ea;
 	mlx_texture_t	*txt_we;
-	mlx_texture_t	*txt_floor;
 }					t_images;
 
 typedef struct s_frames
@@ -193,6 +173,7 @@ typedef struct s_app
 
 	t_frames		frames;
 	t_player		player;
+	t_casting_info	*temporary_info;
 }					t_app;
 
 // parsing

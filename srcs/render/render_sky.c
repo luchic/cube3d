@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:25:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/19 12:39:57 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/25 11:19:28 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,29 @@ void	draw_sky(t_app *app, int32_t ceiling_color)
 		while (x < app->window_width)
 		{
 			mlx_put_pixel(app->frames.sky_frame, x, y, shaded_color);
+			x++;
+		}
+		y++;
+	}
+}
+
+void	draw_floor(t_app *app, int32_t ceiling_color)
+{
+	int32_t	x;
+	int32_t	y;
+	double	factor;
+	int32_t	shaded_color;
+
+	y = app->window_height / 2;
+	while (y < app->window_height)
+	{
+		factor = (double)(y - app->window_height / 2) / (app->window_height
+				/ 2);
+		shaded_color = get_gradient_color(ceiling_color, factor);
+		x = 0;
+		while (x < app->window_width)
+		{
+			mlx_put_pixel(app->frames.floor_frame, x, y, shaded_color);
 			x++;
 		}
 		y++;

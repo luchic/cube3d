@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/24 18:47:29 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 18:47:35 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/24 21:26:46 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 
 static void	rotate_player(t_player *player, double angle)
 {
-	double	old_dir_x;
-	double	old_plane_x;
-
-	old_dir_x = player->dir_x;
-	player->dir_x = player->dir_x * cos(angle) - player->dir_y * sin(angle);
-	player->dir_y = old_dir_x * sin(angle) + player->dir_y * cos(angle);
-	old_plane_x = player->plane_x;
-	player->plane_x = player->plane_x * cos(angle) - player->plane_y
-		* sin(angle);
-	player->plane_y = old_plane_x * sin(angle) + player->plane_y * cos(angle);
 	player->direction_radian += angle * 2;
 	player->plane_radian += angle * 2;
 }
