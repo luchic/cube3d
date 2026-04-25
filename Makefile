@@ -15,18 +15,6 @@ MLX42LIB = $(BUILD_DIR)/libmlx42.a
 
 EXT_LIBS = -ldl -lglfw -pthread -lm
 
-MACOS_GLFW_LIB_DIR =
-ifeq ($(UNAME_S),Darwin)
-ifneq ($(wildcard /opt/homebrew/lib/libglfw.dylib),)
-MACOS_GLFW_LIB_DIR = -L/opt/homebrew/lib
-else ifneq ($(wildcard /usr/local/lib/libglfw.dylib),)
-MACOS_GLFW_LIB_DIR = -L/usr/local/lib
-endif
-endif
-
-EXT_LIBS = $(MACOS_GLFW_LIB_DIR) -ldl -lglfw -pthread -lm
-
-
 SRC_FILES = \
 	srcs/main.c \
 	srcs/mlx/graphics.c \
@@ -63,10 +51,6 @@ all: $(NAME)
 
 bonus: $(NAME)
 
-debug: CFLAGS += -g3 -fsanitize=address
-debug: LDFLAGS += -fsanitize=address
-debug: re
-
 $(NAME): $(MLX42LIB) $(SRC_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(SRC_OBJS) -o $(NAME) -L$(DLIBFT) -l$(FT) \
 		-L$(BUILD_DIR) -lmlx42 $(EXT_LIBS) $(LDFLAGS)
@@ -101,4 +85,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all bonus debug clean fclean re
+.PHONY: all bonus clean fclean re
