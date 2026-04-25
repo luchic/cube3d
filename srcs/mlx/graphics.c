@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/25 12:09:01 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/25 12:18:33 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	cleanup_graphics(t_app *app)
 	if (!app)
 		return ;
 	clean_frames(app);
+	if (app->img)
+		cleanup_textures(app->img);
 	if (app->mlx)
 		mlx_terminate(app->mlx);
 }
