@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/05 15:14:56 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 17:33:14 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/25 14:44:51 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ static t_app	*setup_app(const char *map_path)
 	return (app);
 }
 
+static void	clean_app(t_app *app)
+{
+	cleanup_graphics(app);
+	ft_clean();
+}
+
 int32_t	main(int32_t argc, char **argv)
 {
 	t_app	*app;
@@ -60,7 +66,6 @@ int32_t	main(int32_t argc, char **argv)
 	app->last_time = mlx_get_time();
 	ft_printf("Welcome to Cub3D!\n");
 	mlx_loop(app->mlx);
-	cleanup_graphics(app);
-	ft_clean();
+	clean_app(app);
 	return (0);
 }
