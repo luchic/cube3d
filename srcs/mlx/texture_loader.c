@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 16:23:36 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 18:44:34 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/25 14:11:51 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,20 @@ static int	load_texture(mlx_texture_t **texture, const char *path)
 	return (1);
 }
 
-void	cleanup_textures(t_images *textures)
+void	cleanup_textures(t_images *img)
 {
-	(void)textures;
-	return ;
+	if (!img)
+		return ;
+	if (img->txt_no)
+		mlx_delete_texture(img->txt_no);
+	if (img->txt_so)
+		mlx_delete_texture(img->txt_so);
+	if (img->txt_ea)
+		mlx_delete_texture(img->txt_ea);
+	if (img->txt_we)
+		mlx_delete_texture(img->txt_we);
+	if (img->txt_floor)
+		mlx_delete_texture(img->txt_floor);
 }
 
 int	load_textures(t_app *app)

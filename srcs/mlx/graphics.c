@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 13:20:00 by nluchini          #+#    #+#             */
-/*   Updated: 2026/04/24 18:41:13 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/25 14:11:51 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	cleanup_graphics(t_app *app)
 {
 	if (!app)
 		return ;
+	if (app->img)
+		cleanup_textures(app->img);
 	if (app->mlx)
 		mlx_terminate(app->mlx);
 }
