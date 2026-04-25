@@ -61,5 +61,6 @@ int32_t	main(int32_t argc, char **argv)
 	ft_printf("Welcome to Cub3D!\n");
 	mlx_loop(app->mlx);
 	cleanup_graphics(app);
+	ft_clean();
 	return (0);
 }
