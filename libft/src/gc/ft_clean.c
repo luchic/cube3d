@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 10:41:00 by nluchini          #+#    #+#             */
-/*   Updated: 2025/10/16 14:16:53 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/28 13:07:54 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void	__ft_lstdelone(t_list *lst, void (*del)(void*))
 	del(lst->content);
 	free(lst);
 }
-
 
 static void	__ft_lstclear(t_list **lst, void (*del)(void*))
 {
