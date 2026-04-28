@@ -164,7 +164,7 @@ debug-re:
 re : fclean all
 
 fclean : clean
-	rm -f $(NAME) 
+	rm -f $(NAME)
 
 clean : 
 	rm -f $(CORE_OBJ_FIlES) $(OBJ_PRINTF) $(GNL_OBJ) $(GC_OBJ)

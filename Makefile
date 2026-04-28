@@ -2,7 +2,6 @@ NAME = cub3D
 
 CC = cc
 
-UNAME_S := $(shell uname -s)
 CFLAGS = -Wall -Wextra -Werror -Iinclude -I. -I$(MLX42)/include/MLX42 -Ilibft/includes
 
 DLIBFT = libft
@@ -76,11 +75,11 @@ $(MLX42LIB):
 
 clean:
 	rm -f $(SRC_OBJS)
-
 	@if [ -d $(DLIBFT) ]; then $(MAKE) -C $(DLIBFT) clean; fi
 
 fclean: clean
 	rm -f $(NAME)
+	rm -fr $(MLX42)
 	@if [ -d $(DLIBFT) ]; then $(MAKE) -C $(DLIBFT) fclean; fi
 
 re: fclean all

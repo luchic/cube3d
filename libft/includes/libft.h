@@ -6,7 +6,7 @@
 /*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 12:24:52 by nluchini          #+#    #+#             */
-/*   Updated: 2025/10/16 14:16:43 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/28 13:07:42 by nluchini         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -628,6 +628,6 @@ void				ft_free(void *ptr);
  * @brief Get the memory object
  * @return t_list** Pointer to the list of tracked memory allocations.
  */
-t_list			**get_memory(void);
+t_list				**get_memory(void);
 
 #endif
