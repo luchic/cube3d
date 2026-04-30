@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_grid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nluchini <nluchini@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 12:10:00 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 16:57:55 by nluchini         ###   ########.fr       */
+/*   Updated: 2026/04/30 11:36:02 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static t_parse_error	add_line_to_grid(t_map *map, char *line)
 	map->grid_height++;
 	if (len > map->grid_width)
 		map->grid_width = len;
+	if (map->grid_width > 100 || map->grid_height > 100)
+		return (PARSE_ERR_MAP_TOO_BIG);
 	return (PARSE_SUCCESS);
 }
 

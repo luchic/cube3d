@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 15:18:04 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/25 15:18:04 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/30 11:31:45 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef enum e_parse_error
 	PARSE_ERR_INVALID_MAP_CHAR,
 	PARSE_ERR_INVALID_PLAYER_COUNT,
 	PARSE_ERR_MAP_NOT_ENCLOSED,
+	PARSE_ERR_MAP_TOO_BIG,
 }					t_parse_error;
 
 // cub3d

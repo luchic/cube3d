@@ -6,7 +6,7 @@
 /*   By: sruff <sruff@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/17 10:27:59 by sruff             #+#    #+#             */
-/*   Updated: 2026/04/24 18:39:43 by sruff            ###   ########.fr       */
+/*   Updated: 2026/04/30 11:41:03 by sruff            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static const char	*get_rest_error_messages(t_parse_error error)
 		return ("Map must have exactly one player start position.");
 	if (error == PARSE_ERR_MAP_NOT_ENCLOSED)
 		return ("Map is not enclosed by walls.");
+	if (error == PARSE_ERR_MAP_TOO_BIG)
+		return ("Map too big to render.");
 	return ("Unknown parse error.");
 }
 
